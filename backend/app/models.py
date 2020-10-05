@@ -5,10 +5,6 @@ import datetime
 
 db = SQLAlchemy()
 
-user_rewards = db.Table('user_rewards',
-  db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-  db.Column('reward_id', db.Integer, db.ForeignKey('rewards.id'), primary_key=True)
-)
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -19,11 +15,6 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(100), nullable=False)
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-
-  # User relationship
-  # user_rewards = db.relationship("Reward", secondary=user_rewards, lazy='subquery',
-  #                               backref=db.backref('users', lazy=True))
-
 
   @property
   def password(self):

@@ -1,21 +1,18 @@
-from flask import Blueprint, jsonify
-from app.models import User
+from flask import Blueprint, jsonify, redirect, url_for, session, request
+from app.models import User, db
+from flask_jwt_extended import create_access_token, jwt_required
+from flask_login import current_user
 
-users = Blueprint('users', __name__)
-
-@users.route('/')
-def index():
-  response = User.query.all()
-  return { "users": [user.to_dict() for user in response]}
+users_routes = Blueprint('users', __name__)
 
 
-@users.route('/signup', methods=['POST'])
+@users_routes.route('/signup', methods=['POST'])
 def signup_user():
   try:
     user = User(
-      username=request.json.get('username', None),
-      email=request.json.get('email', None),
-      password=request.json.get('password', None)
+        username=request.json.get('username', None),
+        email=request.json.get('email', None),
+        password=request.json.get('password', None)
     )
     db.session.add(user)
     db.session.commit()

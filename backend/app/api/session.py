@@ -3,9 +3,9 @@ from app.models import User, db
 from flask_jwt_extended import create_access_token, jwt_required
 from flask_login import current_user
 
-session = Blueprint('session', __name__)
+session_routes = Blueprint('session', __name__)
 
-@session.route('', methods=['POST', 'DELETE'])
+@session_routes.route('', methods=['POST', 'DELETE'])
 def login_user():
   if(request.method=='POST'):
     email = request.json.get('email', None)
@@ -23,8 +23,10 @@ def login_user():
     return {'msg': 'successfully logged out'}
 
 
-@session.route('/current', methods=['GET'])
+@session_routes.route('/current', methods=['GET'])
 def load_user():
+  print("HERE")
+  print(session)
   if 'user' in session:
     user = session['user']
     return {"user": session['user']}, 200
