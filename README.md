@@ -24,3 +24,7 @@ This is the backend for the Flask React project.
     $ heroku run -a {NAME_OF_HEROKU_APP} python -m database
 ```
 10. profit
+
+
+## Schema
+<img src='./client/public/game-share-schema.png'  />
