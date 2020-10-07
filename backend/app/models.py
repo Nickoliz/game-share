@@ -5,7 +5,7 @@ import datetime
 
 db = SQLAlchemy()
 
-user_collection = db.Table('user_collectgion',
+user_collection = db.Table('user_collection',
   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
   db.Column('game_id', db.Integer, db.ForeignKey('boardgames.id'), primary_key=True)
 )
@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
-  user_collection = db.relationship("BoardGames", secondary=user_collection, lazy='subquery',
+  user_collection = db.relationship("BoardGame", secondary=user_collection, lazy='subquery',
                                     backref=db.backref('users', lazy=True))
 
   @property
@@ -42,11 +42,38 @@ class User(db.Model, UserMixin):
       "created_at": self.created_at.strftime("%B %Y")
     }
 
+class GameCondition(db.Model):
+  __tablename__ = 'gamecondition'
 
-class BoardGames(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  game_id = db.Column(db.Integer, db.ForeignKey("boardgames.id"), nullable=False)
+  condition = db.Column(db.String(20), nullable=False)
+  previous_condition = db.Column(db.String(20))
+
+  game = db.relationship("BoardGame", foreign_keys=[game_id])
+
+  @property
+  def get_condition(self):
+    return self.condition
+
+  def change_condition(self, condition):
+    self.condition = self.previous_condition
+    self.condition = condition
+
+  def to_dict():
+    return {
+      "id": self.id,
+      "game_id": self.game_id,
+      "condition": self.condition,
+      "previous_condition": self.previous_condition
+    }
+
+
+class BoardGame(db.Model):
   __tablename__ = 'boardgames'
 
   id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))
@@ -57,6 +84,7 @@ class BoardGames(db.Model):
   forborrow = db.Column(db.Boolean, nullable=False)
   condition_id = db.Column(db.Integer, db.ForeignKey("gamecondition.id"), nullable=False)
 
+  user = db.relationship("User", foreign_keys=[user_id])
   condition = db.relationship("GameCondition", foreign_keys=[condition_id])
 
   def to_dict(self):
@@ -102,34 +130,18 @@ class BoardGames(db.Model):
       self.fortrade == False
 
   def change_for_borrow(self):
-    if (self.for == False):
+    if (self.forborrow == False):
       return self.forborrow == True
     else:
       self.forborrow == False
 
 
-class GameCondition(db.Model):
-  __tablename__ = 'gamecondition'
+# class UserCollection(db.Model):
+#   __tablename__ =  'usercollection'
 
-  id = db.Column(db.Integer, primary_key=True)
-  game_id = db.column(db.Integer, db.ForeignKey("boardgames.id"), nullable=False)
-  condition = db.Column(db.String(20), nullable=False)
-  previous_condition = db.Column(db.String(20), nullable=False)
+#   id = db.Column(db.Integer, primary_key=True)
+#   user_id = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
+#   game_id = db.Column(db.Integer, ForeignKey("boardgames.id"), nullable=False)
 
-  game = db.relationship("BoardGames", foreign_keys=[game_id])
-
-  @property
-  def get_condition(self):
-    return self.condition
-
-  def change_condition(self, condition):
-    self.condition = self.previous_condition
-    self.condition = condition
-
-  def to_dict():
-    return {
-      "id": self.id,
-      "game_id": self.game_id,
-      "condition": self.condition,
-      "previous_condition": self.previous_condition
-    }
+#   user = db.relationship("Users", foreign_keys=[user_id])
+#   games = db.relationship("BoardGame", foreign_keys=[game_id])

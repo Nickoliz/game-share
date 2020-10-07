@@ -23,4 +23,6 @@ def ():
 @games_routes.route('/usercollection')
 def get_user_collection():
   user_id = request.json.get('id')
-  user = User.query.filter(User.user_id=user_id)
+  games = BoardGames.query.filter(BoardGames.user_id == user_id)
+  data = [game.to_dict() for game in games]
+  return {"games": data}, 200
