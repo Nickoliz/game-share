@@ -36,6 +36,8 @@
 
 #homepage_nav-button-box {
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
   width: 130px;
   height: 40px;
   background-color: #3881D4;
