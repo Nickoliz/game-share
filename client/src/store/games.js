@@ -1,8 +1,8 @@
-const SET_COLLECTION = 'games/SET_COLLECTION';
+const GET_COLLECTION = 'games/GET_COLLECTION';
 
-export const getCollection = (user) => {
+export const getUserCollection = (collection) => {
   return {
-    type: SET_COLLECTION,
+    type: GET_COLLECTION,
     collection
   };
 };
@@ -14,7 +14,7 @@ export const getCollection = id => {
       method: 'get',
     })
     if (res.ok) {
-      dispatch(getCollection(res.data.games))
+      dispatch(getUserCollection(res.data.games));
     }
     return res;
   }
@@ -23,10 +23,8 @@ export const getCollection = id => {
 export default function gamesReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {
-    case SET_COLLECTION:
+    case GET_COLLECTION:
       return { ...state, games: action.games };
-    case LOGOUT_USER:
-      return {};
     default:
       return state;
   }

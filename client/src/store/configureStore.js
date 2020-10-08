@@ -2,10 +2,14 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import auth from './auth';
+import games from './games'
+import atlas from './atlas'
 // import sample_store from './sample_store'
 
 const rootReducer = combineReducers({
   auth,
+  games,
+  atlas
 });
 
 let storeEnhancer;

@@ -4,7 +4,7 @@ import { login } from '../store/auth';
 import { Redirect, Link } from 'react-router-dom';
 import '../css/login.css'
 
-function Login() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [noEmail, setNoEmail] = useState('');
@@ -63,4 +63,3 @@ function Login() {
     </>
   )
 }
-export default Login;
