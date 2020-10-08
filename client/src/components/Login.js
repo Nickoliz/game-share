@@ -36,17 +36,20 @@ export default function Login() {
   if (currentUserId) return <Redirect to='/' />
   return (
     <>
+    <div className='login_logo_container'>
+      <div className='login_logo-image'/>
+    </div>
       <div className='loginWrapper'>
           <div className="loginContainer">
             <div id='loginLabel'>
               Log in
             </div>
             <form className='loginContainer__form' onSubmit={handleSubmit}>
-              <div>
+              <div id='spacer-div'>
                 <span style={{ color: 'red' }}>{noEmail}</span>
                 <input type='email' className={emailDiv} name='email' value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
               </div>
-              <div>
+              <div id='spacer-div'>
                 <input type='password' className={passwordDiv} name='password' value={password} placeholder='Password' onChange={e => setPassword(e.target.value)} />
               </div>
               <span style={{ color: 'red' }}>{noPassword}</span>
@@ -56,7 +59,7 @@ export default function Login() {
               <button className='loginContainer__loginButton' onClick={demo}>Demo Log in</button>
             </form>
             <div id='redirect'>
-              New to Kickstarter? <Link to="/signup" style={{ textDecoration: 'none', color: 'blue', fontWeight: 'bold' }} > Sign up </Link>
+              Wanna roll some dice? <Link to="/signup" style={{ textDecoration: 'none', color: '#0287EE', fontWeight: 'bold', backgroundColor: '#37404A' }} > Sign up </Link>
             </div>
           </div>
         </div>
