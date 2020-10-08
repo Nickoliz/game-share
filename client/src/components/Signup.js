@@ -44,7 +44,7 @@ export default function Signup() {
   return (
     <>
       <div className='login_logo_container'>
-        <div className='login_logo-image' />
+        <Link exact to='/' className='login_logo-image' />
       </div>
       <div className='signup_master'>
         <div className='signup_master-box'>

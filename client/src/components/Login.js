@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <>
     <div className='login_logo_container'>
-      <div className='login_logo-image'/>
+      <Link exact to='/' className='login_logo-image'/>
     </div>
       <div className='loginWrapper'>
           <div className="loginContainer">

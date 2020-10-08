@@ -60,15 +60,11 @@ export default function HomePage() {
   return (
     <>
       <div className='homepage_auth'>
-        <div className='homepage_auth-button'>
-        <NavLink exact to='/signup' id='auth-link' style={{"text-decoration": "none"}}>Sign Up</NavLink>
-        </div>
+        <NavLink exact to='/signup' id='auth-link' className='homepage_auth-button' style={{ "text-decoration": "none" }}>Sign Up</NavLink>
         {(currentUserId) ?
           <div className='homepage_auth-button homepage_login-button'>Profile</div>
           :
-          <div className='homepage_auth-button homepage_login-button'>
-            <NavLink exact to='/login' id='auth-id' style={{"text-decoration": "none"}}>Log in</NavLink>
-          </div>
+          <NavLink exact to='/login' className='homepage_auth-button homepage_login-button' id='auth-id' style={{ "text-decoration": "none" }}>Log in</NavLink>
         }
       </div>
       <div className='homepage_main_container'>
