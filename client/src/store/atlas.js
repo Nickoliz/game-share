@@ -29,20 +29,20 @@ export const getRedditGames = (games) => {
 };
 
 
-// export const loadTrendingGames = () => {
-//   return async dispatch => {
-//     try {
-//       const res = await fetch(`https://api.boardgameatlas.com/api/search?trending=true&limit=30&client_id=${client_id}`)
-//       res.data = await res.json();
-//       if (res.ok) {
-//         return dispatch(getTrendingGames(res.data.games));
-//       }
-//       return res;
-//     } catch (err) {
-//       console.warn(err)
-//     }
-//   }
-// }
+export const loadTrendingGames = () => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?trending=true&limit=30&client_id=${client_id}`)
+      res.data = await res.json();
+      if (res.ok) {
+        return dispatch(getTrendingGames(res.data.games));
+      }
+      return res;
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+}
 
 // export const loadPopularGames = () => {
 //   return async dispatch => {
@@ -74,19 +74,21 @@ export const getRedditGames = (games) => {
 //   }
 // }
 
-export const loadTrendingGames = () => {
-  return async dispatch => {
-    const res = await fetch('/api/atlas/trending', {
-      method: 'GET',
-    });
-    res.data = await res.json();
-    if (res.ok) {
-      console.log(res.data)
-      return dispatch(getTrendingGames(res.data.games))
-    }
-    return res
-  }
-}
+
+// FOR FLASK REQUESTS
+// export const loadTrendingGames = () => {
+//   return async dispatch => {
+//     const res = await fetch('/api/atlas/trending', {
+//       method: 'GET',
+//     });
+//     res.data = await res.json();
+//     if (res.ok) {
+//       console.log(res.data)
+//       return dispatch(getTrendingGames(res.data.games))
+//     }
+//     return res
+//   }
+// }
 
 export default function gamesReducer(state = {}, action) {
   // Object.freeze(state)

@@ -1,16 +1,10 @@
 import React from 'react';
 // import { getProject } from '../store/project';
-// import { useSelector } from 'react-redux';
-// import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../css/gamecard.css';
 
-// const {
-//   atlas: { client_id },
-// } = require("../config/index");
 
-// let client_id = process.env.CLIENT_ID
-
-export default function GameCard(props) {
+export default function GameCard({ game }) {
 
   // const history = useHistory();
 
@@ -18,44 +12,37 @@ export default function GameCard(props) {
   //   e.preventDefault()
   //   let id = e.target.id.trim()
   //   dispatch(getProject(id))
-  //   history.push(`/project/${id}`)
+  //   history.push(`/atlas/${id}`)
   // }
 
-  console.log(props)
+  // console.log(game.designers.map(designer => designer))
 
-  if (!props.games) return null
+  if (!game) return null
 
 
   return (
-    <div id={props.project.id} className="card-wrapper">
+    <div id={game.id} className="card-wrapper">
       <div className="card">
-        {/* <Link id={props.project.id}
+        <Link id={game.id}
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}
           // onClick={searchID}
-          to={`project/${props.project.id}`}>
-          <img id={props.project.id}
-            src={props.project.pic}
-            alt='Project' onClick={searchID} />
-        </Link> */}
-        <div className="card-information">
-          <div className="card-header">
-            <h3>{props.project.title}</h3>
-            <h2>{props.project.description}</h2>
-            <h3>By {props.project.organization}</h3>
-          </div>
-          <div className="card-footer">
-            <div id='projectpage-detail-progress'>
-              <div id='progress-container'>
-                <div id='progress-container-fill' />
+          to={`game/${game.id}`}>
+          <img id={game.id}
+            src={game.thumb_url}
+          // alt={game.images.small} onClick={searchID} />
+          />
+          <h2>Rank: {game.rank}
+            <div className="card-information">
+              <div className="card-header">
+                <h3>{game.name}</h3>
+                <h2>Publisher: {game.primary_publisher}</h2>
+                <h3>Designer: {game.designers}</h3>
               </div>
             </div>
-            <h4 id='pledged'>${props.project.total_funding} pledged</h4>
-            <h4>{props.project.days_remaining} days to go</h4>
-          </div>
-        </div>
+          </h2>
+        </Link>
       </div>
-
     </div>
   )
 }

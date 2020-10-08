@@ -4,9 +4,6 @@ import { loadTrendingGames, loadPopularGames, loadRedditGames } from '../store/a
 import GameCards from '../components/GameCards'
 import '../css/homepage.css'
 
-// const {
-//   atlas: { client_id },
-// } = require("../config/index");
 
 export default function HomePage() {
   const dispatch = useDispatch()
@@ -20,11 +17,22 @@ export default function HomePage() {
   const trendingGames = useSelector(state => state.atlas.trendingGames)
   // const popularGames = useSelector(state => state.atlas.popularGames)
   // const redditGames = useSelector(state => state.atlas.redditGames)
-  console.log(trendingGames)
 
-  // useEffect(() => {
-  //   dispatch(getCategories())
-  // }, [dispatch])
+
+  const trendingGamesList = [];
+  for (let game in trendingGames) {
+    trendingGamesList.push(trendingGames[game])
+  }
+
+  // const popularGamesList = [];
+  // for (let game in trendingGames) {
+  //   popularGamesList.push(trendingGames[game])
+  // }
+
+  // const redditGamesList = [];
+  // for (let game in trendingGames) {
+  //   redditGamesList.push(trendingGames[game])
+  // }
 
   // const handleClick = e => {
 
@@ -61,7 +69,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        {/* <GameCards trendingGames={trendingGames} /> */}
+        <div className='card-container-wrapper'>
+          {trendingGamesList.map((game) => <GameCards game={game} key={game.id} />)}
+        </div>
       </div>
     </>
   )
