@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { loadTrendingGames, loadPopularGames, loadRedditGames } from '../store/atlas'
-import GameCards from '../components/GameCards'
-import '../css/homepage.css'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { loadTrendingGames, loadPopularGames, loadRedditGames } from '../store/atlas';
+import GameCards from '../components/GameCards';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
+import '../css/homepage.css';
+
 
 
 export default function HomePage() {
+  const [sticky, setSticky] = useState('')
   const dispatch = useDispatch()
+  const currentUserId = useSelector(state => state.auth.id)
 
   useEffect(() => {
     dispatch(loadTrendingGames())
@@ -38,11 +44,36 @@ export default function HomePage() {
 
   // }
 
+
+
+
+  const stickNav = () => {
+    if (window.pageYOffset >= 240) {
+      setSticky('sticky');
+    } else {
+      setSticky('');
+    }
+  }
+
+  window.onscroll = function () { stickNav() }
+
   return (
     <>
+      <div className='homepage_auth'>
+        <div className='homepage_auth-button'>
+        <NavLink exact to='/signup' id='auth-link' style={{"text-decoration": "none"}}>Sign Up</NavLink>
+        </div>
+        {(currentUserId) ?
+          <div className='homepage_auth-button homepage_login-button'>Profile</div>
+          :
+          <div className='homepage_auth-button homepage_login-button'>
+            <NavLink exact to='/login' id='auth-id' style={{"text-decoration": "none"}}>Log in</NavLink>
+          </div>
+        }
+      </div>
       <div className='homepage_main_container'>
         <div className='homepage_logo-container' />
-        <div className='homepage_nav-container'>
+        <div className='homepage_nav-container' id={sticky}>
           <div className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Discover
