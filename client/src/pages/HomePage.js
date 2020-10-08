@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { loadTrendingGames, loadPopularGames, loadRedditGames } from '../store/atlas'
 import GameCards from '../components/GameCards'
 import '../css/homepage.css'
 
@@ -8,14 +9,26 @@ import '../css/homepage.css'
 // } = require("../config/index");
 
 export default function HomePage() {
-  const [gameList, setGameList] = useState(null)
-
-  const trendingGames = useSelector(state => state.trendingGames.games)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCategories())
+    dispatch(loadTrendingGames())
+    // dispatch(loadPopularGames())
+    // dispatch(loadRedditGames())
   }, [dispatch])
 
+  const trendingGames = useSelector(state => state.atlas.trendingGames)
+  // const popularGames = useSelector(state => state.atlas.popularGames)
+  // const redditGames = useSelector(state => state.atlas.redditGames)
+  console.log(trendingGames)
+
+  // useEffect(() => {
+  //   dispatch(getCategories())
+  // }, [dispatch])
+
+  // const handleClick = e => {
+
+  // }
 
   return (
     <>
@@ -48,7 +61,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <GameCards trendingGames={trendingGames} />
+        {/* <GameCards trendingGames={trendingGames} /> */}
       </div>
     </>
   )

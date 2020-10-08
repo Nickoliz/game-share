@@ -1,8 +1,14 @@
 import React from 'react';
 // import { getProject } from '../store/project';
-import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { Link, useHistory } from 'react-router-dom';
 import '../css/gamecard.css';
+
+// const {
+//   atlas: { client_id },
+// } = require("../config/index");
+
+// let client_id = process.env.CLIENT_ID
 
 export default function GameCard(props) {
 
@@ -14,6 +20,8 @@ export default function GameCard(props) {
   //   dispatch(getProject(id))
   //   history.push(`/project/${id}`)
   // }
+
+  console.log(props)
 
   if (!props.games) return null
 
