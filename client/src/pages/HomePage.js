@@ -6,7 +6,6 @@ import GameCards from '../components/GameCards';
 import { Link as PageLink } from 'react-scroll';
 import '../css/homepage.css';
 
-
 export default function HomePage() {
   const [sticky, setSticky] = useState('');
   const [categoryDisplay, setCategoryDisplay] = useState('Trending');
@@ -45,18 +44,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <div className='homepage_auth'>
-        {(currentUserId) ?
-          null
-          :
-          <NavLink exact to='/signup' id='auth-link' className='homepage_auth-button' style={{ textDecoration: "none" }}>Sign Up</NavLink>
-        }
-        {(currentUserId) ?
-          <div className='homepage_auth-button homepage_login-button'>Profile</div>
-          :
-          <NavLink exact to='/login' className='homepage_auth-button homepage_login-button' id='auth-id' style={{ textDecoration: "none" }}>Log in</NavLink>
-        }
-      </div> */}
       <div className='homepage_main_container'>
         <div className='homepage_logo-container' />
         <div className='homepage_nav-container' id={sticky}>
