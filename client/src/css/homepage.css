@@ -151,7 +151,7 @@
 .discovery_modal-container {
   display: none;
   margin-top: 32.5px;
-  position: fixed;
+  position: absolute;
   text-align: left;
   height: auto;
   z-index: 1001;
