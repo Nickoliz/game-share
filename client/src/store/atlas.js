@@ -35,7 +35,6 @@ export const loadOrderByGames = category => {
       const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=${category}&limit=30&client_id=${client_id}`)
       res.data = await res.json();
       if (res.ok) {
-        console.log(res.data.games)
         return dispatch(getOrderByGames(res.data.games));
       }
       return res;
