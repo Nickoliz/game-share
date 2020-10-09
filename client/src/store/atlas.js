@@ -1,4 +1,4 @@
-const GET_TRENDING_GAMES = 'atlas/get_trending_games';
+const GET_ORDERBY_GAMES = 'atlas/get_order_by';
 const GET_POPULAR_GAMES = 'atlas/get_popular_games'
 const GET_REDDIT_GAMES = 'atlas/get_reddit_games'
 
@@ -7,9 +7,9 @@ const {
 } = require("../config/index");
 
 
-export const getTrendingGames = (games) => {
+export const getOrderByGames = (games) => {
   return {
-    type: GET_TRENDING_GAMES,
+    type: GET_ORDERBY_GAMES,
     games: games
   };
 };
@@ -29,13 +29,13 @@ export const getRedditGames = (games) => {
 };
 
 
-export const loadTrendingGames = () => {
+export const loadOrderByGames = category => {
   return async dispatch => {
     try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?trending=true&limit=30&client_id=${client_id}`)
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=${category}&limit=30&client_id=${client_id}`)
       res.data = await res.json();
       if (res.ok) {
-        return dispatch(getTrendingGames(res.data.games));
+        return dispatch(getOrderByGames(res.data.games));
       }
       return res;
     } catch (err) {
@@ -44,35 +44,35 @@ export const loadTrendingGames = () => {
   }
 }
 
-export const loadPopularGames = () => {
-  return async dispatch => {
-    try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=trending&limit=30&client_id=${client_id}`);
-      res.data = await res.json();
-      if (res.ok) {
-        return dispatch(getPopularGames(res.data.games))
-      }
-      return res
-    } catch (err) {
-      console.warn(err)
-    }
-  }
-}
+// export const loadPopularGames = () => {
+//   return async dispatch => {
+//     try {
+//       const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=trending&limit=30&client_id=${client_id}`);
+//       res.data = await res.json();
+//       if (res.ok) {
+//         return dispatch(getPopularGames(res.data.games))
+//       }
+//       return res
+//     } catch (err) {
+//       console.warn(err)
+//     }
+//   }
+// }
 
-export const loadRedditGames = () => {
-  return async dispatch => {
-    try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=reddit_week_count&limit=30&client_id=${client_id}`);
-      res.data = await res.json();
-      if (res.ok) {
-        return dispatch(getPopularGames(res.data.games))
-      }
-      return res
-    } catch (err) {
-      console.warn(err)
-    }
-  }
-}
+// export const loadRedditGames = () => {
+//   return async dispatch => {
+//     try {
+//       const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=reddit_week_count&limit=30&client_id=${client_id}`);
+//       res.data = await res.json();
+//       if (res.ok) {
+//         return dispatch(getPopularGames(res.data.games))
+//       }
+//       return res
+//     } catch (err) {
+//       console.warn(err)
+//     }
+//   }
+// }
 
 
 
@@ -94,12 +94,12 @@ export const loadRedditGames = () => {
 export default function gamesReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {
-    case GET_TRENDING_GAMES:
-      return { ...state, trendingGames: action.games };
-    case GET_POPULAR_GAMES:
-      return { ...state, popularGames: action.games };
-    case GET_REDDIT_GAMES:
-      return { ...state, redditGames: action.games };
+    case GET_ORDERBY_GAMES:
+      return { ...state, orderByGames: action.games };
+    // case GET_POPULAR_GAMES:
+    //   return { ...state, popularGames: action.games };
+    // case GET_REDDIT_GAMES:
+    //   return { ...state, redditGames: action.games };
     default:
       return state;
   }
