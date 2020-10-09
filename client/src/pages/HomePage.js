@@ -13,6 +13,7 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(loadOrderByGames('trending'))
+
   }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);
@@ -52,14 +53,14 @@ export default function HomePage() {
               Discovery
               <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px' }} />
               <div className='discovery_modal-container'>
-                <div className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Trending</PageLink>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>Trending</PageLink>
                 </div>
-                <div className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Popular</PageLink>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>Popular</PageLink>
                 </div>
-                <div className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Reddit Weekly</PageLink>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>Reddit Weekly</PageLink>
                 </div>
               </div>
             </div>
