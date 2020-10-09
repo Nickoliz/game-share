@@ -77,22 +77,22 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <Link exact to='/buy' className='homepage_nav-button'>
+          <Link to='/buy' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Buy
             </div>
           </Link>
-          <Link exact to='/sell' className='homepage_nav-button'>
+          <Link to='/sell' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Sell
             </div>
           </Link>
-          <Link exact to='/trade' className='homepage_nav-button'>
+          <Link to='/trade' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Trade
             </div>
           </Link>
-          <Link exact to='/borrow' className='homepage_nav-button'>
+          <Link to='/borrow' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Borrow
             </div>
