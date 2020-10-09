@@ -24,7 +24,7 @@ export default function Navbar() {
             <NavLink exact to='/signup' id='auth-link' className='homepage_auth-button' style={{ textDecoration: "none" }}>Sign Up</NavLink>
           }
           {(currentUserId) ?
-            <div className='homepage_auth-button homepage_login-button'>Profile</div>
+            <NavLink exact to='/profile' className='auth_profile_button' style={{textDecoration: 'none'}}>Profile</NavLink>
             :
             <NavLink exact to='/login' className='homepage_auth-button homepage_login-button' id='auth-id' style={{ textDecoration: "none" }}>Log in</NavLink>
           }

@@ -13,7 +13,6 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(loadOrderByGames('trending'))
-
   }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);
@@ -26,8 +25,9 @@ export default function HomePage() {
   const handleGameGrid = e => {
     setCategoryDisplay(e);
     if (e === 'Reddit Weekly') {
-      console.log('here')
-      dispatch(loadOrderByGames('reddit_week_count'))
+      dispatch(loadOrderByGames('reddit_day_count'))
+    } else if (e === 'Top Ranked') {
+      dispatch(loadOrderByGames('popular'))
     } else {
       dispatch(loadOrderByGames(e.toLowerCase()))
     }
@@ -54,13 +54,16 @@ export default function HomePage() {
               <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px' }} />
               <div className='discovery_modal-container'>
                 <div className='discovery_modal-selection'>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>Trending</PageLink>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Top Ranked')}>Top Ranked</PageLink>
                 </div>
                 <div className='discovery_modal-selection'>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>Popular</PageLink>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>Trending</PageLink>
                 </div>
                 <div className='discovery_modal-selection'>
-                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>Reddit Weekly</PageLink>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popularity')}>Popularity</PageLink>
+                </div>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>Reddit Daily</PageLink>
                 </div>
               </div>
             </div>

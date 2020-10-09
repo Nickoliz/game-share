@@ -1,7 +1,7 @@
 """init migration
 
 Revision ID: 9948db02261c
-Revises: 
+Revises:
 Create Date: 2020-10-07 14:17:50.910351
 
 """

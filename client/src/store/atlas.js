@@ -44,35 +44,6 @@ export const loadOrderByGames = category => {
   }
 }
 
-// export const loadPopularGames = () => {
-//   return async dispatch => {
-//     try {
-//       const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=trending&limit=30&client_id=${client_id}`);
-//       res.data = await res.json();
-//       if (res.ok) {
-//         return dispatch(getPopularGames(res.data.games))
-//       }
-//       return res
-//     } catch (err) {
-//       console.warn(err)
-//     }
-//   }
-// }
-
-// export const loadRedditGames = () => {
-//   return async dispatch => {
-//     try {
-//       const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=reddit_week_count&limit=30&client_id=${client_id}`);
-//       res.data = await res.json();
-//       if (res.ok) {
-//         return dispatch(getPopularGames(res.data.games))
-//       }
-//       return res
-//     } catch (err) {
-//       console.warn(err)
-//     }
-//   }
-// }
 
 
 
@@ -91,15 +62,11 @@ export const loadOrderByGames = category => {
 //   }
 // }
 
-export default function gamesReducer(state = {}, action) {
+export default function atlasReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {
     case GET_ORDERBY_GAMES:
       return { ...state, orderByGames: action.games };
-    // case GET_POPULAR_GAMES:
-    //   return { ...state, popularGames: action.games };
-    // case GET_REDDIT_GAMES:
-    //   return { ...state, redditGames: action.games };
     default:
       return state;
   }
