@@ -20,6 +20,12 @@ export const getCollection = id => {
   }
 }
 
+// export const getForBuy = () => {
+//   return async dispatch => {
+//     const res = await fetch(`/api/games/forbuy`)
+//   }
+// }
+
 export default function gamesReducer(state = {}, action) {
   // Object.freeze(state)
   switch (action.type) {

@@ -26,6 +26,7 @@ export default function HomePage() {
   const handleGameGrid = e => {
     setCategoryDisplay(e);
     if (e === 'Reddit Weekly') {
+      console.log('here')
       dispatch(loadOrderByGames('reddit_week_count'))
     } else {
       dispatch(loadOrderByGames(e.toLowerCase()))
