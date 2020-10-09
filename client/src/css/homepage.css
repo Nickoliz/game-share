@@ -147,5 +147,6 @@
   .homepage_logo-container,
   .homepage_nav-container {
     display: block;
+    flex-shrink: inherit;
   }
 }

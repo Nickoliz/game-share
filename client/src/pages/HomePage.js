@@ -73,16 +73,6 @@ export default function HomePage() {
                 <div className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>
                   <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Reddit Weekly</PageLink>
                 </div>
-                {/* <div className='discovery_modal-container'>
-                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>
-                  Trending
-                </PageLink>
-                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>
-                  Popular
-                </PageLink>
-                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>
-                  Reddit Weekly
-                </PageLink> */}
               </div>
             </div>
           </div>
