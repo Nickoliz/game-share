@@ -1,7 +1,7 @@
 import React , { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games'
-import DBGameCards from '../components/DBGameCards';
+import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import '../css/navbar.css'
 
 
@@ -28,7 +28,7 @@ export default function Profile() {
         <div>Test</div>
       </div>
       <div className='card-container-wrapper'>
-        {userCollectionList.map((game) => <DBGameCards game={game} key={game.id} />)}
+        {userCollectionList.map((game) => <DBGameCardsProfile game={game} key={game.id} />)}
       </div>
     </>
   )

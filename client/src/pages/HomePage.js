@@ -12,7 +12,9 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadOrderByGames('trending'))
+    setTimeout(() => {
+      dispatch(loadOrderByGames('trending'))
+    }, 2000)
   }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);
@@ -91,7 +93,11 @@ export default function HomePage() {
         </div>
         <div id='grid-label'>{categoryDisplay}</div>
         <div className='card-container-wrapper'>
-          {orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)}
+          {(orderByGames) ?
+            orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)
+            :
+            <div className='fas fa-dice-d20 fa-spin fa-5x' style={{ color: '#3881D4', marginTop: '50px', marginLeft: '70px' }}></div>
+          }
         </div>
       </div>
     </>

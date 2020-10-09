@@ -142,6 +142,14 @@
   text-align: left;
 }
 
+.fa-dice-20 {
+  position: relative;
+  background-color: #37404A;
+  margin-right: 20px;
+  border-radius: 24px;
+  top: 50px;
+}
+
 @media screen and (max-width:600px) {
   .homepage_main_container,
   .homepage_logo-container,

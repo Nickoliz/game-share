@@ -23,10 +23,6 @@ export default function GameCard({ game }) {
             src={game.thumb_url}
             alt={game.msrp}
           />
-          <div id={game.id} className='main-card-game-info'>
-            <div id='main-card-info-box'>test1</div>
-            <div id='main-card-info-box'>TestTWO</div>
-          </div>
         </Link>
       </div>
     </div >
