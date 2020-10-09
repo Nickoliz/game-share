@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { loadOrderByGames } from '../store/atlas';
 import GameCards from '../components/GameCards';
+import { Link as PageLink } from 'react-scroll';
 import '../css/homepage.css';
 
 
@@ -10,11 +11,10 @@ export default function HomePage() {
   const [sticky, setSticky] = useState('');
   const [categoryDisplay, setCategoryDisplay] = useState('Trending');
   const dispatch = useDispatch();
-  const currentUserId = useSelector(state => state.auth.id);
 
   useEffect(() => {
     dispatch(loadOrderByGames('trending'))
-  },[dispatch])
+  }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);
 
@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div className='homepage_auth'>
+      {/* <div className='homepage_auth'>
         {(currentUserId) ?
           null
           :
@@ -55,7 +55,7 @@ export default function HomePage() {
           :
           <NavLink exact to='/login' className='homepage_auth-button homepage_login-button' id='auth-id' style={{ textDecoration: "none" }}>Log in</NavLink>
         }
-      </div>
+      </div> */}
       <div className='homepage_main_container'>
         <div className='homepage_logo-container' />
         <div className='homepage_nav-container' id={sticky}>
@@ -65,46 +65,51 @@ export default function HomePage() {
               <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px' }} />
               <div className='discovery_modal-container'>
                 <div className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>
-                  Trending
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Trending</PageLink>
                 </div>
                 <div className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>
-                  Popular
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Popular</PageLink>
                 </div>
                 <div className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>
-                  Reddit Weekly
+                  <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection'>Reddit Weekly</PageLink>
                 </div>
+                {/* <div className='discovery_modal-container'>
+                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>
+                  Trending
+                </PageLink>
+                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popular')}>
+                  Popular
+                </PageLink>
+                <PageLink to='homepage_logo-container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>
+                  Reddit Weekly
+                </PageLink> */}
               </div>
             </div>
           </div>
-          <div className='homepage_nav-button'>
+          <Link exact to='/buy' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Buy
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link exact to='/sell' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Sell
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link exact to='/trade' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Trade
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link exact to='/borrow' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
               Borrow
             </div>
-          </div>
+          </Link>
         </div>
         <div id='grid-label'>{categoryDisplay}</div>
         <div className='card-container-wrapper'>
           {orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)}
-          {/* {(popularGames || redditGames) ?
-            popularGamesList.map((game) => <GameCards game={game} key={game.id} />)
-            :
-            redditGamesList.map((game) => <GameCards game={game} key={game.id} />)
-          } */}
         </div>
       </div>
     </>

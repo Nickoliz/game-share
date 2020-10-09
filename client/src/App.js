@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
+import Navbar from './pages/Navbar';
 import Pages from './pages/Pages'
 import {setUser} from './store/auth'
 
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Navbar />
       <Pages />
     </BrowserRouter>
   );
