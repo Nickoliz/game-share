@@ -43,37 +43,40 @@ export default function Signup() {
 
   return (
     <>
+      <div className='login_logo_container'>
+        <Link exact to='/' className='login_logo-image' />
+      </div>
       <div className='signup_master'>
         <div className='signup_master-box'>
           <div className="signup-container">
             <div className='signup-redirect'>
-              Have and account? <Link to='/login' style={{ textDecoration: 'none', color: 'blue', fontWeight: 'bold' }} > Log in </Link>
+              Have and account? <Link to='/login' style={{ textDecoration: 'none', color: '#0287EE', fontWeight: 'bold', backgroundColor: '#37404A' }} > Log in </Link>
             </div>
             <div className="signup-container-box">
               <form className='form_container' onSubmit={handleSubmit}>
                 <div className='signup-label'>
                   Sign up
                 </div>
-                <div>
+                <div id='signup-input'>
                   <input type='text' className={emailDiv} name='username' value={username} placeholder="Username" onChange={e => setUsername(e.target.value)} />
                 </div>
-                <div>
+                <div id='signup-input'>
                   <span style={{ color: 'red' }}>{noInfo}</span>
                   <input type='email' className={emailDiv} name='email' value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
                 </div>
-                <div>
+                <div id='signup-input'>
                   <span style={{ color: 'red' }}>{noInfo}</span>
                   <input type='email' className={emailDiv} name='email' value={email} placeholder="Re-enter Email" onChange={e => setEmail(e.target.value)} />
                 </div>
                 <span style={{ color: 'red' }}>{noEmail}</span>
-                <div>
+                <div id='signup-input'>
                   <input type='password' className={passwordDiv} name='password' value={password} placeholder='Password' onChange={e => setPassword(e.target.value)} />
                 </div>
                 <span style={{ color: 'red' }}>{noPassword}</span>
-                <div>
+                <div id='signup-input'>
                   <input type='password' className={passwordDiv} name='password' value={password} placeholder='Re-Enter Password' onChange={e => setPassword(e.target.value)} />
                 </div>
-                <div>
+                <div id='signup-input'>
                   <button type='submit' className='signup-button'>Create account</button>
                 </div>
               </form>
