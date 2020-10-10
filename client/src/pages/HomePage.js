@@ -5,6 +5,7 @@ import { loadOrderByGames } from '../store/atlas';
 import GameCards from '../components/GameCards';
 import { Link as PageLink } from 'react-scroll';
 import '../css/homepage.css';
+import Navbar from '../components/Navbar';
 
 export default function HomePage() {
   const [sticky, setSticky] = useState('');
@@ -47,6 +48,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Navbar />
       <div className='homepage_main_container'>
         <div className='homepage_logo-container' />
         <div className='homepage_nav-container' id={sticky}>
@@ -91,12 +93,18 @@ export default function HomePage() {
             </div>
           </Link>
         </div>
-        <div id='grid-label'>{categoryDisplay}</div>
+        {(orderByGames) ?
+          <div id='grid-label'>{categoryDisplay}</div>
+          :
+          <div id='grid-label'>Loading
+            <i className='fas fa-spinner fa-spin' style={{ marginLeft: '12px', color: '#3881D4' }} />
+          </div>
+        }
         <div className='card-container-wrapper'>
           {(orderByGames) ?
             orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)
             :
-            <div className='fas fa-dice-d20 fa-spin fa-5x' style={{ color: '#3881D4', marginTop: '50px', marginLeft: '70px' }}></div>
+            <div className='fas fa-dice-d20 fa-spin fa-5x' style={{ gridArea: 'b', color: '#3881D4', justifyContent: 'center', marginTop: '50px' }}></div>
           }
         </div>
       </div>

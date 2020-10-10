@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getForBuy } from '../store/games'
 import DBGameCards from '../components/DBGameCards';
+import NavbarNotHome from '../components/NavbarNotHome';
 
 export default function BuyPage() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function BuyPage() {
 
   return (
     <>
+    <NavbarNotHome />
       <div className='card-container-wrapper'>
         {gamesForBuyList.map((game) => <DBGameCards game={game} key={game.id} />)}
       </div>

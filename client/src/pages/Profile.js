@@ -2,6 +2,7 @@ import React , { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games'
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
+import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/navbar.css'
 
 
@@ -24,8 +25,8 @@ export default function Profile() {
 
   return (
     <>
+    <NavbarNotHome />
       <div className='profile_main_container'>
-        <div>Test</div>
       </div>
       <div className='card-container-wrapper'>
         {userCollectionList.map((game) => <DBGameCardsProfile game={game} key={game.id} />)}
