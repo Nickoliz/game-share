@@ -63,7 +63,7 @@
   width: 130px;
   height: 40px;
   background-color: #3881D4;
-  border-radius: 24px;
+  border-radius: 8px;
   text-align: center;
   padding-top: 8px;
 }
@@ -75,7 +75,7 @@
   width: 130px;
   height: 40px;
   background-color: #3881D4;
-  border-radius: 24px;
+  border-radius: 8px;
   text-align: center;
   padding-top: 8px;
 }
@@ -100,6 +100,13 @@
   margin-right: 50px;
 }
 
+.discover_modal-div:hover {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .discover_modal-div:hover .discovery_modal-container {
   display: block;
   padding: 3px;
@@ -111,14 +118,17 @@
 
 .discovery_modal-container {
   display: none;
-  margin-top: 32.5px;
+  margin-top: 31.9px;
   position: fixed;
   text-align: left;
   height: auto;
   z-index: 1001;
   width: inherit;
   background-color: #4D5764;
-  border-radius: 8px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   z-index: 10002;
 }
 

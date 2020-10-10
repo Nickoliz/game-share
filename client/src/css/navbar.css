@@ -66,3 +66,12 @@
   letter-spacing: -.9px;
   cursor: pointer;
 }
+
+/* PROFILE MODAL */
+
+.auth_profile_container {
+  display: flex;
+  background-color: #3881D4;
+  align-items: center;
+  gap: 20px;
+}

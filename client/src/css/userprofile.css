@@ -55,7 +55,7 @@
   background-color: #37404A;
 }
 
-.main-card-game-name {
+.main-card-1 {
   background-color: #37404A;
   padding-top: 10px;
   padding-left: 10px;
@@ -97,6 +97,11 @@
   margin-right: 20px;
   background-color: #37404A;
 }
+.main-card-game-name {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
 
 .main-card-game-info {
   display: flex;
@@ -115,4 +120,18 @@
 .card-game-description {
   display: flex;
   flex-direction: column;
+}
+
+/*PROFILE SPECIFIC*/
+
+.top_card-name {
+  /* display: flex; */
+  background-color: #37404A;
+}
+
+.game_dice{
+position: relative;
+background-color: #37404A;
+margin-right: 20px;
+border-radius: 24px;
 }
