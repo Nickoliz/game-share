@@ -17,6 +17,13 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(30), nullable=False)
   email = db.Column(db.String(30), nullable=False, unique=True)
   hashed_password = db.Column(db.String(100), nullable=False)
+  firstname = db.Column(db.String(60))
+  lastname = db.Column(db.String(100))
+  address = db.Column(db.String(80))
+  city = db.Column(db.String(100))
+  state = db.Column(db.String(50))
+  zipcode = db.Column(db.Integer)
+  phonenumber = db.Column(db.String(12))
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 

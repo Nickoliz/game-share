@@ -20,8 +20,7 @@ export default function UserProfile() {
     userCollectionList.push(userCollection[game]);
   }
 
-  console.log(userCollectionList)
-
+  // if (currentUserId !== userProfile)
 
   return (
     <>
