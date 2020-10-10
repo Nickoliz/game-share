@@ -1,15 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { logout } from '../store/auth'
 import '../css/navbar.css'
 
 
 export default function Navbar() {
   const currentUserId = useSelector(state => state.auth.id);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const signOut = e => {
-
+    dispatch(logout())
   }
+
+  // if (!currentUserId) return history.push('/profile')
 
   return (
     <>

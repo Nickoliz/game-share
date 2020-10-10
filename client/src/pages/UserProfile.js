@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games'
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
-import '../css/navbar.css'
-import '../css/userprofile.css'
+import '../css/navbar.css';
 
 
-export default function Profile() {
+export default function UserProfile() {
   const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.auth.id)
   const userCollection = useSelector(state => state.games.collection);

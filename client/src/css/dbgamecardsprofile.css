@@ -98,9 +98,9 @@
   background-color: #37404A;
 }
 .main-card-game-name {
-  flex-direction: column;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding-bottom: 10px;
 }
 
