@@ -2,6 +2,7 @@ const GET_COLLECTION = 'games/get_collection';
 const GET_GAMES_FOR_BUY = 'games/get_games_for_buy';
 const GET_GAMES_FOR_TRADE = 'games/get_games_for_trade';
 const GET_GAMES_FOR_BORROW = 'games/get_games_for_borrow';
+const GET_GAMES_BY_TITLE = 'games/get_games_by_title';
 
 export const getUserCollection = (games) => {
   return {
@@ -31,6 +32,12 @@ export const getGamesForBorrow = (games) => {
   }
 }
 
+export const getGamesByTitle = (games) => {
+  return {
+    type: GET_GAMES_BY_TITLE,
+    games: games
+  }
+}
 
 export const getCollection = id => {
   return async dispatch => {
@@ -64,7 +71,7 @@ export const getForTrade = () => {
     const res = await fetch(`/api/games/fortrade`, {
       method: 'get',
     })
-    res.data = await res.json()
+    res.data = await res.json();
     if (res.ok) {
       dispatch(getGamesForTrade(res.data.games))
     }
@@ -77,9 +84,23 @@ export const getForBorrow = () => {
     const res = await fetch(`/api/games/forborrow`, {
       method: 'get',
     })
-    res.data = await res.json()
+    res.data = await res.json();
     if (res.ok) {
       dispatch(getGamesForBorrow(res.data.games))
+    }
+    return res
+  }
+}
+
+export const getGamesByTitleToList = (searchTerm, id) => {
+  return async dispatch => {
+    const res = await fetch(`/api/games/bytitle/${id}/${searchTerm}`, {
+      method: 'get',
+    })
+    res.data = await res.json();
+    if (res.ok) {
+      console.log(res.data.games)
+      dispatch(getGamesByTitleToList(res.data.games))
     }
     return res
   }

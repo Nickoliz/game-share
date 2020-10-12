@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { logout } from '../store/auth'
 import '../css/navbar.css'
 
@@ -8,7 +8,6 @@ import '../css/navbar.css'
 export default function Navbar() {
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const signOut = e => {
     dispatch(logout())
@@ -25,7 +24,7 @@ export default function Navbar() {
           </div>
           <input className='navbar_search-bar' placeholder='Search for board games...' />
         </div>
-        <NavLink exact to='/' className='fas fa-dice fa-3x' style={{ textDecoration: 'none', cursor: 'pointer', color: '#37404A', backgroundColor: '#3881D4', marginRight: '200px' }} />
+        <NavLink exact to='/' className='fas fa-dice fa-3x' style={{ textDecoration: 'none', cursor: 'pointer', color: '#37404A', backgroundColor: '#3881D4', marginRight: '140px' }} />
         <div className='homepage_auth'>
           {(currentUserId) ?
             null

@@ -33,7 +33,7 @@ def update_user():
         city=request.json.get('city', None),
         state=request.json.get('state', None),
         zipcode=request.json.get('zipcode', None),
-        phonenumber=request.json.get('phonenumber'None)
+        phonenumber=request.json.get('phonenumber', None)
       )
       db.session.commit()
   except:

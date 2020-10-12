@@ -13,7 +13,7 @@ export default function Profile() {
 
   useEffect(() => {
     dispatch(getCollection(currentUserId))
-  }, [dispatch])
+  }, [dispatch, currentUserId])
 
   const userCollectionList = [];
   for (let game in userCollection) {

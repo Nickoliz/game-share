@@ -15,7 +15,7 @@ export default function HomePage() {
   useEffect(() => {
     setTimeout(() => {
       dispatch(loadOrderByGames('trending'))
-    }, 2000)
+    }, 1500)
   }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);

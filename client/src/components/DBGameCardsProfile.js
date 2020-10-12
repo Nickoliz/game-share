@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/dbgamecardsprofile.css';
 
 
-export default function GameCard({ game }) {
+export default function GameCardProfile({ game }) {
 
   if (!game) return null
 

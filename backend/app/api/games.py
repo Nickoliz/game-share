@@ -6,7 +6,6 @@ games_routes = Blueprint('games', __name__)
 @games_routes.route('/collection')
 def get_user_collection():
   user_id = request.args.get('id')
-  print(user_id)
   games = BoardGame.query.filter(BoardGame.user_id == user_id)
   data = [game.to_dict() for game in games]
   return {"games": data}, 200
@@ -51,4 +50,13 @@ def get_games_for_trade():
 def get_games_for_borrow():
   games = BoardGame.query.filter(BoardGame.forborrow == True).all()
   data = [game.to_dict() for game in games]
+  return {"games": data}, 200
+
+@games_routes.route('/bytitle')
+def get_games_by_title():
+  user_id = request.args.get('id')
+  search_term = request.args.get('searchTerm')
+  games = BoardGame.query.filter(BoardGame.user_id == user_id and BoardGame.title == search_term).with_entities(
+    BoardGame.forsale == False).all()
+  data = [games.to_dict() for game in games]
   return {"games": data}, 200
