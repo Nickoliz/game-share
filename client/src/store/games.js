@@ -86,6 +86,7 @@ export const getForBorrow = () => {
     })
     res.data = await res.json();
     if (res.ok) {
+      console.log(res.data.game)
       dispatch(getGamesForBorrow(res.data.games))
     }
     return res
@@ -117,6 +118,8 @@ export default function gamesReducer(state = {}, action) {
       return {...state, gamesfortrade: action.games};
     case GET_GAMES_FOR_BORROW:
       return {...state, gamesforborrow: action.games};
+    case GET_GAMES_BY_TITLE:
+      return {...state, gamesByTitle: action.games};
     default:
       return state;
   }

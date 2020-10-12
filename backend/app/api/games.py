@@ -60,4 +60,4 @@ def get_games_by_title():
     BoardGame.forsale == False)
   data = [games.to_dict() for game in games]
   print(data)
-  return {"games": games}, 200
+  return {"games": data}, 200
