@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGamesByTitleToList } from '../store/games';
 import '../css/sellsearchmodal.css';
 import SearchCard from './SearchCard';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 function SearchModal({ searchTerm }) {
-  const currentUser = useSelector(state => state.auth);
+  const currentUserId = useSelector(state => state.auth.id);
   const games = useSelector(state => state.games);
 
-  const [currentUserId, setCurrentUserId] = useState(null)
+  // const [currentUserId, setCurrentUserId] = useState(null)
   const dispatch = useDispatch();
 
 
@@ -18,11 +18,7 @@ function SearchModal({ searchTerm }) {
   }, [currentUserId, searchTerm, dispatch]);
 
 
-  if (!currentUserId) {
-    return <Redirect to='/login' />;
-  } else {
-    setCurrentUserId(currentUser.id);
-  }
+  // if (!currentUserId) return <Redirect to='/login' />;
 
 
   console.log(games)

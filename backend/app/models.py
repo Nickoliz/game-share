@@ -85,11 +85,13 @@ class BoardGame(db.Model):
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))
   msrp = db.Column(db.Integer)
+  sale_price = db.Column(db.Integer, default=0)
   rank = db.Column(db.Integer)
-  forsale = db.Column(db.Boolean, nullable=False)
-  fortrade = db.Column(db.Boolean, nullable=False)
-  forborrow = db.Column(db.Boolean, nullable=False)
-  condition = db.Column(db.String(10), nullable=False)
+  forsale = db.Column(db.Boolean, nullable=False, default=False)
+  fortrade = db.Column(db.Boolean, nullable=False, default=False)
+  forborrow = db.Column(db.Boolean, nullable=False, default=False)
+  condition = db.Column(db.String(10))
+  condition_description = db.Column(db.String(200))
 
   user = db.relationship("User", foreign_keys=[user_id])
 
@@ -100,11 +102,13 @@ class BoardGame(db.Model):
       "year_published": self.year_published,
       "thumb_url": self.thumb_url,
       "msrp": self.msrp,
+      "sale_price": self.sale_price,
       "rank": self.rank,
       "forsale": self.forsale,
       "fortrade": self.fortrade,
       "forborrow": self.forborrow,
-      "condition": self.condition
+      "condition": self.condition,
+      "condition_description": self.condition_description
     }
 
   @property

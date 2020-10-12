@@ -92,9 +92,9 @@ export const getForBorrow = () => {
   }
 }
 
-export const getGamesByTitleToList = (searchTerm, id) => {
+export const getGamesByTitleToList = (id, searchTerm) => {
   return async dispatch => {
-    const res = await fetch(`/api/games/bytitle/${id}/${searchTerm}`, {
+    const res = await fetch(`/api/games/bytitle?id=${id}&searchTerm=${searchTerm}`, {
       method: 'get',
     })
     res.data = await res.json();

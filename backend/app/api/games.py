@@ -56,7 +56,8 @@ def get_games_for_borrow():
 def get_games_by_title():
   user_id = request.args.get('id')
   search_term = request.args.get('searchTerm')
-  games = BoardGame.query.filter(BoardGame.user_id == user_id and BoardGame.title == search_term).with_entities(
-    BoardGame.forsale == False).all()
+  games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title == search_term).with_entities(
+    BoardGame.forsale == False)
   data = [games.to_dict() for game in games]
-  return {"games": data}, 200
+  print(data)
+  return {"games": games}, 200
