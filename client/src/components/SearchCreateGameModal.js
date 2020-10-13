@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGamesByTitleToList } from '../store/games';
+import { loadGamesForSearch } from '../store/atlas';
 import '../css/sellsearchmodal.css';
-import SearchCard from './SearchCard';
+import SearchCardAtlas from './SearchCardAtlas';
 
-function SearchModal({ searchTerm }) {
+function SearchModal({ searchTermCreateGame }) {
   const currentUserId = useSelector(state => state.auth.id);
 
-  const games = useSelector(state => state.games.gamesByTitle);
+  const games = useSelector(state => state.atlas.orderByGames);
 
   console.log(games)
 
@@ -15,11 +15,11 @@ function SearchModal({ searchTerm }) {
 
 
   useEffect(() => {
-    dispatch(getGamesByTitleToList(currentUserId, searchTerm));
-  }, [currentUserId, searchTerm, dispatch]);
+    dispatch(loadGamesForSearch(searchTermCreateGame))
+  }, [searchTermCreateGame, dispatch]);
 
 
-  const notLoaded = games && searchTerm.length > 0;
+  const notLoaded = games && searchTermCreateGame.length > 0;
 
   // const handleSubmit = async (e) => {
   //   dispatch(getGames(e))
@@ -28,11 +28,11 @@ function SearchModal({ searchTerm }) {
   if (!notLoaded) return null;
 
   return (
-    <div className='search_modal'>
+    <div className='atlas_search_modal'>
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCard game={game} key={game.id} />)
+            <SearchCardAtlas game={game} key={game.id} />)
           :
           <div id='no-search-results'>No games matching result. Please add game below.</div>
       }

@@ -54,7 +54,7 @@ export const loadOrderByGames = category => {
 export const loadGamesForSearch = searchTerm => {
   return async dispatch => {
     try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=6&client_id=${client_id}`)
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=10&client_id=${client_id}`)
       res.data = await res.json()
       if (res.ok) {
         console.log(res.data.games)

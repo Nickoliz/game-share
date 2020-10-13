@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
 import SearchModal from '../components/SearchModal';
+import SearchCreateGameModal from '../components/SearchCreateGameModal'
 import '../css/newgameinstance.css';
 
 
@@ -63,7 +64,7 @@ export default function NewGameInstance() {
             <div className='add_game_form-box'>
               <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
-                <SearchModal searchTermCreateGame={searchTermCreateGame} />
+                <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} />
                 :
                 null
               }
