@@ -6,24 +6,26 @@
   width: 100%;
   height: 500px;
   margin: auto;
-  margin-top: 100px;
-}
-
-.game_instance-add-from-collection__label {
-  position: absolute;
-  margin-bottom: 120px;
-  font-size: 24px;
+  margin-top: 220px;
 }
 
 .game_instance-add-from-collection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  margin-top: 50px;
   width: 700px;
   height: 70px;
 }
+
+.game_instance-add-from-collection__label {
+  /* position: absolute; */
+  padding-top: 100px;
+  margin: 20px;
+  font-size: 24px;
+}
+
 /*
 #game_instance-search-icon {
   width: 10px;
@@ -63,14 +65,14 @@
 
 .or_div {
   font-size: 40px;
-  position: absolute;
   text-align: center;
-  margin-top: 100px;
   width: 600px;
   padding-top: 20px;
   padding-bottom: 30px;
   border-top: 1.5px solid #3881D4;
   border-bottom: 1.5px solid #3881D4;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .add_game_form_container {
@@ -82,5 +84,103 @@
 }
 
 .add_game_form-box {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: inherit;
+}
+
+.add_game_form {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+}
+
+.add_game_form__search {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+}
+
+.add_game_form-input-title {
+  margin-top: 10px;
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+}
+
+#add_game_form-break {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+}
+
+.add_game_form-input-else {
+  margin-top: 10px;
+  width: 340px;
+  height: 60px;
+  padding: 10px;
+  /* margin-right: 20px; */
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+}
+
+.add_game_form-input-description {
+  margin-top: 10px;
+  width: 100%;
+  height: 120px;
+  padding: 20px;
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+  overflow: hidden scroll;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar:corner-present {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #4D5764;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3881D4;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a6ab3;
+}
+
+::-webkit-resizer {
+  background: #4D5764;
+
+}
+
+::-webkit-scrollbar-corner {
 
 }

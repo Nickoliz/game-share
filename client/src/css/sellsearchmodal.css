@@ -4,11 +4,12 @@ input {
 
 .search_modal {
   position: absolute;
-  width: 100%;
-  height: 400px;
+  width: 700px;
+  height: 500px;
+  margin-top: 185px;
   background-color: #4D5764;
   z-index: 101;
-  top: 60px;
+  top: 48px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
@@ -16,7 +17,7 @@ input {
 .games-label {
   font-size: 14px;
   padding-left: 50px;
-  padding-top: 50px;
+  padding-top: 10px;
   padding-right: 50px;
   background-color: #4D5764;
 }
@@ -38,6 +39,7 @@ input {
 .game-listing {
   /* height: 50px; */
   border: none;
+  width: auto;
   padding: 12px 0;
   background-color: #4D5764;
 }

@@ -19,6 +19,8 @@ export default function NewGameInstance() {
 
   }
 
+
+
   if (!currentUserId) return <Redirect to='/login' />
 
   return (
@@ -39,22 +41,26 @@ export default function NewGameInstance() {
               null
             }
           </div>
-        </div>
-        <div className='or_div'>or</div>
-        <div className='add_game_form_container'>
-          <div className='add_game_form-box'>
-            <form className='add_game_form' action='' method='post'>
-              <input className='add_game_form__input' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
-              {(searchTermCreateGame) ?
+          <div className='or_div'>or</div>
+          <div className='add_game_form_container'>
+            <div className='add_game_form-box'>
+              <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
+              {/* {(searchTermCreateGame) ?
                 <SearchModal searchTermCreateGame={searchTermCreateGame} />
                 :
                 null
-              }
-            </form>
+              } */}
+              <form className='add_game_form'>
+                <input className='add_game_form-input-title' type='text' name='title' placeholder='Title' />
+                <div id='add_game_form-break'>
+                  {/* <input className='add_game_form-input-else' type='text' name='title' placeholder={(searchTerm) ? game.mrsp : 'Listing Price'} /> */}
+                  <input className='add_game_form-input-else' type='text' name='title' placeholder='Listing Price' />
+                  <input className='add_game_form-input-else' type='text' name='title' placeholder='Condition' />
+                </div>
+                <textarea className='add_game_form-input-description' type='text' name='title' placeholder='Condition Description' />
+              </form>
+            </div>
           </div>
-        </div>
-        <div className='bottom'>
-
         </div>
       </div>
     </>

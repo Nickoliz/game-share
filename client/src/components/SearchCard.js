@@ -10,7 +10,7 @@ export default function GameSearch({ game }) {
 
   return (
     <div className='search_results_container'>
-      <div className='games-label'>Games
+      <div className='games-label'>
       <div className="game-listing-size">
           <div className="game-listing">
             <h3 id='search-card-title'>{game.title}</h3>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/auth';
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import '../css/login.css'
 
 
@@ -12,7 +12,6 @@ export default function Login() {
   const [noEmail, setNoEmail] = useState('');
   const [noPassword, setNoPassword] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
-  const history = useHistory()
 
   const dispatch = useDispatch();
   let emailDiv = "form-input";
