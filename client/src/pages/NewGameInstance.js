@@ -55,6 +55,7 @@ export default function NewGameInstance() {
             }
           </div>
           <div className='or_div'>or</div>
+          <div className='game_instance-add-from-atlas__label'>search for a game you own to list</div>
           <div className='add_game_form_container'>
             <div className='add_game_form-box'>
               <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />

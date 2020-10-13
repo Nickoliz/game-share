@@ -81,7 +81,7 @@ class BoardGame(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  game_id = db.Column(db.Integer)
+  game_id = db.Column(db.Integer, nullable=True)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))

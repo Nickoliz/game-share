@@ -21,7 +21,7 @@
 
 .game_instance-add-from-collection__label {
   /* position: absolute; */
-  padding-top: 100px;
+  padding-top: 200px;
   margin: 20px;
   font-size: 24px;
 }
@@ -72,7 +72,11 @@
   border-top: 1.5px solid #3881D4;
   border-bottom: 1.5px solid #3881D4;
   margin-top: 40px;
-  margin-bottom: 40px;
+}
+
+.game_instance-add-from-atlas__label {
+  margin: 20px;
+  font-size: 24px;
 }
 
 .add_game_form_container {
