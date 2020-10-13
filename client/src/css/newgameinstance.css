@@ -9,6 +9,12 @@
   margin-top: 100px;
 }
 
+.game_instance-add-from-collection__label {
+  position: absolute;
+  margin-bottom: 120px;
+  font-size: 24px;
+}
+
 .game_instance-add-from-collection {
   display: flex;
   flex-direction: row;
@@ -53,4 +59,28 @@
   padding-left: 40px;
   border-bottom-right-radius: 0 ;
   border-bottom-left-radius: 0 ;
+}
+
+.or_div {
+  font-size: 40px;
+  position: absolute;
+  text-align: center;
+  margin-top: 100px;
+  width: 600px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  border-top: 1.5px solid #3881D4;
+  border-bottom: 1.5px solid #3881D4;
+}
+
+.add_game_form_container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 700px;
+  height: auto;
+}
+
+.add_game_form-box {
+
 }

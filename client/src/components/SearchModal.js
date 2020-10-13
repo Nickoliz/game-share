@@ -32,7 +32,6 @@ function SearchModal({ searchTerm }) {
 
   return (
     <div className='search_modal'>
-      {/* <div className='games-label'>Games</div> */}
       {
         (games.length > 0) ?
           games.map((game) =>
