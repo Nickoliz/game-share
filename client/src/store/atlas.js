@@ -55,7 +55,6 @@ export const loadOrderByGames = category => {
 //     });
 //     res.data = await res.json();
 //     if (res.ok) {
-//       console.log(res.data)
 //       return dispatch(getTrendingGames(res.data.games))
 //     }
 //     return res

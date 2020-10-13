@@ -17,7 +17,6 @@ export default function BorrowPage() {
     gamesForBorrowList.push(gamesForBorrow[game]);
   }
 
-  console.log(gamesForBorrowList)
 
   return (
     <>

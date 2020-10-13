@@ -12,7 +12,6 @@ export default function TradePage() {
     dispatch(getForTrade())
   }, [dispatch])
 
-  console.log(gamesForTrade)
   const gamesForTradeList = [];
   for (let game in gamesForTrade) {
     gamesForTradeList.push(gamesForTrade[game]);

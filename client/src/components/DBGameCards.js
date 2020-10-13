@@ -5,7 +5,6 @@ import '../css/gamecard.css';
 
 export default function GameCard({ game }) {
 
-  console.log("GETTEING TO CARD")
   if (!game) return null
 
   return (

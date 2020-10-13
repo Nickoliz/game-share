@@ -59,7 +59,6 @@ export const getForBuy = () => {
     })
     res.data = await res.json()
     if (res.ok) {
-      console.log(res.data.games)
       dispatch(getGamesForBuy(res.data.games))
     }
     return res
@@ -86,7 +85,6 @@ export const getForBorrow = () => {
     })
     res.data = await res.json();
     if (res.ok) {
-      console.log(res.data.game)
       dispatch(getGamesForBorrow(res.data.games))
     }
     return res
@@ -106,6 +104,19 @@ export const getGamesByTitleToList = (id, searchTerm) => {
     return res
   }
 }
+
+// export const getCollection = id => {
+//   return async dispatch => {
+//     const res = await fetch(`/api/games/collection?id=${id}`, {
+//       method: 'get',
+//     })
+//     res.data = await res.json()
+//     if (res.ok) {
+//       dispatch(getUserCollection(res.data.games));
+//     }
+//     return res;
+//   }
+// }
 
 export default function gamesReducer(state = {}, action) {
   // Object.freeze(state)

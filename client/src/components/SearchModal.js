@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGamesByTitleToList } from '../store/games';
 import '../css/sellsearchmodal.css';
@@ -9,7 +9,6 @@ function SearchModal({ searchTerm }) {
   const currentUserId = useSelector(state => state.auth.id);
   const games = useSelector(state => state.games);
 
-  // const [currentUserId, setCurrentUserId] = useState(null)
   const dispatch = useDispatch();
 
 
@@ -20,8 +19,6 @@ function SearchModal({ searchTerm }) {
 
   // if (!currentUserId) return <Redirect to='/login' />;
 
-
-  console.log(games)
 
   const notLoaded = games.gamesTitle && searchTerm.length > 0;
 

@@ -12,7 +12,6 @@ export default function BuyPage() {
     dispatch(getForBuy())
   }, [dispatch])
 
-  console.log(gamesForBuy)
   const gamesForBuyList = [];
   for (let game in gamesForBuy) {
     gamesForBuyList.push(gamesForBuy[game]);

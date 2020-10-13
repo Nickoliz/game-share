@@ -8,6 +8,7 @@ def get_user_collection():
   user_id = request.args.get('id')
   games = BoardGame.query.filter(BoardGame.user_id == user_id)
   data = [game.to_dict() for game in games]
+  print(data)
   return {"games": data}, 200
 
 @games_routes.route('/collection/sale')
@@ -54,10 +55,11 @@ def get_games_for_borrow():
 
 @games_routes.route('/bytitle')
 def get_games_by_title():
+  print(request.args)
+  args = request.args
+  print(args)
   user_id = request.args.get('id')
   search_term = request.args.get('searchTerm')
-  games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title == search_term).with_entities(
-    BoardGame.forsale == False)
+  games = BoardGame.query.filter(BoardGame.user_id == user_id and BoardGame.title == search_term)
   data = [games.to_dict() for game in games]
-  print(data)
-  return {"games": data}, 200
+  return {"games": games}, 200

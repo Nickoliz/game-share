@@ -20,8 +20,6 @@ export default function Profile() {
     userCollectionList.push(userCollection[game]);
   }
 
-  console.log(userCollectionList)
-
 
   return (
     <>
