@@ -127,7 +127,7 @@
   height: auto;
 }
 
-.add_game_form-input-else {
+.add_game_form-input-price {
   margin-top: 10px;
   width: 340px;
   height: 60px;
@@ -137,6 +137,36 @@
   background-color: #4D5764;
   border-radius: 30px;
   padding-left: 40px;
+
+}
+.add_game_form-input-condition {
+  margin-top: 10px;
+  width: 340px;
+  height: 60px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+  cursor: pointer;
+}
+
+.add_game_form-input-condition:hover {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.add_game_form-input-condition:hover + .condition_select {
+  display: block;
+}
+
+#condition_option:hover .add_game_form-input-condition {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.condition_select:hover {
+  display: block;
 }
 
 .add_game_form-input-description {
@@ -151,36 +181,24 @@
   overflow: hidden scroll;
 }
 
-::-webkit-scrollbar {
-  width: 20px;
-  border-radius: 8px;
-}
-
-::-webkit-scrollbar:corner-present {
+.condition_select {
   display: none;
-}
-
-::-webkit-scrollbar-track {
+  position: absolute;
+  z-index: 2001;
+  margin-left: 360px;
+  margin-top: 70px;
+  padding-left: 30px;
+  font-size: 20px;
+  width: 340px;
+  text-align: left;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
   background-color: #4D5764;
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
 }
 
-::-webkit-scrollbar-thumb {
-  background: #3881D4;
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #2a6ab3;
-}
-
-::-webkit-resizer {
-  background: #4D5764;
-
-}
-
-::-webkit-scrollbar-corner {
-
+#condition_option {
+  background-color: #4D5764;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  cursor: pointer;
 }

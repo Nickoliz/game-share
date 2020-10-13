@@ -81,6 +81,7 @@ class BoardGame(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+  game_id = db.Column(db.Integer)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))
@@ -99,6 +100,7 @@ class BoardGame(db.Model):
     return {
       "id": self.id,
       "user_id": self.user_id,
+      "game_id": self.game_id,
       "title": self.title,
       "year_published": self.year_published,
       "thumb_url": self.thumb_url,
