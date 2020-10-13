@@ -98,8 +98,7 @@ export const getGamesByTitleToList = (id, searchTerm) => {
     })
     res.data = await res.json();
     if (res.ok) {
-      console.log(res.data.games)
-      dispatch(getGamesByTitleToList(res.data.games))
+      dispatch(getGamesByTitle(res.data.games))
     }
     return res
   }

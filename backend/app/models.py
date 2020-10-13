@@ -98,6 +98,7 @@ class BoardGame(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
+      "user_id": self.user_id,
       "title": self.title,
       "year_published": self.year_published,
       "thumb_url": self.thumb_url,

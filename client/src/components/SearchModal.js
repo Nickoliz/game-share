@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGamesByTitleToList } from '../store/games';
 import '../css/sellsearchmodal.css';
 import SearchCard from './SearchCard';
+import { useHistory } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 
 function SearchModal({ searchTerm }) {
   const currentUserId = useSelector(state => state.auth.id);
-  const games = useSelector(state => state.games);
+  const games = useSelector(state => state.games.gamesByTitle);
+  console.log(games)
 
   const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ function SearchModal({ searchTerm }) {
   // if (!currentUserId) return <Redirect to='/login' />;
 
 
-  const notLoaded = games.gamesTitle && searchTerm.length > 0;
+  const notLoaded = games && searchTerm.length > 0;
 
   // const handleSubmit = async (e) => {
   //   dispatch(getGames(e))
@@ -30,16 +32,14 @@ function SearchModal({ searchTerm }) {
 
   return (
     <div className='search_modal'>
-      <div className="search_modal__container">
-        <div className='games-label'>games</div>
-        {
-          (games.title.length > 0) ?
-            games.title.map((game) =>
-              <SearchCard key={game.id} />)
-            :
-            <div id='no-search-results'>No games matching result. Please add game below.</div>
-        }
-      </div>
+      {/* <div className='games-label'>Games</div> */}
+      {
+        (games.length > 0) ?
+          games.map((game) =>
+            <SearchCard game={game} key={game.id} />)
+          :
+          <div id='no-search-results'>No games matching result. Please add game below.</div>
+      }
     </div>
   );
 };

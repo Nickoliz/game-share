@@ -1,5 +1,7 @@
-from flask import Blueprint, jsonify, redirect, url_for, session, request
+from flask import Blueprint, jsonify, request
 from app.models import User, BoardGame, db
+import datetime
+
 
 games_routes = Blueprint('games', __name__)
 
@@ -55,11 +57,14 @@ def get_games_for_borrow():
 
 @games_routes.route('/bytitle')
 def get_games_by_title():
-  print(request.args)
-  args = request.args
-  print(args)
+  # try:
   user_id = request.args.get('id')
   search_term = request.args.get('searchTerm')
-  games = BoardGame.query.filter(BoardGame.user_id == user_id and BoardGame.title == search_term)
-  data = [games.to_dict() for game in games]
-  return {"games": games}, 200
+  games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title.ilike(search_term)).limit(5)
+  print("~~~~~~HERE~~~~~~")
+  print(games)
+  data = [game.to_dict() for game in games]
+  print(data)
+  return {"games": data}, 200
+  # except:
+    # return make_response({"msg": "Error. Could not send response."})

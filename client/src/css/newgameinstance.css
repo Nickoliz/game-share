@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-#game_instance-search-input {
+#game_instance-search-input-inactive {
   width: 100%;
   height: 60px;
   padding: 10px;
@@ -41,4 +41,16 @@
   background-color: #4D5764;
   border-radius: 30px;
   padding-left: 40px;
+}
+
+#game_instance-search-input-active {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #4D5764;
+  border-radius: 30px;
+  padding-left: 40px;
+  border-bottom-right-radius: 0 ;
+  border-bottom-left-radius: 0 ;
 }
