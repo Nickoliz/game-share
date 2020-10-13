@@ -57,7 +57,8 @@ export const loadGamesForSearch = searchTerm => {
       const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=6&client_id=${client_id}`)
       res.data = await res.json()
       if (res.ok) {
-        return dispatch(loadAddSearchGames(res.data.games))
+        console.log(res.data.games)
+        return dispatch(getOrderByGames(res.data.games))
       }
       return res;
     } catch (err) {
@@ -86,8 +87,8 @@ export default function atlasReducer(state = {}, action) {
   switch (action.type) {
     case GET_ORDERBY_GAMES:
       return { ...state, orderByGames: action.games };
-    case GET_GAMES_FOR_ADD_SEARCH:
-      return {...state, gamesForSearch: action.games}
+    // case GET_GAMES_FOR_ADD_SEARCH:
+    //   return {...state, gamesForSearch: action.games}
     default:
       return state;
   }

@@ -61,10 +61,7 @@ def get_games_by_title():
   user_id = request.args.get('id')
   search_term = request.args.get('searchTerm')
   games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title.ilike(search_term)).limit(5)
-  print("~~~~~~HERE~~~~~~")
-  print(games)
   data = [game.to_dict() for game in games]
-  print(data)
   return {"games": data}, 200
   # except:
     # return make_response({"msg": "Error. Could not send response."})

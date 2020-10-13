@@ -1,40 +1,43 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
 import SearchModal from '../components/SearchModal';
-import '../css/newgameinstance.css'
+import '../css/newgameinstance.css';
 
 
 
 export default function NewGameInstance() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [searchTermCreateGame, setSearchTermCreateGame] = useState('')
-  const [gameCondition, setGameCondition] = useState('Condition')
-  const [listingPrice, setListingPrice] = useState('Listing Price')
-  const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)')
-  const currentUserId = useSelector(state => state.auth.id)
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTermCreateGame, setSearchTermCreateGame] = useState('');
+  const [gameCondition, setGameCondition] = useState('Condition');
+  const [listingPrice, setListingPrice] = useState('Listing Price');
+  const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)');
+  const dispatch = useDispatch();
 
-  var searchBarMorph = 'game_instance-search-input-inactive'
+  const currentUserId = useSelector(state => state.auth.id);
+
+
+  var searchBarMorph = 'game_instance-search-input-inactive';
 
   const submitGame = (currentUserId) => {
 
 
-  }
+  };
 
   const handleListingPrice = e => {
     setListingPrice(e)
-  }
+  };
 
   const handleCondition = e => {
     setGameCondition(e);
-  }
+  };
 
   const handleDescription = e => {
     setConditionDescription(e)
-  }
+  };
 
-  if (!currentUserId) return <Redirect to='/login' />
+  if (!currentUserId) return <Redirect to='/login' />;
 
   return (
     <>
@@ -59,11 +62,11 @@ export default function NewGameInstance() {
           <div className='add_game_form_container'>
             <div className='add_game_form-box'>
               <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
-              {/* {(searchTermCreateGame) ?
+              {(searchTermCreateGame) ?
                 <SearchModal searchTermCreateGame={searchTermCreateGame} />
                 :
                 null
-              } */}
+              }
               <form className='add_game_form'>
                 <input className='add_game_form-input-title' type='text' autoComplete='off' name='title' placeholder='Title' />
                 <div id='add_game_form-break'>
@@ -84,4 +87,4 @@ export default function NewGameInstance() {
       </div>
     </>
   )
-}
+};
