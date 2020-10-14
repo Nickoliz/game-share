@@ -4,61 +4,54 @@ input {
 
 .atlas_search_modal {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  /* width: 700px; */
-  /* height: 500px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  width: 700px;
+  min-height: 300px;
   margin-top: 60px;
+  margin-bottom: 100px;
+  padding-bottom: 40px;
   background-color: #4D5764;
-  z-index: 101;
+  z-index: 1001;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
 
 .atlas_search_results_container {
-  margin-bottom: 80px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* width: 800px; */
-  /* padding-right: 50px;
-  padding-left: 50px; */
+  margin-bottom: 111px;
+  margin-right: 0;
+  cursor: pointer;
 }
 
 .atlas-listing {
-  /* height: 50px; */
-  align-items: left;
-  border: none;
-  width: auto;
-  padding: 12px 0;
+  width: 350px;
+  height: 90px;
+  padding: 20px 0;
   background-color: #4D5764;
-}
-
-/* .search_modal__container {
-  margin-top: 60px;
-  height: 10px;
-} */
-
-.atlas-listing-size {
-  height: 91.5px;
-  width: 700px;
 }
 
 #search-card-title {
   background-color: #4D5764;
+  padding-left: 50px;
   font-weight: normal;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 .atlas-listing-information {
  margin: 0;
  background-color: #4D5764;
-
+ padding-left: 10px;
+ padding-right: 10px;
+ border-bottom-left-radius: 30px;
+ border-bottom-right-radius: 30px;
 }
 
 .atlas-listing-information-header {
   padding: 0;
   margin: 0;
- background-color: #4D5764;
+  background-color: #4D5764;
 }
 
 .spacer-div {
@@ -80,11 +73,10 @@ input {
 }
 
 .atlas-listing-information-header > img {
-  height: 120px;
-  width: 240px;
+  height: 150px;
+  width: 250px;
   object-fit: contain;
   background-color: #4D5764;
-  padding-right: 115px;
   border-radius: 0;
   margin: 0;
 }

@@ -6,10 +6,7 @@ import SearchCard from './SearchCard';
 
 function SearchModal({ searchTerm }) {
   const currentUserId = useSelector(state => state.auth.id);
-
   const games = useSelector(state => state.games.gamesByTitle);
-
-  console.log(games)
 
   const dispatch = useDispatch();
 
@@ -20,10 +17,6 @@ function SearchModal({ searchTerm }) {
 
 
   const notLoaded = games && searchTerm.length > 0;
-
-  // const handleSubmit = async (e) => {
-  //   dispatch(getGames(e))
-  // }
 
   if (!notLoaded) return null;
 

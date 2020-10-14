@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
 import SearchModal from '../components/SearchModal';
@@ -11,12 +11,24 @@ import '../css/newgameinstance.css';
 export default function NewGameInstance() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchTermCreateGame, setSearchTermCreateGame] = useState('');
+  const [gameTitle, setGameTitle] = useState('Title');
   const [gameCondition, setGameCondition] = useState('Condition');
   const [listingPrice, setListingPrice] = useState('Listing Price');
   const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)');
-  const dispatch = useDispatch();
 
   const currentUserId = useSelector(state => state.auth.id);
+  const game = useSelector(state => state.atlas.game)
+
+  if (game) {
+    console.log(game.map((g) => g.name))
+  }
+
+  useEffect(() => {
+    if (game) {
+      setGameTitle(game.map((g) => g.name))
+      setListingPrice(game.map((g) => g.msrp))
+    }
+  }, [game])
 
 
   var searchBarMorph = 'game_instance-search-input-inactive';
@@ -69,7 +81,7 @@ export default function NewGameInstance() {
                 null
               }
               <form className='add_game_form'>
-                <input className='add_game_form-input-title' type='text' autoComplete='off' name='title' placeholder='Title' />
+                <input className='add_game_form-input-title' type='text' autoComplete='off' name='title' placeholder={gameTitle} />
                 <div id='add_game_form-break'>
                   {/* <input className='add_game_form-input-else' type='text' name='title' placeholder={(searchTerm) ? game.mrsp : 'Listing Price'} /> */}
                   <input className='add_game_form-input-price' type='text' autoComplete='off' name='listingPrice' onClick={e => handleListingPrice(e.target.value)} placeholder={listingPrice} />
@@ -80,7 +92,8 @@ export default function NewGameInstance() {
                     <div id='condition_option' onClick={e => handleCondition('Poor')}>Poor</div>
                   </div>
                 </div>
-                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onClick={e => handleDescription(e.target.value)} placeholder={conditionDescription}/>
+                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onClick={e => handleDescription(e.target.value)} placeholder={conditionDescription} />
+                <input className='add_game_form__submit' type='submit' text='submit' onClick={e => submitGame()} />
               </form>
             </div>
           </div>

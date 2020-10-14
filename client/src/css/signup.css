@@ -81,6 +81,8 @@
 }
 .signup-button:hover {
   background-color: #279ADC;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 .signup-button:focus {
   outline: none;

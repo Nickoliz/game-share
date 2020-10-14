@@ -5,14 +5,10 @@ import '../css/sellsearchmodal.css';
 import SearchCardAtlas from './SearchCardAtlas';
 
 function SearchModal({ searchTermCreateGame }) {
-  const currentUserId = useSelector(state => state.auth.id);
-
+  // const currentUserId = useSelector(state => state.auth.id);
   const games = useSelector(state => state.atlas.orderByGames);
 
-  console.log(games)
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(loadGamesForSearch(searchTermCreateGame))
@@ -21,9 +17,6 @@ function SearchModal({ searchTermCreateGame }) {
 
   const notLoaded = games && searchTermCreateGame.length > 0;
 
-  // const handleSubmit = async (e) => {
-  //   dispatch(getGames(e))
-  // }
 
   if (!notLoaded) return null;
 
@@ -32,9 +25,9 @@ function SearchModal({ searchTermCreateGame }) {
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCardAtlas game={game} key={game.id} />)
+            <SearchCardAtlas searchTerm={searchTermCreateGame} game={game} key={game.id} />)
           :
-          <div id='no-search-results'>No games matching result. Please add game below.</div>
+          <div id='no-search-results'>No games matching result.</div>
       }
     </div>
   );

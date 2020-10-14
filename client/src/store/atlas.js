@@ -2,6 +2,7 @@ const GET_ORDERBY_GAMES = 'atlas/get_order_by';
 const GET_POPULAR_GAMES = 'atlas/get_popular_games'
 const GET_REDDIT_GAMES = 'atlas/get_reddit_games'
 const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search'
+const GET_GAME = 'atlas/get_game'
 
 const {
   atlas: { client_id },
@@ -36,6 +37,13 @@ export const loadAddSearchGames = (games) => {
   }
 }
 
+export const getGame = (game) => {
+  return {
+    type: GET_GAME,
+    game: game
+  }
+}
+
 export const loadOrderByGames = category => {
   return async dispatch => {
     try {
@@ -46,7 +54,7 @@ export const loadOrderByGames = category => {
       }
       return res;
     } catch (err) {
-      console.warn("Error: ", err)
+      return console.warn("Error: ", err)
     }
   }
 }
@@ -54,16 +62,30 @@ export const loadOrderByGames = category => {
 export const loadGamesForSearch = searchTerm => {
   return async dispatch => {
     try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=10&client_id=${client_id}`)
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=8&client_id=${client_id}`)
       res.data = await res.json()
       if (res.ok) {
-        console.log(res.data.games)
         return dispatch(getOrderByGames(res.data.games))
       }
       return res;
     } catch (err) {
-      console.warn("Error: ", err)
+      return console.warn("Error: ", err)
     }
+  }
+}
+
+export const getGameById = id => {
+  return async dispatch => {
+    try {
+    const res = await fetch(`https://api.boardgameatlas.com/api/search?ids=${id}&client_id=${client_id}`)
+    res.data = await res.json()
+    if (res.ok) {
+      return dispatch(getGame(res.data.games))
+    }
+    return res
+  } catch (err) {
+    return console.warn("Error: ", err)
+  }
   }
 }
 
@@ -87,8 +109,8 @@ export default function atlasReducer(state = {}, action) {
   switch (action.type) {
     case GET_ORDERBY_GAMES:
       return { ...state, orderByGames: action.games };
-    // case GET_GAMES_FOR_ADD_SEARCH:
-    //   return {...state, gamesForSearch: action.games}
+    case GET_GAME:
+      return {...state, game: action.game}
     default:
       return state;
   }
