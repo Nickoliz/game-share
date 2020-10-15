@@ -1,0 +1,20 @@
+.buy_box{
+  align-items: center;
+  width: 100vw;
+  height: auto;
+}
+
+.buy_card-container-wrapper {
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto; */
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  position: absolute;
+  top: 315px;
+  height: auto;
+  width: 1250px;
+  align-items: center;
+  margin-left: 350px;
+}

@@ -1,0 +1,118 @@
+* {
+  color: #AAB8C5;
+}
+
+.card-container{
+  margin-top:10px;
+  min-width:900px;
+  padding: 60px 60px;
+}
+
+.card-wrapper{
+  margin:10px;
+  padding: 0;
+}
+.card {
+  width: auto;
+  height: 174px;
+  background-color: #37404A;
+  border: 1px solid #AAB8C5;
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border-radius: 8px; */
+}
+
+.card-link{
+  display:flex;
+  justify-content: space-around;
+  background-color: #37404A;
+}
+
+.rank-and-more {
+  font-size: 14px;
+  margin-right: 20px;
+  background-color: #37404A;
+  padding-bottom: 5px;
+}
+
+.card img {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+  border: none;
+  outline: none;
+  background-color: #37404A;
+}
+
+.card-header{
+  height: auto;
+  background-color: #37404A;
+}
+
+.main-card-game-name {
+  background-color: #37404A;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  border: 1px solid #AAB8C5;
+  border-bottom: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.card-game-description {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 0;
+  margin-top: 8px;
+  margin-right: 20px;
+  background-color: #37404A;
+  padding-bottom: 5px;
+}
+
+#card-game-description {
+  font-size: 12px;
+  margin-top: 0;
+  background-color: #37404A;
+}
+
+.card{
+  background-color: #37404A;
+
+}
+
+#main-card-designer,
+#main-card-publisher {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 8px;
+  margin-right: 20px;
+  background-color: #37404A;
+}
+
+.main-card-game-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  background-color: #37404A;
+}
+
+#main-card-info-box {
+  background-color: #37404A;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+.card-game-description {
+  display: flex;
+  flex-direction: column;
+}

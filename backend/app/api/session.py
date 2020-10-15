@@ -25,8 +25,6 @@ def login_user():
 
 @session_routes.route('/current', methods=['GET'])
 def load_user():
-  print("HERE")
-  print(session)
   if 'user' in session:
     user = session['user']
     return {"user": session['user']}, 200

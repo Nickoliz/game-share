@@ -1,39 +1,111 @@
-import React from 'react';
-import '../css/homepage.css'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { loadOrderByGames } from '../store/atlas';
+import GameCards from '../components/GameCards';
+import { Link as PageLink } from 'react-scroll';
+import '../css/homepage.css';
+import Navbar from '../components/Navbar';
 
 export default function HomePage() {
+  const [sticky, setSticky] = useState('');
+  const [categoryDisplay, setCategoryDisplay] = useState('Trending');
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(loadOrderByGames('trending'))
+    }, 1500)
+  }, [dispatch])
+
+  const orderByGames = useSelector(state => state.atlas.orderByGames);
+
+  const orderByGamesList = [];
+  for (let game in orderByGames) {
+    orderByGamesList.push(orderByGames[game]);
+  }
+
+  const handleGameGrid = e => {
+    setCategoryDisplay(e);
+    if (e === 'Reddit Weekly') {
+      dispatch(loadOrderByGames('reddit_day_count'))
+    } else if (e === 'Top Ranked') {
+      dispatch(loadOrderByGames('popular'))
+    } else {
+      dispatch(loadOrderByGames(e.toLowerCase()))
+    }
+  }
+
+  const stickNav = () => {
+    if (window.pageYOffset >= 270) {
+      setSticky('sticky');
+    } else {
+      setSticky('');
+    }
+  }
+
+  window.onscroll = function () { stickNav() };
 
   return (
     <>
+      <Navbar />
       <div className='homepage_main_container'>
         <div className='homepage_logo-container' />
-        <div className='homepage_nav-container'>
+        <div className='homepage_nav-container' id={sticky}>
           <div className='homepage_nav-button'>
-            <div id='homepage_nav-button-box'>
-              Discover
+            <div className='discover_modal-div' style={{ cursor: "pointer" }}>
+              Discovery
+              <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px' }} />
+              <div className='discovery_modal-container'>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Top Ranked')}>Top Ranked</PageLink>
+                </div>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Trending')}>Trending</PageLink>
+                </div>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popularity')}>Popularity</PageLink>
+                </div>
+                <div className='discovery_modal-selection'>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>Reddit Daily</PageLink>
+                </div>
+              </div>
             </div>
           </div>
-          <div className='homepage_nav-button'>
+          <Link to='/buy' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
-              Discover
+              Buy
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link to='/sell' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
-              Discover
+              Sell
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link to='/trade' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
-              Discover
+              Trade
             </div>
-          </div>
-          <div className='homepage_nav-button'>
+          </Link>
+          <Link to='/borrow' className='homepage_nav-button'>
             <div id='homepage_nav-button-box'>
-              Discover
+              Borrow
             </div>
+          </Link>
+        </div>
+        {(orderByGames) ?
+          <div id='grid-label'>{categoryDisplay}</div>
+          :
+          <div id='grid-label'>Loading
+            <i className='fas fa-spinner fa-spin' style={{ marginLeft: '12px', color: '#3881D4' }} />
           </div>
+        }
+        <div className='home_card-container-wrapper'>
+          {(orderByGames) ?
+            orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)
+            :
+            <div className='fas fa-dice-d20 fa-spin fa-5x' style={{ gridArea: 'b', color: '#3881D4', justifyContent: 'center', marginTop: '50px' }}></div>
+          }
         </div>
       </div>
     </>

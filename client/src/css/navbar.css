@@ -1,0 +1,77 @@
+::placeholder {
+  color: #AAB8C5;
+}
+
+.navbar_container {
+  display: flex;
+  flex-direction: column wrap;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding-right: 40px;
+  gap: 20px;
+  top: 5;
+  background-color: #3881D4;
+}
+
+.navbar_search_container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-left: 30px;
+  padding: 10px;
+  border-radius: 24px;
+  width: 400px;
+}
+
+.navbar_search-bar {
+  font-size: 16px;
+}
+
+.homepage_auth {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  gap: 20px;
+  top: 5;
+  background-color: #3881D4;
+}
+
+.homepage_login-button {
+  background-color: #333A3F;
+}
+
+.homepage_auth-button {
+  box-sizing: border-box;
+  text-align: center;
+  padding-top: 10px;
+  height: 40px;
+  width: 130px;
+  border-radius: 24px;
+  background-color: #333A3F;
+  font-weight: bold;
+  letter-spacing: -.9px;
+  cursor: pointer;
+}
+
+.auth_profile_button {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  border-radius: 24px;
+  font-weight: bold;
+  letter-spacing: -.9px;
+  cursor: pointer;
+}
+
+/* PROFILE MODAL */
+
+.auth_profile_container {
+  display: flex;
+  background-color: #3881D4;
+  align-items: center;
+  gap: 20px;
+}

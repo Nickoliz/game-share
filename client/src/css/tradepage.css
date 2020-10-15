@@ -1,0 +1,17 @@
+.trade_box{
+  align-items: center;
+  width: 100vw;
+  height: auto;
+}
+
+.trade_card-container-wrapper {
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  position: absolute;
+  top: 315px;
+  height: auto;
+  width: 1250px;
+  align-items: center;
+  margin-left: 350px;
+}

@@ -21,3 +21,24 @@ def signup_user():
     return {"user": user.to_dict()}, 200
   except:
     return jsonify({"msg": "Bad data for signup."}), 400
+
+@users_routes.route('/update', methods=["PUT"])
+def update_user():
+  try:
+    if 'user' in session:
+      user = session['user']
+      db.update(users).where(users.id==user.id).values(
+        firstname=request.json.get('firstname', None),
+        address=request.json.get('address', None),
+        city=request.json.get('city', None),
+        state=request.json.get('state', None),
+        zipcode=request.json.get('zipcode', None),
+        phonenumber=request.json.get('phonenumber', None)
+      )
+      db.session.commit()
+  except:
+    return jsonfify({"message": "Bad request. Cannot update user."})
+
+# @users_routes.route('/profile')
+# def profile_user_id():
+#   try:

@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
+import Auth from './components/Auth';
 import Pages from './pages/Pages'
-import {setUser} from './store/auth'
+import { setUser } from './store/auth'
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,10 +21,11 @@ function App() {
     loadUser();
   }, [dispatch]);
 
-  if(loading) return null;
+  if (loading) return null;
 
   return (
     <BrowserRouter>
+      <Auth />
       <Pages />
     </BrowserRouter>
   );

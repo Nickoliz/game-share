@@ -1,9 +1,42 @@
 /* TODO Add site wide styles */
 
-
 *{
   margin: 0px;
   box-sizing: border-box;
   font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #333A3F;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar:corner-present {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #4D5764;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3881D4;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3)
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a6ab3;
+}
+
+::-webkit-resizer {
+  background: #4D5764;
+
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
 }
