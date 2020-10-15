@@ -35,7 +35,7 @@ export default function Navbar() {
           }
           {(currentUserId) ?
             <div className='auth_profile_container'>
-              <NavLink exact to='/userprofile' className='auth_profile_button' style={{ textDecoration: 'none' }}>Profile</NavLink>
+              <NavLink exact to='/profile' className='auth_profile_button' style={{ textDecoration: 'none' }}>Profile</NavLink>
               <i className='fas fa-sign-out-alt fa-2x' onClick={e => signOut()} style={{color: '#333A3F', backgroundColor: '#3881D4', cursor: 'pointer'}}/>
             </div>
             :

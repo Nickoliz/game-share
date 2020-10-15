@@ -4,7 +4,6 @@ import HomePage from './HomePage';
 import BuyPage from './BuyPage';
 import TradePage from './TradePage';
 import BorrowPage from './BorrowPage';
-import UserProfile from './UserProfile';
 import Profile from './Profile';
 import NewGameInstance from './NewGameInstance'
 
@@ -18,7 +17,6 @@ export default function Pages() {
       <Route exact path="/buy" component={BuyPage} />
       <Route exact path="/trade" component={TradePage} />
       <Route exact path="/borrow" component={BorrowPage} />
-      <Route exact path="/userprofile" component={UserProfile} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/sell" component={NewGameInstance} />
     </>

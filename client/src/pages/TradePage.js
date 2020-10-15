@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getForTrade } from '../store/games'
 import DBGameCards from '../components/DBGameCards';
 import NavbarNotHome from '../components/NavbarNotHome';
+import '../css/tradepage.css';
 
-export default function TradePage() {
+export default function BuyPage() {
   const dispatch = useDispatch();
   const gamesForTrade = useSelector(state => state.games.gamesfortrade);
 
@@ -17,12 +18,13 @@ export default function TradePage() {
     gamesForTradeList.push(gamesForTrade[game]);
   }
 
-
   return (
     <>
-    <NavbarNotHome />
-      <div className='card-container-wrapper'>
-        {gamesForTradeList.map((game) => <DBGameCards game={game} key={game.id} />)}
+      <NavbarNotHome />
+      <div className='trade_box'>
+        <div className='trade_card-container-wrapper'>
+          {gamesForTradeList.map((game) => <DBGameCards game={game} key={game.id} />)}
+        </div>
       </div>
     </>
   )

@@ -100,7 +100,7 @@ export default function HomePage() {
             <i className='fas fa-spinner fa-spin' style={{ marginLeft: '12px', color: '#3881D4' }} />
           </div>
         }
-        <div className='card-container-wrapper'>
+        <div className='home_card-container-wrapper'>
           {(orderByGames) ?
             orderByGamesList.map((game) => <GameCards game={game} key={game.id} />)
             :

@@ -1,0 +1,61 @@
+.profile_main_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container-wrapper-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  /* position: absolute; */
+  height: auto;
+}
+
+.user_banner_container {
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: space-between;
+  width: 1000px;
+  height: 250px;
+  margin: 20px;
+  margin-left: 20px;
+  padding: 20px;
+  padding-right: 100px;
+  padding-left: 50px;
+  background-color: #37404A;
+  border-radius: 12px;
+}
+
+#user_banner-stats-label {
+  background-color: #37404A;
+  border-bottom: 2px solid #3881D4;
+}
+
+#user_banner-listing-label {
+  background-color: #37404A;
+  border-bottom: 2px solid #3881D4;
+  font-size: 20px;
+}
+
+.user_banner-stats {
+  background-color: #37404A;
+  font-size: 20px;
+}
+
+.user_banner-picture-image {
+  background-color: #37404A;
+  height: 220px;
+  width: 220px;
+  padding: 20px;
+}
+
+#user_banner-stats-item {
+  padding: 15px;
+  font-size: 18px;
+  background-color: #37404A;
+}
+
+.user_banner-listing-offers {
+  background-color: #37404A;
+}

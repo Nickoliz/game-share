@@ -1,13 +1,10 @@
-.buy_box{
+.trade_box{
   align-items: center;
   width: 100vw;
   height: auto;
 }
 
-.buy_card-container-wrapper {
-  /* display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto; */
+.trade_card-container-wrapper {
   display: flex;
   flex-direction: column wrap;
   justify-content: center;

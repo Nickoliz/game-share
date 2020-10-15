@@ -125,7 +125,9 @@
 /*PROFILE SPECIFIC*/
 
 .top_card-name {
-  /* display: flex; */
+  display: flex;
+  padding-right: 10px;
+  flex-direction: column;
   background-color: #37404A;
 }
 

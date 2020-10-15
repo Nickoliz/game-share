@@ -89,9 +89,9 @@
   height: 3px;
 }
 
-.card-container-wrapper {
+.home_card-container-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   position: absolute;
   top: 315px;
