@@ -45,7 +45,7 @@ export default function NewGameInstance() {
   }, [game])
 
 
-  var searchBarMorph = 'game_instance-search-input-inactive';
+  var searchBarMorph = 'game_instance-search-input-inactive-collection';
   var searchBarMorphCreate = 'game_instance-search-input-inactive';
 
   const submitGame = e => {
@@ -97,7 +97,7 @@ export default function NewGameInstance() {
 
   if (!currentUserId) return <Redirect to='/login' />;
   if (searchTerm) {
-    searchBarMorph = 'game_instance-search-input-active'
+    searchBarMorph = 'game_instance-search-input-active-collection'
   }
   if (searchTermCreateGame) {
     searchBarMorphCreate = 'game_instance-search-input-active'

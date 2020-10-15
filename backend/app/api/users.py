@@ -38,3 +38,7 @@ def update_user():
       db.session.commit()
   except:
     return jsonfify({"message": "Bad request. Cannot update user."})
+
+# @users_routes.route('/profile')
+# def profile_user_id():
+#   try:

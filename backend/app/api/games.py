@@ -8,7 +8,7 @@ games_routes = Blueprint('games', __name__)
 @games_routes.route('/collection')
 def get_user_collection():
   user_id = request.args.get('id')
-  games = BoardGame.query.filter(BoardGame.user_id == user_id)
+  games = BoardGame.query.filter(BoardGame.user_id == user_id).order_by(BoardGame.title)
   data = [game.to_dict() for game in games]
   print(data)
   return {"games": data}, 200
@@ -103,3 +103,15 @@ def add_game_to_collection():
   return {"Message": "Games successfully added"}, 200
   # except:
   #   return {"Message": "Error. Could not add game to user collection."}, 500
+
+@games_routes.route('/toggleforsale', methods=['PATCH'])
+def toggle_for_sale():
+  print("Making it to backend")
+  user_id = request.json.get('user_id')
+  game_tag = request.json.get('game_id')
+  game = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.game_id == game_tag).first()
+  for_sale = game.forsale
+  if (game.forsale == False):
+    game.forsale = True
+  db.session.commit()
+  return {"Message": "Games successfully listed for sale."}

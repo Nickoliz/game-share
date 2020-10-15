@@ -130,25 +130,6 @@ class BoardGame(db.Model):
   def get_forborrow(self):
     return self.forborrow
 
-  def change_for_sale(self):
-    if (self.forsale == False):
-      return self.forsale == True
-    else:
-      self.forsale == False
-
-  def change_for_trade(self):
-    if (self.fortrade == False):
-      return self.fortrade == True
-    else:
-      self.fortrade == False
-
-  def change_for_borrow(self):
-    if (self.forborrow == False):
-      return self.forborrow == True
-    else:
-      self.forborrow == False
-
-
 # class UserCollection(db.Model):
 #   __tablename__ =  'usercollection'
 

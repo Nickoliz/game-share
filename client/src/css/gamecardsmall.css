@@ -53,3 +53,7 @@
   color: red;
   font-weight: bold;
 }
+
+.game-listing {
+  cursor: pointer;
+}

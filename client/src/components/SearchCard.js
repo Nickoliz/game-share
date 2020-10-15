@@ -1,15 +1,18 @@
 import React from 'react';
 // import { getgame } from '../store/games';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { Link, useHistory } from 'react-router-dom';
+import { addGameToSell } from '../store/games';
 import '../css/gamecardsmall.css';
 
 export default function GameSearch({ game }) {
   // const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const currentUserId = useSelector(state => state.auth.id);
 
-  const handleClick = e => {
-
+  const handleClick = game_id => {
+    console.log(game_id)
+    dispatch(addGameToSell(currentUserId, game_id))
   }
 
   return (
@@ -19,8 +22,8 @@ export default function GameSearch({ game }) {
           <div className="game-listing">
             {(!game.forsale) ?
               <>
-                < h3 id='search-card-title'>{game.title}</h3>
-                <div className="game-listing-information">
+                < h3 onClick={e => handleClick(game.game_id)} id='search-card-title'>{game.title}</h3>
+                <div onClick={e => handleClick(game.game_id)} className="game-listing-information">
                   <div className="game-listing-information-header">
                     <img src={game.thumb_url} alt={game.description} />
                   </div>

@@ -1,7 +1,8 @@
-import React , { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games'
 import DBGameCards from '../components/DBGameCards';
+import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/navbar.css'
 
@@ -10,6 +11,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.auth.id)
   const userCollection = useSelector(state => state.games.collection);
+  // const profileUserId = useSelector(state => state.users.id);
 
   useEffect(() => {
     dispatch(getCollection(currentUserId))
@@ -23,12 +25,24 @@ export default function Profile() {
 
   return (
     <>
-    <NavbarNotHome />
-      <div className='profile_main_container'>
-      </div>
-      <div className='card-container-wrapper'>
-        {userCollectionList.map((game) => <DBGameCards game={game} key={game.id} />)}
-      </div>
+      <NavbarNotHome />
+      {/* {(currentUserId !== profileUserId) ?
+        <>
+          <div className='profile_main_container'>
+          </div>
+          <div className='card-container-wrapper'>
+            {userCollectionList.map((game) => <DBGameCards game={game} key={game.id} />)}
+          </div>
+        </>
+        : */}
+        <>
+          <div className='profile_main_container'>
+          </div>
+          <div className='card-container-wrapper'>
+            {userCollectionList.map((game) => <DBGameCardsProfile game={game} key={game.id} />)}
+          </div>
+        </>
+      {/* } */}
     </>
   )
 }

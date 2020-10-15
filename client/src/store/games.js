@@ -100,16 +100,13 @@ export const getGamesByTitleToList = (id, searchTerm) => {
     if (res.ok) {
       dispatch(getGamesByTitle(res.data.games))
     }
-    return res
+    return res;
   }
 }
 
 export const addGameToCollection = (user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription) => {
   return async dispatch => {
-    debugger;
-    console.log(user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription)
     try {
-      debugger;
       const res = await fetch(`/api/games/add`, {
         method: 'post',
         headers: {
@@ -119,16 +116,38 @@ export const addGameToCollection = (user_id, game_id, title, year_published, thu
       })
       res.data = await res.json();
       if (res.ok) {
-        debugger;
-        console.log(res.data)
         dispatch(getCollection(user_id));
       }
+      return res;
     } catch (err) {
       return { "Message": "Could not add game. Please check your submission and try again." }
     }
   }
 }
 
+export const addGameToSell = (user_id, game_id) => {
+  return async dispatch => {
+    try {
+      console.log("Hitting the try")
+      console.log("In reducer. user_id: ", user_id, " & game_id: ", game_id)
+      const res = await fetch(`/api/games/toggleforsale`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id, game_id })
+      })
+      res.data = await res.json();
+      console.log(res.data)
+      if (res.ok) {
+        dispatch(getCollection(user_id))
+      }
+      return res;
+    } catch (err) {
+      return { "Message": "Could not patch game for sale." }
+    }
+  }
+}
 
 // export const getCollection = id => {
 //   return async dispatch => {
