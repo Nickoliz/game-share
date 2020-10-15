@@ -46,6 +46,7 @@ export default function NewGameInstance() {
 
 
   var searchBarMorph = 'game_instance-search-input-inactive';
+  var searchBarMorphCreate = 'game_instance-search-input-inactive';
 
   const submitGame = e => {
     dispatch(addGameToCollection(
@@ -95,6 +96,12 @@ export default function NewGameInstance() {
   }
 
   if (!currentUserId) return <Redirect to='/login' />;
+  if (searchTerm) {
+    searchBarMorph = 'game_instance-search-input-active'
+  }
+  if (searchTermCreateGame) {
+    searchBarMorphCreate = 'game_instance-search-input-active'
+  }
 
   return (
     <>
@@ -106,7 +113,7 @@ export default function NewGameInstance() {
             {/* <div id='game_instance-search-icon'>
               <i className='fas fa-search' />
             </div> */}
-            {(searchTerm) ? searchBarMorph = 'game_instance-search-input-active' : null}
+            {/* {(searchTerm) ? searchBarMorph = 'game_instance-search-input-active' : null} */}
             <input id={searchBarMorph} autoComplete='off' type='text' onChange={e => setSearchTerm(e.target.value)} placeholder='Search games from your collection...' />
             {(searchTerm) ?
               <SearchModal searchTerm={searchTerm} />
@@ -118,7 +125,7 @@ export default function NewGameInstance() {
           <div className='game_instance-add-from-atlas__label'>search for a game you own to list</div>
           <div className='add_game_form_container'>
             <div className='add_game_form-box'>
-              <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
+              <input className='add_game_form__search' id={searchBarMorphCreate} type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
                 <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} />
                 :

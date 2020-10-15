@@ -129,6 +129,7 @@ export const addGameToCollection = (user_id, game_id, title, year_published, thu
   }
 }
 
+
 // export const getCollection = id => {
 //   return async dispatch => {
 //     const res = await fetch(`/api/games/collection?id=${id}`, {
