@@ -27,7 +27,7 @@ function SearchModal({ searchTermCreateGame }) {
           games.map((game) =>
             <SearchCardAtlas searchTerm={searchTermCreateGame} game={game} key={game.id} />)
           :
-          <div id='no-search-results'>No games matching result.</div>
+          <div id='atlas_no-search-results'>No games matching result.</div>
       }
     </div>
   );

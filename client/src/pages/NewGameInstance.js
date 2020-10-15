@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
 import SearchModal from '../components/SearchModal';
+import { addGameToCollection } from '../store/games';
 import SearchCreateGameModal from '../components/SearchCreateGameModal'
 import '../css/newgameinstance.css';
 
@@ -12,43 +13,86 @@ export default function NewGameInstance() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchTermCreateGame, setSearchTermCreateGame] = useState('');
   const [gameTitle, setGameTitle] = useState('Title');
+  const [gameId, setGameId] = useState(null);
   const [gameCondition, setGameCondition] = useState('Condition');
   const [listingPrice, setListingPrice] = useState('Listing Price');
   const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)');
+  const [year_published, setYearPublished] = useState(null)
+  const [thumb_url, setThumbUrl] = useState(null)
+  const [msrp, setMSRP] = useState(null)
+  const [rank, setRank] = useState(null)
+  const [forsale, setForSale] = useState(false)
+  const [fortrade, setForTrade] = useState(false)
+  const [forborrow, setForBorrow] = useState(false)
+  const dispatch = useDispatch()
 
   const currentUserId = useSelector(state => state.auth.id);
   const game = useSelector(state => state.atlas.game)
 
-  if (game) {
-    console.log(game.map((g) => g.name))
-  }
-
   useEffect(() => {
     if (game) {
-      setGameTitle(game.map((g) => g.name))
-      setListingPrice(game.map((g) => g.msrp))
+      game.map((g) => {
+        return (
+          setGameTitle(g.name),
+          setGameId(g.id),
+          setYearPublished(g.year_published),
+          setThumbUrl(g.thumb_url),
+          setMSRP(g.msrp),
+          setRank(g.rank)
+        )
+      })
     }
   }, [game])
 
 
   var searchBarMorph = 'game_instance-search-input-inactive';
 
-  const submitGame = (currentUserId) => {
-
-
+  const submitGame = e => {
+    dispatch(addGameToCollection(
+      currentUserId,
+      gameId,
+      gameTitle,
+      year_published,
+      thumb_url,
+      msrp,
+      listingPrice,
+      rank,
+      forsale,
+      fortrade,
+      forborrow,
+      gameCondition,
+      conditionDescription,
+    ));
   };
 
-  const handleListingPrice = e => {
-    setListingPrice(e)
-  };
 
   const handleCondition = e => {
     setGameCondition(e);
   };
 
-  const handleDescription = e => {
-    setConditionDescription(e)
-  };
+  const handleCheckSale = () => {
+    if (forsale === false) {
+      return setForSale(true);
+    } else {
+      return setForSale(false)
+    }
+  }
+
+  const handleCheckTrade = () => {
+    if (fortrade === false) {
+      return setForTrade(true);
+    } else {
+      return setForTrade(false);
+    }
+  }
+
+  const handleCheckBorrow = () => {
+    if (forborrow === false) {
+      return setForBorrow(true);
+    } else {
+      return setForBorrow(false);
+    }
+  }
 
   if (!currentUserId) return <Redirect to='/login' />;
 
@@ -83,16 +127,29 @@ export default function NewGameInstance() {
               <form className='add_game_form'>
                 <input className='add_game_form-input-title' type='text' autoComplete='off' name='title' placeholder={gameTitle} />
                 <div id='add_game_form-break'>
-                  {/* <input className='add_game_form-input-else' type='text' name='title' placeholder={(searchTerm) ? game.mrsp : 'Listing Price'} /> */}
-                  <input className='add_game_form-input-price' type='text' autoComplete='off' name='listingPrice' onClick={e => handleListingPrice(e.target.value)} placeholder={listingPrice} />
-                  <input className='add_game_form-input-condition' type='text' autoComplete='off' name='gameCondition' placeholder={gameCondition} />
-                  <div className='condition_select'>
+                  <input className='add_game_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={listingPrice} />
+                  <input disabled className='add_game_form-input-condition' type='text' autoComplete='off' name='gameCondition' placeholder={gameCondition} />
+                  <div className='condition_select' placeholder='Listing Options'>
                     <div id='condition_option' onClick={e => handleCondition('New')}>New</div>
                     <div id='condition_option' onClick={e => handleCondition('Used')}>Used</div>
                     <div id='condition_option' onClick={e => handleCondition('Poor')}>Poor</div>
                   </div>
                 </div>
-                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onClick={e => handleDescription(e.target.value)} placeholder={conditionDescription} />
+                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />
+                <div className='listing_option-box'>
+                  <div>
+                    <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />
+                    <label id='list-label'>For Sale</label>
+                  </div>
+                  <div>
+                    <input className='listing-option' type='checkbox' name='fortrade' value='true' onChange={e => handleCheckTrade()} id='fortrade' />
+                    <label id='list-label'>For Trade</label>
+                  </div>
+                  <div>
+                    <input className='listing-option' type='checkbox' name='forborrow' value='true' onChange={e => handleCheckBorrow()} id='forborrow' />
+                    <label id='list-label'>For Borrow</label>
+                  </div>
+                </div>
                 <input className='add_game_form__submit' type='submit' text='submit' onClick={e => submitGame()} />
               </form>
             </div>

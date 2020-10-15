@@ -104,6 +104,31 @@ export const getGamesByTitleToList = (id, searchTerm) => {
   }
 }
 
+export const addGameToCollection = (user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription) => {
+  return async dispatch => {
+    debugger;
+    console.log(user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription)
+    try {
+      debugger;
+      const res = await fetch(`/api/games/add`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription })
+      })
+      res.data = await res.json();
+      if (res.ok) {
+        debugger;
+        console.log(res.data)
+        dispatch(getCollection(user_id));
+      }
+    } catch (err) {
+      return { "Message": "Could not add game. Please check your submission and try again." }
+    }
+  }
+}
+
 // export const getCollection = id => {
 //   return async dispatch => {
 //     const res = await fetch(`/api/games/collection?id=${id}`, {
@@ -123,13 +148,13 @@ export default function gamesReducer(state = {}, action) {
     case GET_COLLECTION:
       return { ...state, collection: action.games };
     case GET_GAMES_FOR_BUY:
-      return {...state, gamesforbuy: action.games};
+      return { ...state, gamesforbuy: action.games };
     case GET_GAMES_FOR_TRADE:
-      return {...state, gamesfortrade: action.games};
+      return { ...state, gamesfortrade: action.games };
     case GET_GAMES_FOR_BORROW:
-      return {...state, gamesforborrow: action.games};
+      return { ...state, gamesforborrow: action.games };
     case GET_GAMES_BY_TITLE:
-      return {...state, gamesByTitle: action.games};
+      return { ...state, gamesByTitle: action.games };
     default:
       return state;
   }

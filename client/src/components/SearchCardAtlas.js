@@ -10,16 +10,17 @@ export default function GameSearch({ game, searchTermCreateGame }) {
   const dispatch = useDispatch();
 
   const handleSubmit = async (id) => {
-    console.log(id);
     dispatch(getGameById(id));
+    console.log(id)
     searchTermCreateGame = ''
   }
+
 
 
   return (
     <div onClick={e => handleSubmit(game.id)}  className='atlas_search_results_container'>
       <div className="atlas-listing">
-        <h3 id='search-card-title'>{game.name}</h3>
+        <h3 id='atlas_search-card-title'>{game.name}</h3>
         <div className="atlas-listing-information">
           <div className="atlas-listing-information-header">
             <img src={game.thumb_url} alt={game.id} />

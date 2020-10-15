@@ -6,10 +6,10 @@ input {
   position: absolute;
   width: 700px;
   height: 500px;
-  margin-top: 185px;
+  margin-top: 161px;
   background-color: #4D5764;
   z-index: 101;
-  top: 85px;
+  top: 50px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
@@ -74,8 +74,8 @@ input {
 }
 
 #no-search-results {
-  margin-top: 50px;
-  padding-left: 50px;
+  margin-top: 25px;
+  margin-left: 40px;
   background-color: #4D5764;
 }
 
