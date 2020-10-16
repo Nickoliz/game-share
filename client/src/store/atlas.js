@@ -30,7 +30,7 @@ export const getRedditGames = (games) => {
   };
 };
 
-export const loadAddSearchGames = (games) => {
+export const loadNavSearch = (games) => {
   return {
     type: GET_GAMES_FOR_ADD_SEARCH,
     games: games
@@ -66,6 +66,21 @@ export const loadGamesForSearch = searchTerm => {
       res.data = await res.json()
       if (res.ok) {
         return dispatch(getOrderByGames(res.data.games))
+      }
+      return res;
+    } catch (err) {
+      return console.warn("Error: ", err)
+    }
+  }
+}
+
+export const loadGamesForNavSearch = searchTerm => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchTerm}&limit=8&client_id=${client_id}`)
+      res.data = await res.json()
+      if (res.ok) {
+        return dispatch(loadNavSearch(res.data.games))
       }
       return res;
     } catch (err) {
@@ -111,6 +126,8 @@ export default function atlasReducer(state = {}, action) {
       return { ...state, orderByGames: action.games };
     case GET_GAME:
       return {...state, game: action.game}
+    case GET_GAMES_FOR_ADD_SEARCH:
+      return {...state, loadNavSearch: action.games}
     default:
       return state;
   }

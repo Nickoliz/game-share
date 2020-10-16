@@ -23,6 +23,12 @@
   padding: 10px;
   border-radius: 24px;
   width: 400px;
+  transition: 200ms ease-in-out;
+}
+
+.navbar_search_container:hover,
+.navbar_search-bar:hover {
+  flex-grow: 1;
 }
 
 .navbar_search-bar {
@@ -67,7 +73,6 @@
   cursor: pointer;
 }
 
-/* PROFILE MODAL */
 
 .auth_profile_container {
   display: flex;

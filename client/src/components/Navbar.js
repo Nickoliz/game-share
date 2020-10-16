@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../store/auth';
-import '../css/navbar.css'
+import UnauthSearchModal from './UnauthSearchModal';
+import '../css/navbar.css';
+import '../css/unauthnavsearch.css';
 
 
 export default function Navbar() {
+  const [searchTerm, setSearchTerm] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
 
@@ -20,7 +23,14 @@ export default function Navbar() {
           <div>
             <i className='fa fa-search' />
           </div>
-          <input className='navbar_search-bar' style={{ color: '#AAB8C5' }} placeholder='Search for board games...' />
+          <input className='navbar_search-bar' onChange={e => setSearchTerm(e.target.value)} style={{ color: '#AAB8C5' }} placeholder='Search for board games...' />
+          <div className='unauth_search_modal'>
+            {(searchTerm) ?
+              <UnauthSearchModal searchTerm={searchTerm} />
+              :
+              null
+            }
+          </div>
         </div>
         <div className='homepage_auth'>
           {(currentUserId) ?

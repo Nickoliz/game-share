@@ -106,11 +106,9 @@ def add_game_to_collection():
 
 @games_routes.route('/toggleforsale', methods=['PATCH'])
 def toggle_for_sale():
-  print("Making it to backend")
   user_id = request.json.get('user_id')
   game_tag = request.json.get('game_id')
   game = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.game_id == game_tag).first()
-  for_sale = game.forsale
   if (game.forsale == False):
     game.forsale = True
   db.session.commit()

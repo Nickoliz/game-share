@@ -5,7 +5,8 @@ import BuyPage from './BuyPage';
 import TradePage from './TradePage';
 import BorrowPage from './BorrowPage';
 import Profile from './Profile';
-import NewGameInstance from './NewGameInstance'
+import NewGameInstance from './NewGameInstance';
+import GamePage from './GamePage';
 
 
 
@@ -19,6 +20,7 @@ export default function Pages() {
       <Route exact path="/borrow" component={BorrowPage} />
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/sell" component={NewGameInstance} />
+      <Route exact path="/gamepage/:id" component={GamePage} />
     </>
   )
 }

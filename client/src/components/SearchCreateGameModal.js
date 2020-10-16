@@ -4,8 +4,7 @@ import { loadGamesForSearch } from '../store/atlas';
 import '../css/sellsearchmodal.css';
 import SearchCardAtlas from './SearchCardAtlas';
 
-function SearchModal({ searchTermCreateGame }) {
-  // const currentUserId = useSelector(state => state.auth.id);
+function SearchCreateGameModal({ searchTermCreateGame }) {
   const games = useSelector(state => state.atlas.orderByGames);
 
   const dispatch = useDispatch();
@@ -16,7 +15,6 @@ function SearchModal({ searchTermCreateGame }) {
 
 
   const notLoaded = games && searchTermCreateGame.length > 0;
-
 
   if (!notLoaded) return null;
 
@@ -33,4 +31,4 @@ function SearchModal({ searchTermCreateGame }) {
   );
 };
 
-export default SearchModal;
+export default SearchCreateGameModal;
