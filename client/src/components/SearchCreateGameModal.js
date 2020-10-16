@@ -4,7 +4,7 @@ import { loadGamesForSearch } from '../store/atlas';
 import '../css/sellsearchmodal.css';
 import SearchCardAtlas from './SearchCardAtlas';
 
-function SearchCreateGameModal({ searchTermCreateGame }) {
+function SearchCreateGameModal({ searchTermCreateGame, setSearchTermCreateGame}) {
   const games = useSelector(state => state.atlas.orderByGames);
 
   const dispatch = useDispatch();
@@ -13,7 +13,9 @@ function SearchCreateGameModal({ searchTermCreateGame }) {
     dispatch(loadGamesForSearch(searchTermCreateGame))
   }, [searchTermCreateGame, dispatch]);
 
-
+  const handleClick = e => {
+    setSearchTermCreateGame('')
+  }
   const notLoaded = games && searchTermCreateGame.length > 0;
 
   if (!notLoaded) return null;
@@ -23,7 +25,7 @@ function SearchCreateGameModal({ searchTermCreateGame }) {
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCardAtlas searchTerm={searchTermCreateGame} game={game} key={game.id} />)
+            <SearchCardAtlas onClick={e => handleClick()} searchTerm={searchTermCreateGame} game={game} key={game.id} />)
           :
           <div id='atlas_no-search-results'>No games matching result.</div>
       }

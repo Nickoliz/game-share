@@ -11,11 +11,13 @@ import '../css/profile.css';
 export default function Profile() {
   const dispatch = useDispatch();
   const currentUserId = useSelector(state => state.auth.id)
+  // const for profileUser they are attempting to visit
   const userCollection = useSelector(state => state.games.collection);
   // const profileUserId = useSelector(state => state.users.id);
 
   useEffect(() => {
-    dispatch(getCollection(currentUserId))
+    dispatch(getCollection(currentUserId));
+    // dispatch(getCollection(profileUser));
   }, [dispatch, currentUserId])
 
   const userCollectionList = [];
@@ -53,18 +55,18 @@ export default function Profile() {
             <div className='user_banner-stats'>
               <div>
                 <div id='user_banner-stats-label'>Games</div>
-                <div id='user_banner-stats-item'>Total: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>{userCollectionList.length}</span></div>
-                <div id='user_banner-stats-item'>For Sale: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>{gamesForSale}</span></div>
-                <div id='user_banner-stats-item'>For Trade: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>{gamesForTrade}</span></div>
-                <div id='user_banner-stats-item'>For Borrow: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>{gamesForBorrow}</span></div>
+                <div id='user_banner-stats-item'>Total: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>{userCollectionList.length}</span></div>
+                <div id='user_banner-stats-item'>For Sale: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>{gamesForSale}</span></div>
+                <div id='user_banner-stats-item'>For Trade: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>{gamesForTrade}</span></div>
+                <div id='user_banner-stats-item'>For Borrow: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>{gamesForBorrow}</span></div>
               </div>
             </div>
             <div className='user_banner-listing-offers'>
               <div>
                 <div id='user_banner-listing-label'>Listings</div>
-                <div id='user_banner-stats-item'>Pending Sales: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>0</span></div>
-                <div id='user_banner-stats-item'>Pending Trades: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>0</span></div>
-                <div id='user_banner-stats-item'>Pending Borrow: <span style={{color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A'}}>0</span></div>
+                <div id='user_banner-stats-item'>Pending Sales: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
+                <div id='user_banner-stats-item'>Pending Trades: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
+                <div id='user_banner-stats-item'>Pending Borrow: <span style={{ color: '#3881D4', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
               </div>
             </div>
           </div>

@@ -21,14 +21,12 @@ function UnauthSearchModal({ searchTerm }) {
 
   return (
     <>
-      {/* <div className='unauth_search_modal'> */}
       {(games.length > 0) ?
         games.map((game) =>
           <SearchCardAtlasNav searchTerm={searchTerm} game={game} key={game.id} />)
         :
         <div id='unauth_no-search-results'>Doesn't seem like that's a game. Create it?</div>
       }
-      {/* </div> */}
     </>
   );
 };

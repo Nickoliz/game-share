@@ -4,7 +4,7 @@ import { getGameById} from '../store/atlas';
 import '../css/searchcardatlas.css';
 import { useHistory } from 'react-router-dom';
 
-export default function SearchCardAtlasNav({ game, searchTerm }) {
+export default function SearchCardAtlasNav({ game }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -12,8 +12,6 @@ export default function SearchCardAtlasNav({ game, searchTerm }) {
     dispatch(getGameById(id));
     history.push(`/gamepage/${game.id}`)
   }
-
-  console.log(game.id, game.name)
 
   return (
     <div onClick={e => handleSubmit(game.id)}  className='unauth_search_results_container'>

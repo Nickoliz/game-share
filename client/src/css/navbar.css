@@ -13,6 +13,7 @@
   gap: 20px;
   top: 5;
   background-color: #3881D4;
+  z-index: 2001;
 }
 
 .navbar_search_container {
@@ -79,4 +80,68 @@
   background-color: #3881D4;
   align-items: center;
   gap: 20px;
+}
+
+.close_unauth_search_modal {
+  width: 100vw;
+  height: 10px;
+}
+
+.fa-times {
+  position: absolute;
+  background-color: #4D5764;
+  top: 10px;
+  right: 100px;
+  cursor: pointer;
+}
+
+/* Navbar Not Home Redirect */
+
+#ellipsis-div {
+  position: relative;
+  margin: auto;
+  height: 30px;
+  width: 0vw;
+  background-color: #4D5764;
+  cursor: pointer;
+}
+
+
+.redirect_container {
+  display: none;
+  left: -207px;
+}
+
+#ellipsis-div:hover .redirect_container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 60px;
+  width: 25vw;
+  margin-top: -32px;
+  padding: 20px 20px;
+  justify-content: space-evenly;
+  background-color: #4D5764;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  transition: all 600ms ease-in-out;
+  transform: scale(1)
+}
+
+.redirect_container:hover {
+  display: block;
+}
+
+.fa-ellipsis-h {
+  margin: auto;
+  background-color: #333A3F;
+  color: #3881D4;
+}
+
+.redirect_button {
+  text-decoration: none;
+  background-color: #4D5764;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
 }

@@ -1,6 +1,7 @@
 .game_instance_container {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   align-items: center;
   /* margin: 20px; */
   width: 100%;
