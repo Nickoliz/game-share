@@ -6,12 +6,15 @@ import '../css/signup.css'
 
 let emailDiv = "signup-input";
 let passwordDiv = "signup-input";
+let usernameDiv = "signup-input"
 
 export default function Signup() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [noInfo, setNoInfo] = useState('');
+  const [noUsername, setNoUsername] = useState('');
   const [noEmail, setNoEmail] = useState('');
   const [noPassword, setNoPassword] = useState('');
   const currentUserId = useSelector(state => state.auth.id);
@@ -24,14 +27,23 @@ export default function Signup() {
     setNoEmail('');
     setNoPassword('');
     setNoInfo('');
-    if (email && password) {
-      dispatch(signup(username, email.toLocaleLowerCase(), password));
+    setNoUsername('');
+    if (email && password && username) {
+      if (password === confirmPassword) {
+        dispatch(signup(username, email.toLocaleLowerCase(), password));
+      } else {
+        setNoPassword("Please make sure both passwords match.");
+        passwordDiv = 'bad-input'
+      }
     } else if (!email && password) {
       emailDiv = "bad-input";
       setNoEmail("Oi! We're gonna need that email of yours!")
     } else if (email && !password) {
       passwordDiv = "bad-input";
       setNoPassword("What's the password?");
+    } else if (!username) {
+      usernameDiv = "bad-input"
+      setNoUsername("Please provide a unsername.")
     } else {
       emailDiv = "bad-input";
       passwordDiv = "bad-input";
@@ -58,23 +70,20 @@ export default function Signup() {
                   Sign up
                 </div>
                 <div id='signup-input'>
+                  <span id="bad-span" style={{ color: 'red' }}>{noUsername}</span>
                   <input type='text' className={emailDiv} name='username' value={username} placeholder="Username" onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div id='signup-input'>
-                  <span style={{ color: 'red' }}>{noInfo}</span>
+                  <span id="bad-span" style={{ color: 'red' }}>{noInfo}</span>
                   <input type='email' className={emailDiv} name='email' value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
                 </div>
-                <div id='signup-input'>
-                  <span style={{ color: 'red' }}>{noInfo}</span>
-                  <input type='email' className={emailDiv} name='email' value={email} placeholder="Re-enter Email" onChange={e => setEmail(e.target.value)} />
-                </div>
-                <span style={{ color: 'red' }}>{noEmail}</span>
+                <span id="bad-span" style={{ color: 'red' }}>{noEmail}</span>
                 <div id='signup-input'>
                   <input type='password' className={passwordDiv} name='password' value={password} placeholder='Password' onChange={e => setPassword(e.target.value)} />
                 </div>
-                <span style={{ color: 'red' }}>{noPassword}</span>
+                <span id="bad-span" style={{ color: 'red' }}>{noPassword}</span>
                 <div id='signup-input'>
-                  <input type='password' className={passwordDiv} name='password' value={password} placeholder='Re-Enter Password' onChange={e => setPassword(e.target.value)} />
+                  <input type='password' className={passwordDiv} name='password' value={confirmPassword} placeholder='Re-Enter Password' onChange={e => setConfirmPassword(e.target.value)} />
                 </div>
                 <div id='signup-input'>
                   <button type='submit' className='signup-button'>Create account</button>

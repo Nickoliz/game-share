@@ -67,11 +67,11 @@ export default function NavbarNotHome() {
       <div id='ellipsis-div'>
         <div className='fa fa-ellipsis-h fa-2x' />
         <div className='redirect_container'>
-          <NavLink exact to='/' className='redirect_button active'>Home</NavLink>
-          <NavLink exact to='/buy' className='redirect_button active'>Buy</NavLink>
-          <NavLink exact to='/sell' className='redirect_button active'>Sell</NavLink>
-          <NavLink exact to='/trade' className='redirect_button active'>Trade</NavLink>
-          <NavLink exact to='/borrow' className='redirect_button active'>Borrow</NavLink>
+          <NavLink exact to='/' className='redirect_button'>Home</NavLink>
+          <NavLink exact to='/buy' className='redirect_button'>Buy</NavLink>
+          <NavLink exact to='/sell' className='redirect_button'>Sell</NavLink>
+          <NavLink exact to='/trade' className='redirect_button'>Trade</NavLink>
+          <NavLink exact to='/borrow' className='redirect_button'>Borrow</NavLink>
         </div>
       </div>
     </>
