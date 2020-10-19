@@ -15,7 +15,6 @@ export default function NavbarNotHome() {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(clearAtlasState())
     dispatch(loadGamesForSearch(searchTerm))
   }, [searchTerm, dispatch]);
 
