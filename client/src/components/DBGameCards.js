@@ -2,20 +2,23 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../css/gamecard.css';
-import { getGameById } from '../store/atlas';
+import { getGameById, clearAtlasState} from '../store/atlas';
+import { clearGamesState } from '../store/games';
 
 
 export default function GameCard({ game }) {
   const dispatch = useDispatch()
 
   const handleClick = id => {
+    dispatch(clearAtlasState())
+    dispatch(clearGamesState())
     dispatch(getGameById(id))
   }
 
   if (!game) return null
 
   return (
-    <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.id)}>
+    <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)}>
       <div className='main-card-game-name'>{game.title}
         <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
       </div>

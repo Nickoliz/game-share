@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loadOrderByGames } from '../store/atlas';
+import { clearAtlasState, loadOrderByGames } from '../store/atlas';
 import GameCards from '../components/GameCards';
 import { Link as PageLink } from 'react-scroll';
 import '../css/homepage.css';
 import Navbar from '../components/Navbar';
+import { clearGamesState } from '../store/games';
 
 export default function HomePage() {
   const [sticky, setSticky] = useState('');
@@ -13,8 +14,10 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(clearAtlasState());
+    dispatch(clearGamesState());
     setTimeout(() => {
-      dispatch(loadOrderByGames('trending'))
+      dispatch(loadOrderByGames('trending'));
     }, 1500)
   }, [dispatch])
 

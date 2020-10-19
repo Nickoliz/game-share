@@ -1,9 +1,10 @@
 const GET_ORDERBY_GAMES = 'atlas/get_order_by';
-const GET_POPULAR_GAMES = 'atlas/get_popular_games'
-const GET_REDDIT_GAMES = 'atlas/get_reddit_games'
-const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search'
-const GET_GAME = 'atlas/get_game'
-const CLEAR_GAMES = 'atlas/clear_games'
+const GET_POPULAR_GAMES = 'atlas/get_popular_games';
+const GET_REDDIT_GAMES = 'atlas/get_reddit_games';
+const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search';
+const GET_GAME = 'atlas/get_game';
+const GET_GAME_IMAGES = 'atlas/get_game_images';
+const CLEAR_GAMES = 'atlas/clear_games';
 
 const {
   atlas: { client_id },
@@ -45,9 +46,16 @@ export const getGame = (game) => {
   }
 }
 
-export const clearOrderGames = () => {
+export const getImages = (images) => {
   return {
-    type: CLEAR_GAMES
+    type: GET_GAME_IMAGES,
+    images: images
+  }
+}
+
+export const clear = () => {
+  return {
+    type: CLEAR_GAMES,
   }
 }
 
@@ -109,11 +117,34 @@ export const getGameById = id => {
       return console.warn("Error: ", err)
     }
   }
+
+}
+export const getGameImages = id => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`https://api.boardgameatlas.com/api/game/images?game_id=${id}&client_id=${client_id}`)
+      res.data = await res.json()
+      if (res.ok) {
+        // const gameImages = [];
+        // for (let game in res.data) {
+        //   if (game.id === id) {
+        //     gameImages.push(game);
+        //   }
+        // }
+        return dispatch(getImages(res.data.images))
+      }
+      return res
+    } catch (err) {
+      return console.warn("Error: ", err)
+    }
+  }
 }
 
-export const clearOrderByGames = () => {
+
+
+export const clearAtlasState = () => {
   return async dispatch => {
-    return dispatch(clearOrderGames());
+    return dispatch(clear());
   }
 }
 
@@ -137,9 +168,11 @@ export default function atlasReducer(state = {}, action) {
     case GET_ORDERBY_GAMES:
       return { ...state, orderByGames: action.games };
     case GET_GAME:
-      return {game: action.game}
+      return { game: action.game }
     case GET_GAMES_FOR_ADD_SEARCH:
       return { ...state, loadNavSearch: action.games }
+    case GET_GAME_IMAGES:
+      return { gameImages: action.images }
     case CLEAR_GAMES:
       return {}
     default:

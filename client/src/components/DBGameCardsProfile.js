@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 // import { getGamePage } from '../store/atlas'
 import '../css/dbgamecardsprofile.css';
+import { clearAtlasState } from '../store/atlas';
+import { clearGamesState } from '../store/games';
 
 
 export default function GameCardProfile({ game }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = id => {
+    dispatch(clearAtlasState());
+    dispatch(clearGamesState());
     // dispatch(getGamePage(id))
     history.push(`/gamepage/${id}`)
   }
@@ -38,7 +44,7 @@ export default function GameCardProfile({ game }) {
           {(game.forsale || game.fortrade || game.forborrow) ?
             <div id={game.id} className='main-card-game-info'>Listed:
           {(game.forsale) ?
-                <div id='main-card-info-box'>For Sale: $<span style={{backgroundColor: '#37404A'}}>{game.sale_price}</span></div>
+                <div id='main-card-info-box'>For Sale: $<span style={{ backgroundColor: '#37404A' }}>{game.sale_price}</span></div>
                 :
                 null
               }

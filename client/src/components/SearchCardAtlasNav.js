@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getGameById} from '../store/atlas';
+import { clearAtlasState, getGameById} from '../store/atlas';
 import '../css/searchcardatlas.css';
 import { useHistory } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ export default function SearchCardAtlasNav({ game }) {
   const history = useHistory();
 
   const handleSubmit = async (id) => {
+    dispatch(clearAtlasState())
     dispatch(getGameById(id));
     history.push(`/gamepage/${game.id}`)
   }
