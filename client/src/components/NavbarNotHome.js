@@ -47,7 +47,7 @@ export default function NavbarNotHome() {
             null
           }
         </div>
-        <NavLink exact to='/' className='fas fa-dice fa-3x navbarauthdice' style={{ textDecoration: 'none', cursor: 'pointer', color: '#37404A', backgroundColor: '#3881D4', marginRight: '190px' }} />
+        <NavLink exact to='/' className='fas fa-dice fa-3x navbarauthdice' style={{ textDecoration: 'none', cursor: 'pointer', color: '#37404A', backgroundColor: '#3881D4', marginRight: '215px' }} />
         <div className='homepage_auth'>
           {(currentUserId) ?
             null

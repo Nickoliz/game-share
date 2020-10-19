@@ -5,8 +5,9 @@
 }
 
 .trade_card-container-wrapper {
-  display: flex;
-  flex-direction: column wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
   justify-content: center;
   position: absolute;
   top: 315px;

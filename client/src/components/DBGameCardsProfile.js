@@ -28,7 +28,7 @@ export default function GameCardProfile({ game }) {
         <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0,40)}
           <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
         </div>
-        <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '200px', marginTop: '180px', cursor: 'pointer' }} />
+        <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '320px', marginTop: '180px', cursor: 'pointer' }} />
       </div>
       <div id='profile_game_card-break'></div>
       <div id={game.id} className="card">
