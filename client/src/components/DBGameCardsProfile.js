@@ -25,7 +25,7 @@ export default function GameCardProfile({ game }) {
     // <div id={game.id} onClick={e => handleClick(game.game_id)} className="card-wrapper">
     <div id={game.id} className="card-wrapper" onClick={e => handleClick(game.game_id)}>
       <div className='main-card-game-name' style={{ cursor: 'pointer' }}>
-        <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title}
+        <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0,40)}
           <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
         </div>
         <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '200px', marginTop: '180px', cursor: 'pointer' }} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
 import SearchModal from '../components/SearchModal';
 import { addGameToCollection } from '../store/games';
@@ -17,17 +17,18 @@ export default function NewGameInstance() {
   const [gameCondition, setGameCondition] = useState('Condition');
   const [listingPrice, setListingPrice] = useState('Listing Price');
   const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)');
-  const [year_published, setYearPublished] = useState(null)
-  const [thumb_url, setThumbUrl] = useState(null)
-  const [msrp, setMSRP] = useState(null)
-  const [rank, setRank] = useState(null)
-  const [forsale, setForSale] = useState(false)
-  const [fortrade, setForTrade] = useState(false)
-  const [forborrow, setForBorrow] = useState(false)
-  const dispatch = useDispatch()
+  const [year_published, setYearPublished] = useState(null);
+  const [thumb_url, setThumbUrl] = useState(null);
+  const [msrp, setMSRP] = useState(null);
+  const [rank, setRank] = useState(null);
+  const [forsale, setForSale] = useState(false);
+  const [fortrade, setForTrade] = useState(false);
+  const [forborrow, setForBorrow] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const currentUserId = useSelector(state => state.auth.id);
-  const game = useSelector(state => state.atlas.game)
+  const game = useSelector(state => state.atlas.game);
 
   useEffect(() => {
     if (game) {
@@ -64,6 +65,7 @@ export default function NewGameInstance() {
       gameCondition,
       conditionDescription,
     ));
+    return history.push(`/profile/${currentUserId}`);
   };
 
 
