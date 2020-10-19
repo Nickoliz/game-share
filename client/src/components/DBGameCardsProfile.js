@@ -30,7 +30,7 @@ export default function GameCardProfile({ game }) {
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}
           // onClick={searchID}
-          to={`game/${game.id}`}>
+          to={`gamepage/${game.id}`}>
           <img id={game.id}
             src={game.thumb_url}
             alt={game.msrp}

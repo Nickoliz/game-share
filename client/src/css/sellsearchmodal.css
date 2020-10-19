@@ -82,6 +82,7 @@ input {
 }
 
 .game-listing-information-header > img {
+  border-radius: 4px;
   height: 120px;
   width: 240px;
   object-fit: contain;

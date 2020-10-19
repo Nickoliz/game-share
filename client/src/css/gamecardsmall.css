@@ -7,6 +7,7 @@
 }
 
 .card-small-image img{
+  border-radius: 4px;
   height: auto;
   width: 100%;
   object-fit: cover;

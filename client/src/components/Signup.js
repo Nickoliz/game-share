@@ -71,7 +71,7 @@ export default function Signup() {
                 </div>
                 <div id='signup-input'>
                   <span id="bad-span" style={{ color: 'red' }}>{noUsername}</span>
-                  <input type='text' className={emailDiv} name='username' value={username} placeholder="Username" onChange={e => setUsername(e.target.value)} />
+                  <input type='text' className={usernameDiv} name='username' value={username} placeholder="Username" onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div id='signup-input'>
                   <span id="bad-span" style={{ color: 'red' }}>{noInfo}</span>

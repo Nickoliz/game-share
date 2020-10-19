@@ -3,6 +3,7 @@ const GET_POPULAR_GAMES = 'atlas/get_popular_games'
 const GET_REDDIT_GAMES = 'atlas/get_reddit_games'
 const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search'
 const GET_GAME = 'atlas/get_game'
+const CLEAR_GAMES = 'atlas/clear_games'
 
 const {
   atlas: { client_id },
@@ -41,6 +42,12 @@ export const getGame = (game) => {
   return {
     type: GET_GAME,
     game: game
+  }
+}
+
+export const clearOrderGames = () => {
+  return {
+    type: CLEAR_GAMES
   }
 }
 
@@ -92,18 +99,23 @@ export const loadGamesForNavSearch = searchTerm => {
 export const getGameById = id => {
   return async dispatch => {
     try {
-    const res = await fetch(`https://api.boardgameatlas.com/api/search?ids=${id}&client_id=${client_id}`)
-    res.data = await res.json()
-    if (res.ok) {
-      return dispatch(getGame(res.data.games))
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?ids=${id}&client_id=${client_id}`)
+      res.data = await res.json()
+      if (res.ok) {
+        return dispatch(getGame(res.data.games))
+      }
+      return res
+    } catch (err) {
+      return console.warn("Error: ", err)
     }
-    return res
-  } catch (err) {
-    return console.warn("Error: ", err)
-  }
   }
 }
 
+export const clearOrderByGames = () => {
+  return async dispatch => {
+    return dispatch(clearOrderGames());
+  }
+}
 
 // FOR FLASK REQUESTS
 // export const loadTrendingGames = () => {
@@ -125,9 +137,11 @@ export default function atlasReducer(state = {}, action) {
     case GET_ORDERBY_GAMES:
       return { ...state, orderByGames: action.games };
     case GET_GAME:
-      return {...state, game: action.game}
+      return {game: action.game}
     case GET_GAMES_FOR_ADD_SEARCH:
-      return {...state, loadNavSearch: action.games}
+      return { ...state, loadNavSearch: action.games }
+    case CLEAR_GAMES:
+      return {}
     default:
       return state;
   }

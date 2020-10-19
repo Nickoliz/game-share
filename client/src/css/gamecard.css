@@ -41,6 +41,7 @@
 }
 
 .card img {
+  border-radius: 4px;;
   height: 150px;
   width: 150px;
   object-fit: contain;
@@ -110,9 +111,8 @@
   margin-top: 5px;
 }
 
-
+/*
 .card-game-description {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-}
+} */

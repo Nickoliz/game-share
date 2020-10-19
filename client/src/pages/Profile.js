@@ -32,6 +32,7 @@ export default function Profile() {
     if (g.forsale === true) return gamesForSale += 1;
     if (g.fortrade === true) return gamesForTrade += 1;
     if (g.forborrow === true) return gamesForBorrow += 1;
+    else return null;
   })
 
   return (
@@ -50,7 +51,7 @@ export default function Profile() {
         <div className='profile_main_container'>
           <div className='user_banner_container'>
             <div id='user_banner-picture'>
-              <img className='user_banner-picture-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fcaribbean-blue%2Fdice-xxl.png&f=1&nofb=1' atl='dice' />
+              <img className='user_banner-picture-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fcaribbean-blue%2Fdice-xxl.png&f=1&nofb=1' alt='dice' />
             </div>
             <div className='user_banner-stats'>
               <div>

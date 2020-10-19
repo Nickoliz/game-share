@@ -27,11 +27,6 @@
   transition: 200ms ease-in-out;
 }
 
-.navbar_search_container:hover,
-.navbar_search-bar:hover {
-  flex-grow: 1;
-}
-
 .navbar_search-bar {
   font-size: 16px;
 }
@@ -148,8 +143,7 @@
   position: relative;
   margin: auto;
   height: 30px;
-  width: 0vw;
-  background-color: #4D5764;
+  width: 20vw;
   cursor: pointer;
 }
 
@@ -164,12 +158,12 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  height: 60px;
+  height: 70px;
   width: 25vw;
   margin-top: -32px;
   padding: 10px 10px;
   justify-content: space-evenly;
-  background-color: #4D5764;
+  /* background-color: #4D5764; */
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
@@ -190,13 +184,13 @@
 
 .fa-ellipsis-h {
   margin: auto;
-  background-color: #333A3F;
+  /* background-color: #333A3F; */
   color: #3881D4;
 }
 
 .redirect_button {
   text-decoration: none;
-  background-color: #4D5764;
+  /* background-color: #4D5764; */
   font-size: 25px;
   color: white;
   font-weight: bold;
