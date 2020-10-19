@@ -3,6 +3,8 @@ const GET_GAMES_FOR_BUY = 'games/get_games_for_buy';
 const GET_GAMES_FOR_TRADE = 'games/get_games_for_trade';
 const GET_GAMES_FOR_BORROW = 'games/get_games_for_borrow';
 const GET_GAMES_BY_TITLE = 'games/get_games_by_title';
+const CLEAR_GAMES = 'games/clear_games';
+
 
 export const getUserCollection = (games) => {
   return {
@@ -36,6 +38,18 @@ export const getGamesByTitle = (games) => {
   return {
     type: GET_GAMES_BY_TITLE,
     games: games
+  }
+}
+
+export const clearGamesState = () => {
+  return async dispatch => {
+    return dispatch(clear());
+  }
+}
+
+export const clear = () => {
+  return {
+    type: CLEAR_GAMES,
   }
 }
 
@@ -175,6 +189,8 @@ export default function gamesReducer(state = {}, action) {
       return { ...state, gamesforborrow: action.games };
     case GET_GAMES_BY_TITLE:
       return { ...state, gamesByTitle: action.games };
+    case CLEAR_GAMES:
+      return {}
     default:
       return state;
   }

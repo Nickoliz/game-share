@@ -1,25 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { getGamePage } from '../store/atlas'
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import { getGamePage } from '../store/atlas'
 import '../css/dbgamecardsprofile.css';
+import { clearAtlasState } from '../store/atlas';
+import { clearGamesState } from '../store/games';
 
 
 export default function GameCardProfile({ game }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  // const handleClick = id => {
-  //   dispatch(getGamePage(id))
-  // }
+  const handleClick = id => {
+    dispatch(clearAtlasState());
+    dispatch(clearGamesState());
+    // dispatch(getGamePage(id))
+    history.push(`/gamepage/${id}`)
+  }
+
 
   if (!game) return null
 
   return (
     // <div id={game.id} onClick={e => handleClick(game.game_id)} className="card-wrapper">
-    <div id={game.id} className="card-wrapper">
-      <div className='main-card-game-name' style={{cursor: 'pointer'}}>
-        <div id={game.id} className='top_card-name' style={{cursor: 'pointer'}}>{game.title}
+    <div id={game.id} className="card-wrapper" onClick={e => handleClick(game.game_id)}>
+      <div className='main-card-game-name' style={{ cursor: 'pointer' }}>
+        <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title}
           <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
         </div>
-        <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '240px', marginTop: '180px', cursor: 'pointer' }} />
+        <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '200px', marginTop: '180px', cursor: 'pointer' }} />
       </div>
       <div id='profile_game_card-break'></div>
       <div id={game.id} className="card">
@@ -27,7 +36,7 @@ export default function GameCardProfile({ game }) {
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}
           // onClick={searchID}
-          to={`game/${game.id}`}>
+          to={`gamepage/${game.id}`}>
           <img id={game.id}
             src={game.thumb_url}
             alt={game.msrp}
@@ -35,7 +44,7 @@ export default function GameCardProfile({ game }) {
           {(game.forsale || game.fortrade || game.forborrow) ?
             <div id={game.id} className='main-card-game-info'>Listed:
           {(game.forsale) ?
-                <div id='main-card-info-box'>For Sale</div>
+                <div id='main-card-info-box'>For Sale: $<span style={{ backgroundColor: '#37404A' }}>{game.sale_price}</span></div>
                 :
                 null
               }

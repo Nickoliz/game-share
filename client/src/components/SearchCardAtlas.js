@@ -11,7 +11,6 @@ export default function GameSearch({ game, searchTermCreateGame }) {
 
   const handleSubmit = async (id) => {
     dispatch(getGameById(id));
-    console.log(id)
     searchTermCreateGame = ''
   }
 

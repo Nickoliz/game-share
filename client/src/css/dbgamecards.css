@@ -24,7 +24,6 @@
   border-bottom-right-radius: 6px;
   padding-left: 10px;
   padding-right: 10px;
-  /* border-radius: 8px; */
 }
 
 .card-link{
@@ -43,6 +42,7 @@
 .card img {
   height: 150px;
   width: 150px;
+  border-radius: 4px;
   object-fit: contain;
   border: none;
   outline: none;

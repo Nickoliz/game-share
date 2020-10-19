@@ -1,32 +1,38 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../css/dbgamecards.css';
+import { getGameById, getGameImages, clearAtlasState } from '../store/atlas';
+import { clearGamesState } from '../store/games';
 
 
 export default function GameCard({ game }) {
+  const dispatch = useDispatch();
+
+  const handleClick = id => {
+    dispatch(clearAtlasState());
+    dispatch(clearGamesState());
+    dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+  }
 
   if (!game) return null
 
   return (
-    <div id={game.id} className="card-wrapper">
-      <div id={game.id} className='main-card-game-name'>{game.name.substr(0,34)}
+    <div className="card-wrapper" onClick={e => handleClick(game.id)}>
+      <div className='main-card-game-name'>{game.name.substr(0,34)}
         <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
       </div>
-      <div id={game.id} className="card">
-        <Link id={game.id}
-          className="card-link"
+      <div className="card">
+        <Link className="card-link"
           style={{ textDecoration: "none", color: "black" }}
-          // onClick={searchID}
-          to={`game/${game.id}`}>
-          <img id={game.id}
-            src={game.thumb_url}
+          to={`gamepage/${game.id}`}>
+          <img src={game.thumb_url}
             alt={game.images.small}
-          // alt={game.images.small} onClick={searchID} />
           />
           <div className='card-game-description' id='card-game-description'>
             <div className="card-information">
-              <div id={game.id} className="card-header">
-                {/* <div className='main-card-game-name'>{game.name}</div> */}
+              <div className="card-header">
               </div>
             </div>
             <div id='main-card-publisher'>Publisher: {game.primary_publisher}</div>
@@ -35,9 +41,9 @@ export default function GameCard({ game }) {
             )}
             </div>
           </div>
-          <div id={game.id} className='main-card-game-info'>
-            <div id='main-card-info-box'>test1</div>
-            <div id='main-card-info-box'>TestTWO</div>
+          <div className='main-card-game-info'>
+            <div id='main-card-info-box'>Player: {game.min_players} - {game.max_players}</div>
+            <div id='main-card-info-box'>Playtime: {game.max_playtime}</div>
           </div>
         </Link>
       </div>

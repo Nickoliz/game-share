@@ -13,6 +13,7 @@
   gap: 20px;
   top: 5;
   background-color: #3881D4;
+  z-index: 2001;
 }
 
 .navbar_search_container {
@@ -23,6 +24,7 @@
   padding: 10px;
   border-radius: 24px;
   width: 400px;
+  transition: 200ms ease-in-out;
 }
 
 .navbar_search-bar {
@@ -38,24 +40,9 @@
   background-color: #3881D4;
 }
 
+
 .homepage_login-button {
-  background-color: #333A3F;
-}
-
-.homepage_auth-button {
-  box-sizing: border-box;
-  text-align: center;
-  padding-top: 10px;
-  height: 40px;
-  width: 130px;
-  border-radius: 24px;
-  background-color: #333A3F;
-  font-weight: bold;
-  letter-spacing: -.9px;
-  cursor: pointer;
-}
-
-.auth_profile_button {
+  background: #333A3F;
   box-sizing: border-box;
   text-align: center;
   padding: 10px;
@@ -65,13 +52,146 @@
   font-weight: bold;
   letter-spacing: -.9px;
   cursor: pointer;
+  transition: all 2s ease-in-out;
 }
 
-/* PROFILE MODAL */
+.homepage_login-button:hover {
+  background: linear-gradient(
+    to right,
+    #3881D4,
+    #333A3F);
+    transform: all 2s ease-in;
+    color: white;
+    background-clip: border-box;
+}
+
+.homepage_auth-button {
+  background: #333A3F;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  border-radius: 24px;
+  font-weight: bold;
+  letter-spacing: -.9px;
+  cursor: pointer;
+  transition: all 2s ease;
+}
+
+.homepage_auth-button:hover {
+  background: linear-gradient(
+    to right,
+    #3881D4,
+    #333A3F);
+    transform: all ease-in;
+    color: white;
+    letter-spacing: 1px;
+    background-clip: border-box;
+}
+
+.auth_profile_button {
+  background: #333A3F;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  border-radius: 24px;
+  font-weight: bold;
+  letter-spacing: -.9px;
+  cursor: pointer;
+  transition: all 2s ease;
+}
+
+.auth_profile_button:hover {
+  background: linear-gradient(
+    to right,
+    #3881D4,
+    #333A3F);
+    transform: all ease-in;
+    color: white;
+    letter-spacing: 1px;
+    background-clip: border-box;
+}
 
 .auth_profile_container {
   display: flex;
   background-color: #3881D4;
   align-items: center;
   gap: 20px;
+}
+
+.close_unauth_search_modal {
+  width: 100vw;
+  height: 10px;
+}
+
+.fa-times {
+  position: absolute;
+  background-color: #4D5764;
+  top: 10px;
+  right: 100px;
+  cursor: pointer;
+}
+
+/* Navbar Not Home Redirect */
+
+#ellipsis-div {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: auto;
+  height: 30px;
+  width: 20vw;
+  cursor: pointer;
+}
+
+
+.redirect_container {
+  display: none;
+  top: 60px;
+  align-items: center;
+}
+
+#ellipsis-div:hover .redirect_container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 70px;
+  width: 25vw;
+  margin-top: -32px;
+  padding: 10px 10px;
+  justify-content: space-evenly;
+  /* background-color: #4D5764; */
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.redirect_container:hover {
+  display: block;
+}
+
+.redirect_button:hover {
+  background: linear-gradient(
+    to right,
+    #279BDC,
+    #3881D4);
+    transition: color 300ms linear;
+    color: transparent;
+    background-clip: text;
+}
+
+.fa-ellipsis-h {
+  margin: auto;
+  /* background-color: #333A3F; */
+  color: #3881D4;
+}
+
+.redirect_button {
+  text-decoration: none;
+  /* background-color: #4D5764; */
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
 }
