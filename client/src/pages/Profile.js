@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games';
-// import DBGameCards from '../components/DBGameCards';
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/navbar.css';

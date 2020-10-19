@@ -1,7 +1,5 @@
 import React from 'react';
-// import { getgame } from '../store/games';
 import { useDispatch } from 'react-redux';
-// import { Link, useHistory } from 'react-router-dom';
 import { getGameById} from '../store/atlas';
 import '../css/searchcardatlas.css';
 

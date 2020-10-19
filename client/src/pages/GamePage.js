@@ -22,13 +22,13 @@ export default function GamePage() {
   useEffect(() => {
     dispatch(clearAtlasState());
     dispatch(clearGamesState());
-    game.map(g => {
-      dispatch(getGameById(g.id));
-      dispatch(getGameImages(g.id));
+    game.map((g) =>
+      dispatch(getGameById(g.id)),
+      dispatch(getGameImages(g.id))
       // setImages(gameImages)
       //   dispatch(getGameImages(g.id))
-    })
-  }, [dispatch])
+    )
+  }, [dispatch, game])
 
   const handleDesigners = e => {
     if (showMoreDesigners === false) {
