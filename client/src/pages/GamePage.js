@@ -23,8 +23,7 @@ export default function GamePage() {
     dispatch(clearAtlasState());
     dispatch(clearGamesState());
     game.map((g) =>
-      dispatch(getGameById(g.id)),
-      dispatch(getGameImages(g.id))
+      dispatch(getGameById(g.id), getGameImages(g.id))
       // setImages(gameImages)
       //   dispatch(getGameImages(g.id))
     )
