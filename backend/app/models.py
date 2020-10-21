@@ -86,7 +86,7 @@ class BoardGame(db.Model):
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))
   msrp = db.Column(db.Integer)
-  sale_price = db.Column(db.Integer, default=0.00)
+  sale_price = db.Column(db.Float, default=0.00)
   rank = db.Column(db.Integer)
   forsale = db.Column(db.Boolean, nullable=False, default=False)
   fortrade = db.Column(db.Boolean, nullable=False, default=False)

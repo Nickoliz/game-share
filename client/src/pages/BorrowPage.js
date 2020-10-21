@@ -22,6 +22,7 @@ export default function BuyPage() {
     <>
       <NavbarNotHome />
       <div className='borrow_box'>
+        <div className='borrowpage_label' />
         <div className='borrow_card-container-wrapper'>
           {gamesForBorrowList.map((game) => <DBGameCards game={game} key={game.id} />)}
         </div>

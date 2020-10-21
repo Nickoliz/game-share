@@ -16,14 +16,19 @@ export default function GameCard({ game }) {
     dispatch(getGameReviews(id));
   }
 
+  console.log(game.forsale)
+
   if (!game) return null
 
   return (
     <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)}>
       <div className='main-card-game-name'>{game.title}
-        <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
+        {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A' }}>Price: ${game.sale_price}</span> : null}
+        <span style={{ fontSize: '14px', backgroundColor: '#37404A' }}>Condition: {game.condition}</span>
       </div>
+      {/* <div className='game_owner'>{game.user_id}</div> */}
       <div id={game.id} className="card">
+        <div className='card_game-description' style={{paddingBottom: '10px', fontSize: '14px', backgroundColor: '#37404A' }}>{game.condition_description}</div>
         <Link id={game.id}
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}

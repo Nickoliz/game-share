@@ -22,6 +22,7 @@ export default function BuyPage() {
     <>
       <NavbarNotHome />
       <div className='buy_box'>
+        <div className='buypage_label' />
         <div className='buy_card-container-wrapper'>
           {gamesForBuyList.map((game) => <DBGameCards game={game} key={game.id} />)}
         </div>

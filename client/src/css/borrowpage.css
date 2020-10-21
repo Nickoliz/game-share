@@ -1,18 +1,30 @@
-.borrow_box{
+.buy_box{
   align-items: center;
   width: 100vw;
   height: auto;
 }
 
+.borrowpage_label {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: 2px;
+}
+
+.borrowpage_label:after {
+  content: 'Posted: For Sale';
+  display: block;
+  width: 50%;
+  border-bottom: 1px solid #3881D4;
+}
+
 .borrow_card-container-wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-template-columns: repeat(4, auto);
   justify-content: center;
-  position: absolute;
-  top: 315px;
   height: auto;
-  width: 1250px;
-  align-items: center;
-  margin-left: 350px;
+  width: auto;
 }
