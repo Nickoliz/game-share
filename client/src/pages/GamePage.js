@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NavbarNotHome from '../components/NavbarNotHome';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import '../css/gamepage.css';
-import { clearAtlasState, getGameById, getGameImages } from '../store/atlas';
-import { clearGamesState } from '../store/games';
+import GameImages from '../components/GameImages';
+import GameReview from '../components/GameReview';
 
 
 export default function GamePage() {
   const [showMoreDesigners, setShowMoreDesigners] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const gameOnState = useSelector(state => state.atlas.game);
-  const gameImages = useSelector(state => state.atlas.gameImages);
+  const gameImages = useSelector(state => state.images.gameImages);
+  const gameReviews = useSelector(state => state.reviews.gameReviews);
 
   const game = [];
   for (let g in gameOnState) {
     game.push(gameOnState[g]);
   }
 
-  console.log(gameImages);
+  const images = [];
+  for (let img in gameImages) {
+    images.push(gameImages[img]);
+  }
 
-  useEffect(() => {
-    dispatch(clearAtlasState());
-    dispatch(clearGamesState());
-    game.map((g) =>
-      dispatch(getGameById(g.id), getGameImages(g.id))
-      // setImages(gameImages)
-      //   dispatch(getGameImages(g.id))
-    )
-  }, [dispatch, game])
+  const reviews = [];
+  for (let review in gameReviews) {
+    reviews.push(gameReviews[review]);
+  }
 
   const handleDesigners = e => {
     if (showMoreDesigners === false) {
@@ -87,6 +86,22 @@ export default function GamePage() {
             </div>
           </div>
           <div className='user-reviews'>
+          </div>
+          <div className='gamepage_image-label'>
+            <div id='gamepage_label'>Images</div>
+          </div>
+          <div className='gamepage_game_images_container'>
+            {images.map((image) =>
+              <GameImages key={image.id} image={image} />
+            )}
+          </div>
+          <div className='gamepage_image-label'>
+            <div id='gamepage_label'>Reviews</div>
+          </div>
+          <div className='gamepage_user_reviews_container'>
+            {reviews.map((review) =>
+              <GameReview key={review.id} review={review} />
+            )}
           </div>
         </div>
       )

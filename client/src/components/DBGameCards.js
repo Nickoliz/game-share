@@ -2,17 +2,18 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../css/gamecard.css';
-import { getGameById, clearAtlasState} from '../store/atlas';
-import { clearGamesState } from '../store/games';
+import { getGameById } from '../store/atlas';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 
 export default function GameCard({ game }) {
   const dispatch = useDispatch()
 
   const handleClick = id => {
-    dispatch(clearAtlasState())
-    dispatch(clearGamesState())
-    dispatch(getGameById(id))
+    dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
   }
 
   if (!game) return null

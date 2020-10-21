@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearGamesState, getForBorrow } from '../store/games'
+import { getForBorrow } from '../store/games'
 import DBGameCards from '../components/DBGameCards';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/borrowpage.css';
@@ -10,7 +10,6 @@ export default function BuyPage() {
   const gamesForBorrow = useSelector(state => state.games.gamesforborrow);
 
   useEffect(() => {
-    dispatch(clearGamesState())
     dispatch(getForBorrow())
   }, [dispatch])
 

@@ -2,9 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../css/dbgamecards.css';
-import { getGameById, getGameImages, clearAtlasState } from '../store/atlas';
+import { clearAtlasState, getGameById } from '../store/atlas';
+import { getGameImages } from '../store/images';
 import { clearGamesState } from '../store/games';
-
+import { getGameReviews } from '../store/reviews';
 
 export default function GameCard({ game }) {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function GameCard({ game }) {
     dispatch(clearGamesState());
     dispatch(getGameById(id));
     dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
   }
 
   if (!game) return null

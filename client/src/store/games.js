@@ -41,15 +41,16 @@ export const getGamesByTitle = (games) => {
   }
 }
 
-export const clearGamesState = () => {
-  return async dispatch => {
-    return dispatch(clear());
-  }
-}
 
 export const clear = () => {
   return {
     type: CLEAR_GAMES,
+  }
+}
+
+export const clearGamesState = () => {
+  return async dispatch => {
+    return dispatch(clear());
   }
 }
 

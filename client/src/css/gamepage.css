@@ -57,7 +57,7 @@
   height: 30px;
   width: 500px;
   max-width: 280px;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   background-color: #4D5764;
 }
@@ -117,4 +117,93 @@
 .gamepage_long-description {
   font-size: 16px;
   background-color: #4D5764;
+}
+
+.gamepage_image-label {
+  width: 1000px;
+}
+
+#gamepage_label {
+  font-size: 20px;
+  background-color: inherit;
+  font-weight: bold;
+}
+
+.gamepage_game_images_container {
+  display: flex;
+  flex-direction: column wrap;
+  gap: 5px;
+  width: 1000px;
+  overflow: auto;
+  scroll-behavior: smooth;
+  padding: 5px;
+}
+
+.game_image > img {
+  border-radius: 8px;
+  height: 112px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.gamepage_user_reviews_container {
+  display: flex;
+  flex-direction: column wrap;
+  gap: 10px;
+  width: 1000px;
+  height: 250px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 5px;
+}
+
+.gamepage_user_reviews_container::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 8px;
+}
+
+.game_review_container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #4D5764;
+}
+
+#review_rating {
+  width: 20px;
+  height: 25px;
+  text-align: center;
+  padding-top: 2px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #3881D4;
+}
+
+#review_title {
+  padding-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  background-color: #4D5764;
+}
+
+#review_username {
+  font-size: 12px;
+  margin-bottom: 10px;
+  background-color: #4D5764;
+}
+
+#review_description {
+  height: 250px;
+  width: 250px;
+  font-size: 14px;
+  padding: 2px;
+  overflow: hidden scroll;
+  background-color: #4D5764;
+}
+
+#review_description::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 8px;
 }
