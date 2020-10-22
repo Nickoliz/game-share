@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { clearAtlasState, getGameById} from '../store/atlas';
 import '../css/searchcardatlas.css';
 import { useHistory } from 'react-router-dom';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 export default function SearchCardAtlasNav({ game }) {
   const dispatch = useDispatch();
@@ -11,7 +13,10 @@ export default function SearchCardAtlasNav({ game }) {
   const handleSubmit = async (id) => {
     dispatch(clearAtlasState())
     dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
     history.push(`/gamepage/${game.id}`)
+    return () => dispatch(clearAtlasState());
   }
 
   return (
