@@ -5,6 +5,7 @@ import { clearAtlasState, loadGamesForSearch } from '../store/atlas';
 import { logout } from '../store/auth'
 import '../css/navbar.css'
 import NavbarSearchModal from './NavbarSearchModal';
+import { clearGamesState } from '../store/games';
 
 
 export default function NavbarNotHome() {
@@ -25,6 +26,10 @@ export default function NavbarNotHome() {
     history.push('/')
   }
 
+  const handleClick = () => {
+    dispatch(clearAtlasState());
+    dispatch(clearGamesState());
+  }
 
   return (
     <>
@@ -43,11 +48,11 @@ export default function NavbarNotHome() {
             null
           }
         </div>
-        <NavLink exact to='/' className='redirect_button'>Home</NavLink>
-        <NavLink exact to='/buy' className='redirect_button'>Buy</NavLink>
-        <NavLink exact to='/sell' className='redirect_button'>Sell</NavLink>
-        <NavLink exact to='/trade' className='redirect_button'>Trade</NavLink>
-        <NavLink exact to='/borrow' className='redirect_button'>Borrow</NavLink>
+        <NavLink exact to='/' className='redirect_button' onClick={e => handleClick()}>Home</NavLink>
+        <NavLink exact to='/buy' className='redirect_button' onClick={e => handleClick()}>Buy</NavLink>
+        <NavLink exact to='/sell' className='redirect_button' onClick={e => handleClick()}>Sell</NavLink>
+        <NavLink exact to='/trade' className='redirect_button' onClick={e => handleClick()}>Trade</NavLink>
+        <NavLink exact to='/borrow' className='redirect_button' onClick={e => handleClick()}>Borrow</NavLink>
         <div className='homepage_auth'>
           {(currentUserId) ?
             null

@@ -3,9 +3,6 @@ import React from 'react';
 
 export default function GameReviews({ review }) {
 
-// console.log(review)
-console.log(review.description)
-
   return (
     <>
       <section className='game_review_container'>

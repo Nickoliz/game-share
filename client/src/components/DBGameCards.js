@@ -16,8 +16,6 @@ export default function GameCard({ game }) {
     dispatch(getGameReviews(id));
   }
 
-  console.log(game.forsale)
-
   if (!game) return null
 
   return (

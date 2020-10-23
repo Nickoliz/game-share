@@ -143,8 +143,6 @@ export const addGameToCollection = (user_id, game_id, title, year_published, thu
 export const addGameToSell = (user_id, game_id) => {
   return async dispatch => {
     try {
-      console.log("Hitting the try")
-      console.log("In reducer. user_id: ", user_id, " & game_id: ", game_id)
       const res = await fetch(`/api/games/toggleforsale`, {
         method: 'PATCH',
         headers: {
@@ -153,7 +151,6 @@ export const addGameToSell = (user_id, game_id) => {
         body: JSON.stringify({ user_id, game_id })
       })
       res.data = await res.json();
-      console.log(res.data)
       if (res.ok) {
         dispatch(getCollection(user_id))
       }
