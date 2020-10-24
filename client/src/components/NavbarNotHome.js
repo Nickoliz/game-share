@@ -6,7 +6,6 @@ import { logout } from '../store/auth'
 import '../css/navbar.css'
 import NavbarSearchModal from './NavbarSearchModal';
 import { clearGamesState } from '../store/games';
-import SearchCardAtlasNav from './SearchCardAtlasNav';
 
 
 export default function NavbarNotHome() {

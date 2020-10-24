@@ -5,7 +5,6 @@ import '../css/gamecard.css';
 import { getGameById } from '../store/atlas';
 import { getGameImages } from '../store/images';
 import { getGameReviews } from '../store/reviews';
-import GameImages from './GameImages';
 
 
 export default function GameCard({ game }) {

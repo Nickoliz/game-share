@@ -15,7 +15,7 @@
 }
 
 .tradepage_label:after {
-  content: 'Posted: For Trade';
+  content: 'Trade';
   display: block;
   width: 50%;
   border-bottom: 1px solid #3881D4;

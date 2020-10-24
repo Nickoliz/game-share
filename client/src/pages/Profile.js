@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games';
+import { getCollectionOwner } from '../store/users';
 import { useParams } from 'react-router-dom';
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
@@ -11,15 +12,18 @@ import '../css/profile.css';
 export default function Profile() {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.auth)
-  // const for profileUser they are attempting to visit
+  const collectionOwner = useSelector(state => state.users.owner);
   const userCollection = useSelector(state => state.games.collection);
-  // const profileUserId = useSelector(state => state.users.id);
   const { id } = useParams();
 
+  console.log(collectionOwner);
+
   useEffect(() => {
-    dispatch(getCollection(id));
+    // dispatch(getCollection(id));
+    dispatch(getCollectionOwner(id));
     // dispatch(getCollection(profileUser));
   }, [dispatch, id])
+
 
   const userCollectionList = [];
   for (let game in userCollection) {

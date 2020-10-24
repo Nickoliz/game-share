@@ -41,7 +41,6 @@ export const getGamesByTitle = (games) => {
   }
 }
 
-
 export const clear = () => {
   return {
     type: CLEAR_GAMES,
@@ -72,7 +71,7 @@ export const getForBuy = () => {
     const res = await fetch(`/api/games/forbuy`, {
       method: 'get',
     })
-    res.data = await res.json()
+    res.data = await res.json();
     if (res.ok) {
       dispatch(getGamesForBuy(res.data.games))
     }
@@ -175,7 +174,6 @@ export const addGameToSell = (user_id, game_id) => {
 // }
 
 export default function gamesReducer(state = {}, action) {
-  // Object.freeze(state)
   switch (action.type) {
     case GET_COLLECTION:
       return { ...state, collection: action.games };

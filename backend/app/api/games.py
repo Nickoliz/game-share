@@ -9,9 +9,9 @@ games_routes = Blueprint('games', __name__)
 def get_user_collection():
   user_id = request.args.get('id')
   games = BoardGame.query.filter(BoardGame.user_id == user_id).order_by(BoardGame.title)
+  user_info = User.query.filter(User.id == user_id).one()
   data = [game.to_dict() for game in games]
-  print(data)
-  return {"games": data}, 200
+  return {"games": data, "gameOwner": user_info.to_dict()}, 200
 
 @games_routes.route('/collection/sale')
 def get_user_buy():
@@ -69,7 +69,6 @@ def get_games_by_title():
 @games_routes.route('/add', methods=['POST'])
 def add_game_to_collection():
   # try:
-  print("~~~~~MARWEN~~~~~~~")
   userId = request.json.get('user_id')
   gameId = request.json.get('game_id')
   game_title = request.json.get('title')
