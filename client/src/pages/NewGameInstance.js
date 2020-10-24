@@ -137,11 +137,12 @@ export default function NewGameInstance() {
                 <input className='add_game_form-input-title' type='text' autoComplete='off' name='title' placeholder={gameTitle} />
                 <div id='add_game_form-break'>
                   <input className='add_game_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={listingPrice} />
-                  <input disabled className='add_game_form-input-condition' type='text' autoComplete='off' name='gameCondition' placeholder={gameCondition} />
-                  <div className='condition_select' placeholder='Listing Options'>
-                    <div id='condition_option' onClick={e => handleCondition('New')}>New</div>
-                    <div id='condition_option' onClick={e => handleCondition('Used')}>Used</div>
-                    <div id='condition_option' onClick={e => handleCondition('Poor')}>Poor</div>
+                  <div className='add_game_form-input-condition'>{gameCondition}
+                    <div className='condition_select'>
+                      <div id='condition_option' onClick={e => handleCondition('New')}>New</div>
+                      <div id='condition_option' onClick={e => handleCondition('Used')}>Used</div>
+                      <div id='condition_option' onClick={e => handleCondition('Poor')}>Poor</div>
+                    </div>
                   </div>
                 </div>
                 <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />

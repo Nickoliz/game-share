@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../store/auth';
@@ -26,7 +26,7 @@ export default function Navbar() {
           <input className='navbar_search-bar' onChange={e => setSearchTerm(e.target.value)} style={{ color: '#AAB8C5' }} placeholder='Search for board games...' />
           {(searchTerm) ?
             <div className='unauth_search_modal'>
-              <i className='fa fa-times fa-2x' onClick={e => setSearchTerm('')}/>
+              <i className='fa fa-times fa-2x' onClick={e => setSearchTerm('')} />
               <NavbarSearchModal searchTerm={searchTerm} />
             </div>
             :

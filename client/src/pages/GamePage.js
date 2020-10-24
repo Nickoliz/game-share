@@ -8,7 +8,6 @@ import GameReview from '../components/GameReview';
 
 export default function GamePage() {
   const [showMoreDesigners, setShowMoreDesigners] = useState(false);
-  // const dispatch = useDispatch();
   const gameOnState = useSelector(state => state.atlas.game);
   const gameImages = useSelector(state => state.images.gameImages);
   const gameReviews = useSelector(state => state.reviews.gameReviews);
@@ -87,21 +86,35 @@ export default function GamePage() {
           </div>
           <div className='user-reviews'>
           </div>
-          <div className='gamepage_image-label'>
-            <div id='gamepage_label'>Images</div>
-          </div>
+          {(images.length > 0) ?
+            <div className='gamepage_image-label'>
+              <div id='gamepage_label'>Images</div>
+            </div>
+            :
+            null
+          }
           <div className='gamepage_game_images_container'>
-            {images.map((image) =>
-              <GameImages key={image.id} image={image} />
-            )}
+            {(images) ?
+              images.map((image) =>
+                <GameImages key={image.id} image={image} />)
+              :
+              null
+            }
           </div>
-          <div className='gamepage_image-label'>
-            <div id='gamepage_label'>Reviews</div>
-          </div>
+          {(reviews.length > 0) ?
+            <div className='gamepage_image-label'>
+              <div id='gamepage_label'>Reviews</div>
+            </div>
+            :
+            null
+          }
           <div className='gamepage_user_reviews_container'>
-            {reviews.map((review) =>
-              <GameReview key={review.id} review={review} />
-            )}
+            {(reviews) ?
+              reviews.map((review) =>
+                <GameReview key={review.id} review={review} />)
+              :
+              null
+            }
           </div>
         </div>
       )

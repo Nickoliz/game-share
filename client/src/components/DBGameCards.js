@@ -5,6 +5,7 @@ import '../css/gamecard.css';
 import { getGameById } from '../store/atlas';
 import { getGameImages } from '../store/images';
 import { getGameReviews } from '../store/reviews';
+import GameImages from './GameImages';
 
 
 export default function GameCard({ game }) {
@@ -23,10 +24,11 @@ export default function GameCard({ game }) {
       <div className='main-card-game-name'>{game.title}
         {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A' }}>Price: ${game.sale_price}</span> : null}
         <span style={{ fontSize: '14px', backgroundColor: '#37404A' }}>Condition: {game.condition}</span>
+        <span style={{ fontSize: '14px', backgroundColor: '#37404A' }}>{game.user_id}</span>
       </div>
       {/* <div className='game_owner'>{game.user_id}</div> */}
       <div id={game.id} className="card">
-        <div className='card_game-description' style={{paddingBottom: '10px', fontSize: '14px', backgroundColor: '#37404A' }}>{game.condition_description}</div>
+        <div className='card_game-description' style={{ paddingBottom: '10px', fontSize: '14px', backgroundColor: '#37404A' }}>{game.condition_description}</div>
         <Link id={game.id}
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}

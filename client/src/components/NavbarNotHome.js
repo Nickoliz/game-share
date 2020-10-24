@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { clearAtlasState, loadGamesForSearch } from '../store/atlas';
+import { clearAtlasState } from '../store/atlas';
 import { logout } from '../store/auth'
 import '../css/navbar.css'
 import NavbarSearchModal from './NavbarSearchModal';
 import { clearGamesState } from '../store/games';
+import SearchCardAtlasNav from './SearchCardAtlasNav';
 
 
 export default function NavbarNotHome() {
@@ -14,18 +15,10 @@ export default function NavbarNotHome() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (searchTerm === '') {
-      dispatch(clearAtlasState())
-    }
-    dispatch(loadGamesForSearch(searchTerm));
-  }, [searchTerm, dispatch]);
-
   const signOut = e => {
     dispatch(logout())
     history.push('/')
   }
-
   const handleClick = () => {
     dispatch(clearAtlasState());
     dispatch(clearGamesState());

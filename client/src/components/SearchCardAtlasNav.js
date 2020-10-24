@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearAtlasState, getGameById} from '../store/atlas';
+import { clearAtlasState, getGameById } from '../store/atlas';
 import '../css/searchcardatlas.css';
 import { useHistory } from 'react-router-dom';
 import { getGameImages } from '../store/images';
@@ -16,11 +16,11 @@ export default function SearchCardAtlasNav({ game }) {
     dispatch(getGameImages(id));
     dispatch(getGameReviews(id));
     history.push(`/gamepage/${game.id}`)
-    return () => dispatch(clearAtlasState());
+    // history.replace(`/gamepage/${game.id}`, [state])
   }
 
   return (
-    <div onClick={e => handleSubmit(game.id)}  className='unauth_search_results_container'>
+    <div onClick={e => handleSubmit(game.id)} className='unauth_search_results_container'>
       <div className="unauth-listing">
         <h3 id='unauth_search-card-title'>{game.name}</h3>
         <div className="unauth-listing-information">

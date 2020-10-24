@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadGamesForNavSearch } from '../store/atlas';
 import SearchCardAtlasNav from '../components/SearchCardAtlasNav';
@@ -7,12 +7,17 @@ import '../css/unauthnavsearch.css';
 
 function NavbarSearchModal({ searchTerm }) {
   const games = useSelector(state => state.atlas.loadNavSearch);
+  const [searchModal, setSearchModal] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadGamesForNavSearch(searchTerm))
   }, [searchTerm, dispatch]);
+
+  const showSearchModal = () => {
+
+  }
 
 
   const notLoaded = games && searchTerm.length > 0;

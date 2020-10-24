@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games';
+import { useParams } from 'react-router-dom';
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/navbar.css';
@@ -9,15 +10,16 @@ import '../css/profile.css';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const currentUserId = useSelector(state => state.auth.id)
+  const currentUser = useSelector(state => state.auth)
   // const for profileUser they are attempting to visit
   const userCollection = useSelector(state => state.games.collection);
   // const profileUserId = useSelector(state => state.users.id);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getCollection(currentUserId));
+    dispatch(getCollection(id));
     // dispatch(getCollection(profileUser));
-  }, [dispatch, currentUserId])
+  }, [dispatch, id])
 
   const userCollectionList = [];
   for (let game in userCollection) {
@@ -50,6 +52,7 @@ export default function Profile() {
         <div className='profile_main_container'>
           <div className='user_banner_container'>
             <div id='user_banner-picture'>
+              {/* <div className='user_banner-username'>{currentUser.username}</div> */}
               <img className='user_banner-picture-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fcaribbean-blue%2Fdice-xxl.png&f=1&nofb=1' alt='dice' />
             </div>
             <div className='user_banner-stats'>

@@ -35,9 +35,10 @@
   flex-grow: 1;
 }
 
-.navbar_search_container:hover {
+/* .navbar_search_container:hover {
   flex-grow: 1;
-}
+} */
+
 .homepage_auth {
   display: flex;
   align-items: center;
