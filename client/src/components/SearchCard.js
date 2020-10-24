@@ -11,7 +11,6 @@ export default function GameSearch({ game }) {
   const currentUserId = useSelector(state => state.auth.id);
 
   const handleClick = game_id => {
-    console.log(game_id)
     dispatch(addGameToSell(currentUserId, game_id))
   }
 

@@ -3,7 +3,7 @@ const GET_POPULAR_GAMES = 'atlas/get_popular_games';
 const GET_REDDIT_GAMES = 'atlas/get_reddit_games';
 const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search';
 const GET_GAME = 'atlas/get_game';
-const GET_GAME_IMAGES = 'atlas/get_game_images';
+// const GET_GAME_IMAGES = 'atlas/get_game_images';
 const CLEAR_GAMES = 'atlas/clear_games';
 
 const {
@@ -46,18 +46,20 @@ export const getGame = (game) => {
   }
 }
 
-export const getImages = (images) => {
-  return {
-    type: GET_GAME_IMAGES,
-    images: images
-  }
-}
+// export const getImages = (images) => {
+//   return {
+//     type: GET_GAME_IMAGES,
+//     images: images
+//   }
+// }
 
 export const clear = () => {
   return {
     type: CLEAR_GAMES,
   }
 }
+
+// -----------GET GAMES-----------
 
 export const loadOrderByGames = category => {
   return async dispatch => {
@@ -73,6 +75,8 @@ export const loadOrderByGames = category => {
     }
   }
 }
+
+// -----------SEARCH FOR GAME-----------
 
 export const loadGamesForSearch = searchTerm => {
   return async dispatch => {
@@ -104,6 +108,9 @@ export const loadGamesForNavSearch = searchTerm => {
   }
 }
 
+
+// -----------GET GAME BY ID-----------
+
 export const getGameById = id => {
   return async dispatch => {
     try {
@@ -119,28 +126,25 @@ export const getGameById = id => {
   }
 
 }
-export const getGameImages = id => {
-  return async dispatch => {
-    try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/game/images?game_id=${id}&client_id=${client_id}`)
-      res.data = await res.json()
-      if (res.ok) {
-        // const gameImages = [];
-        // for (let game in res.data) {
-        //   if (game.id === id) {
-        //     gameImages.push(game);
-        //   }
-        // }
-        return dispatch(getImages(res.data.images))
-      }
-      return res
-    } catch (err) {
-      return console.warn("Error: ", err)
-    }
-  }
-}
 
+// -----------GAME GAME IMAGES-----------
 
+// export const getGameImages = id => {
+//   return async dispatch => {
+//     try {
+//       const res = await fetch(`https://api.boardgameatlas.com/api/game/images?game_id=${id}&client_id=${client_id}`)
+//       res.data = await res.json()
+//       if (res.ok) {
+//         return dispatch(getImages(res.data.images))
+//       }
+//       return res
+//     } catch (err) {
+//       return console.warn("Error: ", err)
+//     }
+//   }
+// }
+
+// -----------CLEAR REDUX STATE-----------
 
 export const clearAtlasState = () => {
   return async dispatch => {
@@ -171,8 +175,6 @@ export default function atlasReducer(state = {}, action) {
       return { game: action.game }
     case GET_GAMES_FOR_ADD_SEARCH:
       return { ...state, loadNavSearch: action.games }
-    case GET_GAME_IMAGES:
-      return { gameImages: action.images }
     case CLEAR_GAMES:
       return {}
     default:

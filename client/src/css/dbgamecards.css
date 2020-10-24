@@ -14,16 +14,15 @@
 }
 .card {
   width: auto;
-  height: 174px;
+  height: auto;
   background-color: #37404A;
-  border: 1px solid #AAB8C5;
   border-top: none;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
+  padding-top: 0px;
 }
 
 .card-link{
@@ -50,7 +49,6 @@
 }
 
 .card-header{
-  height: auto;
   background-color: #37404A;
 }
 
@@ -60,7 +58,6 @@
   padding-left: 10px;
   padding-right: 10px;
   font-size: 20px;
-  border: 1px solid #AAB8C5;
   border-bottom: none;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -71,9 +68,7 @@
 .card-game-description {
   font-size: 18px;
   font-weight: 300;
-  margin-bottom: 0;
   margin-top: 8px;
-  margin-right: 20px;
   background-color: #37404A;
   padding-bottom: 5px;
 }
@@ -82,11 +77,6 @@
   font-size: 12px;
   margin-top: 0;
   background-color: #37404A;
-}
-
-.card{
-  background-color: #37404A;
-
 }
 
 #main-card-designer,
@@ -109,10 +99,4 @@
   background-color: #37404A;
   font-size: 14px;
   margin-top: 5px;
-}
-
-
-.card-game-description {
-  display: flex;
-  flex-direction: column;
 }

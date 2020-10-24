@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearAtlasState, getGameById} from '../store/atlas';
+import { clearAtlasState, getGameById } from '../store/atlas';
 import '../css/searchcardatlas.css';
 import { useHistory } from 'react-router-dom';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 export default function SearchCardAtlasNav({ game }) {
   const dispatch = useDispatch();
@@ -11,11 +13,14 @@ export default function SearchCardAtlasNav({ game }) {
   const handleSubmit = async (id) => {
     dispatch(clearAtlasState())
     dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
     history.push(`/gamepage/${game.id}`)
+    // history.replace(`/gamepage/${game.id}`, [state])
   }
 
   return (
-    <div onClick={e => handleSubmit(game.id)}  className='unauth_search_results_container'>
+    <div onClick={e => handleSubmit(game.id)} className='unauth_search_results_container'>
       <div className="unauth-listing">
         <h3 id='unauth_search-card-title'>{game.name}</h3>
         <div className="unauth-listing-information">

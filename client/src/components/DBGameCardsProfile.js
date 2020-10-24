@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { getGamePage } from '../store/atlas'
+import { getGameById } from '../store/atlas'
 import '../css/dbgamecardsprofile.css';
-import { clearAtlasState } from '../store/atlas';
-import { clearGamesState } from '../store/games';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 
 export default function GameCardProfile({ game }) {
@@ -12,9 +12,9 @@ export default function GameCardProfile({ game }) {
   const dispatch = useDispatch();
 
   const handleClick = id => {
-    dispatch(clearAtlasState());
-    dispatch(clearGamesState());
-    // dispatch(getGamePage(id))
+    dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
     history.push(`/gamepage/${id}`)
   }
 
@@ -28,7 +28,6 @@ export default function GameCardProfile({ game }) {
         <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0,40)}
           <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
         </div>
-        <i className='fas fa-dice-six fa-2x game_dice' style={{ color: '#3881D4', position: 'absolute', marginLeft: '200px', marginTop: '180px', cursor: 'pointer' }} />
       </div>
       <div id='profile_game_card-break'></div>
       <div id={game.id} className="card">

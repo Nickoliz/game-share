@@ -4,11 +4,15 @@ import thunk from 'redux-thunk';
 import auth from './auth';
 import games from './games';
 import atlas from './atlas';
+import images from './images';
+import reviews from './reviews'
 
 const rootReducer = combineReducers({
   auth,
   games,
-  atlas
+  atlas,
+  images,
+  reviews
 });
 
 let storeEnhancer;

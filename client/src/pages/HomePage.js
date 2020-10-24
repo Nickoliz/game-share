@@ -6,7 +6,6 @@ import GameCards from '../components/GameCards';
 import { Link as PageLink } from 'react-scroll';
 import '../css/homepage.css';
 import Navbar from '../components/Navbar';
-import { clearGamesState } from '../store/games';
 
 export default function HomePage() {
   const [sticky, setSticky] = useState('');
@@ -15,10 +14,10 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(clearAtlasState());
-    dispatch(clearGamesState());
     setTimeout(() => {
       dispatch(loadOrderByGames('trending'));
     }, 1500)
+    return () => dispatch(clearAtlasState());
   }, [dispatch])
 
   const orderByGames = useSelector(state => state.atlas.orderByGames);

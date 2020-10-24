@@ -23,13 +23,21 @@
   margin-left: 30px;
   padding: 10px;
   border-radius: 24px;
-  width: 400px;
+  width: 350px;
   transition: 200ms ease-in-out;
 }
 
 .navbar_search-bar {
   font-size: 16px;
 }
+
+.navbar_search_container > .navbar_search-bar:focus {
+  flex-grow: 1;
+}
+
+/* .navbar_search_container:hover {
+  flex-grow: 1;
+} */
 
 .homepage_auth {
   display: flex;
@@ -148,12 +156,6 @@
 }
 
 
-.redirect_container {
-  display: none;
-  top: 60px;
-  align-items: center;
-}
-
 #ellipsis-div:hover .redirect_container {
   display: flex;
   flex-direction: row;
@@ -175,8 +177,11 @@
 .redirect_button:hover {
   background: linear-gradient(
     to right,
-    #279BDC,
-    #3881D4);
+    #333A3F,
+    /* #279BDC, */
+    /* #3881D4, */
+    #4D5764,
+    #333A3F);
     transition: color 300ms linear;
     color: transparent;
     background-clip: text;
@@ -190,7 +195,7 @@
 
 .redirect_button {
   text-decoration: none;
-  /* background-color: #4D5764; */
+  background-color: #3881D4;
   font-size: 25px;
   color: white;
   font-weight: bold;

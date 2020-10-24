@@ -13,12 +13,12 @@ def login_user():
 
     user = User.query.filter(User.email==email).first()
     user_data = user.to_dict()
-    if(user and user.check_password(password)):
+    if (user and user.check_password(password)):
       session['user']= user.to_dict()
       return {"user": session['user']}, 200
     else:
-      return jsonify({"msg": "Incorrect email or password."}), 400
-  elif(request.method=='DELETE'):
+      return jsonify("Incorrect email or password."), 400
+  elif (request.method=='DELETE'):
     session.pop('user', None)
     return {'msg': 'successfully logged out'}
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearGamesState, getForBuy } from '../store/games'
+import { getForBuy } from '../store/games'
 import DBGameCards from '../components/DBGameCards';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/buypage.css';
@@ -10,7 +10,6 @@ export default function BuyPage() {
   const gamesForBuy = useSelector(state => state.games.gamesforbuy);
 
   useEffect(() => {
-    dispatch(clearGamesState())
     dispatch(getForBuy())
   }, [dispatch])
 
@@ -23,6 +22,7 @@ export default function BuyPage() {
     <>
       <NavbarNotHome />
       <div className='buy_box'>
+        <div className='buypage_label' />
         <div className='buy_card-container-wrapper'>
           {gamesForBuyList.map((game) => <DBGameCards game={game} key={game.id} />)}
         </div>
