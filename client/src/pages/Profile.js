@@ -16,11 +16,9 @@ export default function Profile() {
   const userCollection = useSelector(state => state.games.collection);
   const { id } = useParams();
 
-  console.log(collectionOwner);
-
   useEffect(() => {
-    // dispatch(getCollection(id));
     dispatch(getCollectionOwner(id));
+    // dispatch(getCollection(id));
     // dispatch(getCollection(profileUser));
   }, [dispatch, id])
 
@@ -43,7 +41,7 @@ export default function Profile() {
   return (
     <>
       <NavbarNotHome />
-      {/* {(currentUserId !== profileUserId) ?
+      {/* {(currentUserId !== collectionOwner.id) ?
         <>
           <div className='profile_main_container'>
           </div>

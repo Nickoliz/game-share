@@ -57,7 +57,7 @@ export const getCollection = id => {
   return async dispatch => {
     const res = await fetch(`/api/games/collection?id=${id}`, {
       method: 'get',
-    })
+    });
     res.data = await res.json()
     if (res.ok) {
       dispatch(getUserCollection(res.data.games));

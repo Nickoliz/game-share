@@ -39,16 +39,14 @@ def update_user():
   except:
     return jsonfify({"message": "Bad request. Cannot update user."})
 
-@users_routes.route('/collectionowner/:id', methods=['GET'])
+@users_routes.route('/collectionowner', methods=['GET'])
 def get_collection_owner():
-  print("!!!!~~~~HERE~~~~~!!!!")
-  try:
-    user_id = request.args.get('id')
-    user = User.query.filter(User.id == user_id).one()
-    print(user.to_dict())
-    return {"user": user.to_dict()}
-  except:
-    return {"Message": "Unable to get collection owner."}
+  # try:
+  user_id = request.args.get('id')
+  user = User.query.filter(User.id == user_id).one()
+  return {"user": user.to_dict()}
+  # except:
+  #   return {"Message": "Unable to get collection owner."}
 
 # @users_routes.route('/profile')
 # def profile_user_id():
