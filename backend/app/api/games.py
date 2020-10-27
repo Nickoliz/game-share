@@ -71,6 +71,7 @@ def add_game_to_collection():
   # try:
   userId = request.json.get('user_id')
   gameId = request.json.get('game_id')
+  username = request.json.get('username')
   game_title = request.json.get('title')
   year_published = request.json.get('year_published')
   thumb_url = request.json.get('thumb_url')
@@ -85,6 +86,7 @@ def add_game_to_collection():
   game = BoardGame(
     user_id=userId,
     game_id=gameId,
+    username=username,
     title=game_title,
     year_published=year_published,
     thumb_url=thumb_url,

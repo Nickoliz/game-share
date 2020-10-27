@@ -27,7 +27,7 @@ export default function NewGameInstance() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const currentUserId = useSelector(state => state.auth.id);
+  const currentUser = useSelector(state => state.auth);
   const game = useSelector(state => state.atlas.game);
 
   useEffect(() => {
@@ -51,8 +51,9 @@ export default function NewGameInstance() {
 
   const submitGame = e => {
     dispatch(addGameToCollection(
-      currentUserId,
+      currentUser.id,
       gameId,
+      currentUser.username,
       gameTitle,
       year_published,
       thumb_url,
@@ -65,7 +66,7 @@ export default function NewGameInstance() {
       gameCondition,
       conditionDescription,
     ));
-    return history.push(`/profile/${currentUserId}`);
+    return history.push(`/profile/${currentUser.id}`);
   };
 
 
@@ -97,7 +98,7 @@ export default function NewGameInstance() {
     }
   }
 
-  if (!currentUserId) return <Redirect to='/login' />;
+  if (!currentUser.id) return <Redirect to='/login' />;
   if (searchTerm) {
     searchBarMorph = 'game_instance-search-input-active-collection'
   }

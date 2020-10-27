@@ -118,7 +118,7 @@ export const getGamesByTitleToList = (id, searchTerm) => {
   }
 }
 
-export const addGameToCollection = (user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription) => {
+export const addGameToCollection = (user_id, game_id, username, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription) => {
   return async dispatch => {
     try {
       const res = await fetch(`/api/games/add`, {
@@ -126,7 +126,7 @@ export const addGameToCollection = (user_id, game_id, title, year_published, thu
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id, game_id, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription })
+        body: JSON.stringify({ user_id, game_id, username, title, year_published, thumb_url, msrp, listingPrice, rank, forsale, fortrade, forborrow, gameCondition, conditionDescription })
       })
       res.data = await res.json();
       if (res.ok) {

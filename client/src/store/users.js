@@ -21,6 +21,7 @@ export const getCollectionOwner = id => {
 }
 
 export default function userReducer(state = {}, action) {
+  Object.freeze();
   switch (action.type) {
     case GET_COLLECTION_OWNER:
       return {...state, owner: action.owner };
