@@ -51,6 +51,7 @@
 
 .homepage_nav-button,
 #homepage_nav-button-box {
+  color: white;
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
@@ -69,6 +70,7 @@
 }
 
 .discover_modal-div {
+  color: white;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -133,6 +135,7 @@
 }
 
 .discovery_modal-selection {
+  color: white;
   padding: 5px;
   margin: 2px;
   font-size: 14px;

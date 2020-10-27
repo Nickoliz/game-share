@@ -18,7 +18,7 @@
   flex-direction: column wrap;
   justify-content: space-between;
   width: 1000px;
-  height: 250px;
+  height: 275px;
   margin: 20px;
   margin-left: 20px;
   padding: 20px;
@@ -28,12 +28,21 @@
   border-radius: 12px;
 }
 
+.user_banner-username {
+  color: white;
+  background-color: #37404A;
+  font-size: 30px;
+  border-bottom: 2px solid #3881D4;
+}
+
 #user_banner-stats-label {
+  color: white;
   background-color: #37404A;
   border-bottom: 2px solid #3881D4;
 }
 
 #user_banner-listing-label {
+  color: white;
   background-color: #37404A;
   border-bottom: 2px solid #3881D4;
   font-size: 20px;

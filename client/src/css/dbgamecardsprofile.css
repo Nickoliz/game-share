@@ -113,6 +113,7 @@
 /*PROFILE SPECIFIC*/
 
 .top_card-name {
+  color: white;
   display: flex;
   padding-right: 10px;
   flex-direction: column;

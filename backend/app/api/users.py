@@ -41,12 +41,12 @@ def update_user():
 
 @users_routes.route('/collectionowner', methods=['GET'])
 def get_collection_owner():
-  # try:
-  user_id = request.args.get('id')
-  user = User.query.filter(User.id == user_id).one()
-  return {"user": user.to_dict()}
-  # except:
-  #   return {"Message": "Unable to get collection owner."}
+  try:
+    user_id = request.args.get('id')
+    user = User.query.filter(User.id == user_id).one()
+    return {"user": user.to_dict()}
+  except:
+    return {"Message": "Unable to get collection owner."}
 
 # @users_routes.route('/profile')
 # def profile_user_id():
