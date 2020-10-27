@@ -76,6 +76,7 @@ class BoardGame(db.Model):
       "id": self.id,
       "user_id": self.user_id,
       "game_id": self.game_id,
+      "username": self.username,
       "title": self.title,
       "year_published": self.year_published,
       "thumb_url": self.thumb_url,

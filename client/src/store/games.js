@@ -73,6 +73,7 @@ export const getForBuy = () => {
     })
     res.data = await res.json();
     if (res.ok) {
+      console.log(res.data.games);
       dispatch(getGamesForBuy(res.data.games))
     }
     return res

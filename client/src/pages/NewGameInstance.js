@@ -30,6 +30,7 @@ export default function NewGameInstance() {
   const currentUser = useSelector(state => state.auth);
   const game = useSelector(state => state.atlas.game);
 
+
   useEffect(() => {
     if (game) {
       game.map((g) => {
@@ -46,26 +47,32 @@ export default function NewGameInstance() {
   }, [game])
 
 
+  var conditionDescriptionClass = 'add_game_form-input-description';
   var searchBarMorph = 'game_instance-search-input-inactive-collection';
   var searchBarMorphCreate = 'game_instance-search-input-inactive';
 
   const submitGame = e => {
-    dispatch(addGameToCollection(
-      currentUser.id,
-      gameId,
-      currentUser.username,
-      gameTitle,
-      year_published,
-      thumb_url,
-      msrp,
-      listingPrice,
-      rank,
-      forsale,
-      fortrade,
-      forborrow,
-      gameCondition,
-      conditionDescription,
-    ));
+    if (conditionDescription.length <= 200) {
+      dispatch(addGameToCollection(
+        currentUser.id,
+        gameId,
+        currentUser.username,
+        gameTitle,
+        year_published,
+        thumb_url,
+        msrp,
+        listingPrice,
+        rank,
+        forsale,
+        fortrade,
+        forborrow,
+        gameCondition,
+        conditionDescription,
+      ));
+    } else {
+      setConditionDescription("Your description must be 200 characters or less.");
+      conditionDescriptionClass = 'add_game_form-input-description--bad'
+    }
     return history.push(`/profile/${currentUser.id}`);
   };
 
@@ -146,7 +153,7 @@ export default function NewGameInstance() {
                     </div>
                   </div>
                 </div>
-                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />
+                <textarea className={conditionDescriptionClass} type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />
                 <div className='listing_option-box'>
                   <div>
                     <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />
