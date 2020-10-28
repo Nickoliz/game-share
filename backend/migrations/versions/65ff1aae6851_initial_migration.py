@@ -1,8 +1,8 @@
-"""init migration
+"""initial migration
 
-Revision ID: 9948db02261c
-Revises:
-Create Date: 2020-10-07 14:17:50.910351
+Revision ID: 65ff1aae6851
+Revises: 
+Create Date: 2020-10-27 10:41:41.339060
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9948db02261c'
+revision = '65ff1aae6851'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,23 +23,35 @@ def upgrade():
     sa.Column('username', sa.String(length=30), nullable=False),
     sa.Column('email', sa.String(length=30), nullable=False),
     sa.Column('hashed_password', sa.String(length=100), nullable=False),
+    sa.Column('firstname', sa.String(length=60), nullable=True),
+    sa.Column('lastname', sa.String(length=100), nullable=True),
+    sa.Column('address', sa.String(length=80), nullable=True),
+    sa.Column('city', sa.String(length=100), nullable=True),
+    sa.Column('state', sa.String(length=50), nullable=True),
+    sa.Column('zipcode', sa.Integer(), nullable=True),
+    sa.Column('phonenumber', sa.String(length=12), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('username')
     )
     op.create_table('boardgames',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('game_id', sa.String(length=20), nullable=True),
+    sa.Column('username', sa.String(length=100), nullable=False),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('year_published', sa.Integer(), nullable=True),
     sa.Column('thumb_url', sa.String(length=300), nullable=True),
     sa.Column('msrp', sa.Integer(), nullable=True),
+    sa.Column('sale_price', sa.Float(), nullable=True),
     sa.Column('rank', sa.Integer(), nullable=True),
     sa.Column('forsale', sa.Boolean(), nullable=False),
     sa.Column('fortrade', sa.Boolean(), nullable=False),
     sa.Column('forborrow', sa.Boolean(), nullable=False),
-    sa.Column('condition', sa.String(length=10), nullable=False),
+    sa.Column('condition', sa.String(length=10), nullable=True),
+    sa.Column('condition_description', sa.String(length=200), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

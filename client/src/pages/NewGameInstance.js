@@ -27,8 +27,9 @@ export default function NewGameInstance() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const currentUserId = useSelector(state => state.auth.id);
+  const currentUser = useSelector(state => state.auth);
   const game = useSelector(state => state.atlas.game);
+
 
   useEffect(() => {
     if (game) {
@@ -45,27 +46,35 @@ export default function NewGameInstance() {
     }
   }, [game])
 
+  console.log(conditionDescription.length);
 
+  var conditionDescriptionClass = 'add_game_form-input-description';
   var searchBarMorph = 'game_instance-search-input-inactive-collection';
   var searchBarMorphCreate = 'game_instance-search-input-inactive';
 
   const submitGame = e => {
-    dispatch(addGameToCollection(
-      currentUserId,
-      gameId,
-      gameTitle,
-      year_published,
-      thumb_url,
-      msrp,
-      listingPrice,
-      rank,
-      forsale,
-      fortrade,
-      forborrow,
-      gameCondition,
-      conditionDescription,
-    ));
-    return history.push(`/profile/${currentUserId}`);
+    if (conditionDescription.length <= 200) {
+      dispatch(addGameToCollection(
+        currentUser.id,
+        gameId,
+        currentUser.username,
+        gameTitle,
+        year_published,
+        thumb_url,
+        msrp,
+        listingPrice,
+        rank,
+        forsale,
+        fortrade,
+        forborrow,
+        gameCondition,
+        conditionDescription,
+      ));
+    } else {
+      setConditionDescription("Your description must be 200 characters or less.");
+      return conditionDescriptionClass = 'add_game_form-input-description--bad'
+    }
+    return history.push(`/profile/${currentUser.id}`);
   };
 
 
@@ -97,7 +106,7 @@ export default function NewGameInstance() {
     }
   }
 
-  if (!currentUserId) return <Redirect to='/login' />;
+  if (!currentUser.id) return <Redirect to='/login' />;
   if (searchTerm) {
     searchBarMorph = 'game_instance-search-input-active-collection'
   }
@@ -115,7 +124,6 @@ export default function NewGameInstance() {
             {/* <div id='game_instance-search-icon'>
               <i className='fas fa-search' />
             </div> */}
-            {/* {(searchTerm) ? searchBarMorph = 'game_instance-search-input-active' : null} */}
             <input id={searchBarMorph} autoComplete='off' type='text' onChange={e => setSearchTerm(e.target.value)} placeholder='Search games from your collection...' />
             {(searchTerm) ?
               <SearchModal searchTerm={searchTerm} />
@@ -129,7 +137,7 @@ export default function NewGameInstance() {
             <div className='add_game_form-box'>
               <input className='add_game_form__search' id={searchBarMorphCreate} type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
-                <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} />
+                <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} setSearchTermCreateGame={setSearchTermCreateGame} />
                 :
                 null
               }
@@ -145,7 +153,7 @@ export default function NewGameInstance() {
                     </div>
                   </div>
                 </div>
-                <textarea className='add_game_form-input-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />
+                <textarea className={conditionDescriptionClass} type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={conditionDescription} />
                 <div className='listing_option-box'>
                   <div>
                     <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />

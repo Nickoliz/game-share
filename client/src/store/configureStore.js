@@ -6,13 +6,15 @@ import games from './games';
 import atlas from './atlas';
 import images from './images';
 import reviews from './reviews'
+import users from './users';
 
 const rootReducer = combineReducers({
   auth,
   games,
   atlas,
   images,
-  reviews
+  reviews,
+  users
 });
 
 let storeEnhancer;

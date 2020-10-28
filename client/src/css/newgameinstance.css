@@ -206,6 +206,11 @@
   overflow: hidden scroll;
 }
 
+.add_game_form-input-description--bad {
+  background-color: red;
+  color: white;
+}
+
 .condition_select {
   display: none;
   position: absolute;

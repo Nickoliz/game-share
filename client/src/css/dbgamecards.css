@@ -39,8 +39,8 @@
 }
 
 .card img {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   border-radius: 4px;
   object-fit: contain;
   border: none;
@@ -53,6 +53,7 @@
 }
 
 .main-card-game-name {
+  color: white;
   background-color: #37404A;
   padding-top: 10px;
   padding-left: 10px;
@@ -99,4 +100,15 @@
   background-color: #37404A;
   font-size: 14px;
   margin-top: 5px;
+}
+
+.game-card-instance-owner {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #37404A;
+}
+
+.game-card-instance-owner:hover {
+  color: #3881D4;
 }

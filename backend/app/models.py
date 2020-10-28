@@ -49,32 +49,6 @@ class User(db.Model, UserMixin):
       "created_at": self.created_at.strftime("%B %Y")
     }
 
-# class GameCondition(db.Model):
-#   __tablename__ = 'gamecondition'
-
-#   id = db.Column(db.Integer, primary_key=True)
-#   game_id = db.Column(db.Integer, db.ForeignKey("boardgames.id"), nullable=False)
-#   condition = db.Column(db.String(20), nullable=False)
-#   previous_condition = db.Column(db.String(20))
-
-#   game = db.relationship("BoardGame", foreign_keys=[game_id])
-
-#   @property
-#   def get_condition(self):
-#     return self.condition
-
-#   def change_condition(self, condition):
-#     self.condition = self.previous_condition
-#     self.condition = condition
-
-#   def to_dict():
-#     return {
-#       "id": self.id,
-#       "game_id": self.game_id,
-#       "condition": self.condition,
-#       "previous_condition": self.previous_condition
-#     }
-
 
 class BoardGame(db.Model):
   __tablename__ = 'boardgames'
@@ -82,6 +56,7 @@ class BoardGame(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   game_id = db.Column(db.String(20), nullable=True)
+  username = db.Column(db.String(100), nullable=False)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
   thumb_url = db.Column(db.String(300))
@@ -101,6 +76,7 @@ class BoardGame(db.Model):
       "id": self.id,
       "user_id": self.user_id,
       "game_id": self.game_id,
+      "username": self.username,
       "title": self.title,
       "year_published": self.year_published,
       "thumb_url": self.thumb_url,
@@ -129,13 +105,3 @@ class BoardGame(db.Model):
   @property
   def get_forborrow(self):
     return self.forborrow
-
-# class UserCollection(db.Model):
-#   __tablename__ =  'usercollection'
-
-#   id = db.Column(db.Integer, primary_key=True)
-#   user_id = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
-#   game_id = db.Column(db.Integer, ForeignKey("boardgames.id"), nullable=False)
-
-#   user = db.relationship("Users", foreign_keys=[user_id])
-#   games = db.relationship("BoardGame", foreign_keys=[game_id])
