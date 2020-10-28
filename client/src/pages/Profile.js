@@ -11,7 +11,7 @@ import '../css/profile.css';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.auth)
+  // const currentUser = useSelector(state => state.auth)
   const collectionOwner = useSelector(state => state.users.owner);
   const userCollection = useSelector(state => state.games.collection);
   const { id } = useParams();

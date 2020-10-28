@@ -3,8 +3,16 @@ const GET_GAMES_FOR_BUY = 'games/get_games_for_buy';
 const GET_GAMES_FOR_TRADE = 'games/get_games_for_trade';
 const GET_GAMES_FOR_BORROW = 'games/get_games_for_borrow';
 const GET_GAMES_BY_TITLE = 'games/get_games_by_title';
+const GET_GAME_FOR_OFFER = 'games/get_game_for_offer';
 const CLEAR_GAMES = 'games/clear_games';
 
+
+export const getOfferGame = (game) => {
+  return {
+    type: GET_GAME_FOR_OFFER,
+    game: game
+  }
+}
 
 export const getUserCollection = (games) => {
   return {
@@ -53,6 +61,20 @@ export const clearGamesState = () => {
   }
 }
 
+export const getOffer = id => {
+  return async dispatch => {
+    const res = await fetch(`/api/games/offer?id=${id}`, {
+      method: 'get'
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      console.log(res.data)
+      dispatch(getOfferGame(res.data.game));
+    }
+    return res;
+  }
+}
+
 export const getCollection = id => {
   return async dispatch => {
     const res = await fetch(`/api/games/collection?id=${id}`, {
@@ -73,7 +95,6 @@ export const getForBuy = () => {
     })
     res.data = await res.json();
     if (res.ok) {
-      console.log(res.data.games);
       dispatch(getGamesForBuy(res.data.games))
     }
     return res
@@ -178,6 +199,8 @@ export default function gamesReducer(state = {}, action) {
   switch (action.type) {
     case GET_COLLECTION:
       return { ...state, collection: action.games };
+    case GET_GAME_FOR_OFFER:
+      return { ...state, game: action.game };
     case GET_GAMES_FOR_BUY:
       return { ...state, gamesforbuy: action.games };
     case GET_GAMES_FOR_TRADE:

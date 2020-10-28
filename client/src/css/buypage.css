@@ -28,3 +28,12 @@
   width: 50%;
   border-bottom: 1px solid #3881D4;
 }
+
+.buypage_make-offer {
+  margin-top: 10px;
+  font-size: 14px;
+  background-color: #3881D4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -5,6 +5,7 @@ import datetime
 
 games_routes = Blueprint('games', __name__)
 
+
 @games_routes.route('/collection')
 def get_user_collection():
   user_id = request.args.get('id')
@@ -12,6 +13,12 @@ def get_user_collection():
   user_info = User.query.filter(User.id == user_id).one()
   data = [game.to_dict() for game in games]
   return {"games": data, "gameOwner": user_info.to_dict()}, 200
+
+@games_routes.route('/offer')
+def get_offer_game():
+  game_id = request.args.get('id')
+  game = BoardGame.query.filter(BoardGame.id == game_id).one()
+  return {"game": game.to_dict()}
 
 @games_routes.route('/collection/sale')
 def get_user_buy():

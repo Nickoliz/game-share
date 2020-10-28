@@ -46,6 +46,7 @@ export default function NewGameInstance() {
     }
   }, [game])
 
+  console.log(conditionDescription.length);
 
   var conditionDescriptionClass = 'add_game_form-input-description';
   var searchBarMorph = 'game_instance-search-input-inactive-collection';
@@ -71,7 +72,7 @@ export default function NewGameInstance() {
       ));
     } else {
       setConditionDescription("Your description must be 200 characters or less.");
-      conditionDescriptionClass = 'add_game_form-input-description--bad'
+      return conditionDescriptionClass = 'add_game_form-input-description--bad'
     }
     return history.push(`/profile/${currentUser.id}`);
   };
@@ -123,7 +124,6 @@ export default function NewGameInstance() {
             {/* <div id='game_instance-search-icon'>
               <i className='fas fa-search' />
             </div> */}
-            {/* {(searchTerm) ? searchBarMorph = 'game_instance-search-input-active' : null} */}
             <input id={searchBarMorph} autoComplete='off' type='text' onChange={e => setSearchTerm(e.target.value)} placeholder='Search games from your collection...' />
             {(searchTerm) ?
               <SearchModal searchTerm={searchTerm} />
@@ -137,7 +137,7 @@ export default function NewGameInstance() {
             <div className='add_game_form-box'>
               <input className='add_game_form__search' id={searchBarMorphCreate} type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
-                <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} />
+                <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} setSearchTermCreateGame={setSearchTermCreateGame} />
                 :
                 null
               }
