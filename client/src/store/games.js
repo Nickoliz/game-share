@@ -68,7 +68,6 @@ export const getOffer = id => {
     });
     res.data = await res.json();
     if (res.ok) {
-      console.log(res.data)
       dispatch(getOfferGame(res.data.game));
     }
     return res;
