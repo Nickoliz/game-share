@@ -3,7 +3,6 @@ const GET_POPULAR_GAMES = 'atlas/get_popular_games';
 const GET_REDDIT_GAMES = 'atlas/get_reddit_games';
 const GET_GAMES_FOR_ADD_SEARCH = 'atlas/get_games_for_add_search';
 const GET_GAME = 'atlas/get_game';
-// const GET_GAME_IMAGES = 'atlas/get_game_images';
 const CLEAR_GAMES = 'atlas/clear_games';
 
 const {
@@ -46,12 +45,6 @@ export const getGame = (game) => {
   }
 }
 
-// export const getImages = (images) => {
-//   return {
-//     type: GET_GAME_IMAGES,
-//     images: images
-//   }
-// }
 
 export const clear = () => {
   return {
@@ -126,23 +119,6 @@ export const getGameById = id => {
   }
 
 }
-
-// -----------GAME GAME IMAGES-----------
-
-// export const getGameImages = id => {
-//   return async dispatch => {
-//     try {
-//       const res = await fetch(`https://api.boardgameatlas.com/api/game/images?game_id=${id}&client_id=${client_id}`)
-//       res.data = await res.json()
-//       if (res.ok) {
-//         return dispatch(getImages(res.data.images))
-//       }
-//       return res
-//     } catch (err) {
-//       return console.warn("Error: ", err)
-//     }
-//   }
-// }
 
 // -----------CLEAR REDUX STATE-----------
 

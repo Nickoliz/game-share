@@ -46,8 +46,6 @@ export default function NewGameInstance() {
     }
   }, [game])
 
-  console.log(conditionDescription.length);
-
   var conditionDescriptionClass = 'add_game_form-input-description';
   var searchBarMorph = 'game_instance-search-input-inactive-collection';
   var searchBarMorphCreate = 'game_instance-search-input-inactive';
