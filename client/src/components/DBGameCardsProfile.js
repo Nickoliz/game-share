@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getGameById } from '../store/atlas'
@@ -7,7 +7,8 @@ import { getGameImages } from '../store/images';
 import { getGameReviews } from '../store/reviews';
 
 
-export default function GameCardProfile({ game }) {
+export default function GameCardProfile({ game, ownerOffersList }) {
+  const [offer, setOffer] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -18,6 +19,17 @@ export default function GameCardProfile({ game }) {
     history.push(`/gamepage/${id}`)
   }
 
+  useEffect(() => {
+    ownerOffersList.map((g) => {
+      if (game.game_id === g.game_id) {
+        return setOffer(true);
+      } else {
+        return null;
+      }
+    })
+  }, [ownerOffersList, game.game_id])
+
+  console.log(offer);
 
   if (!game) return null
 
@@ -25,8 +37,15 @@ export default function GameCardProfile({ game }) {
     // <div id={game.id} onClick={e => handleClick(game.game_id)} className="card-wrapper">
     <div id={game.id} className="card-wrapper" onClick={e => handleClick(game.game_id)}>
       <div className='main-card-game-name' style={{ cursor: 'pointer' }}>
-        <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0,40)}
+        <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0, 40)}
           <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
+          {(offer) ?
+            <div className='card_offer-new'>
+              New Offer
+          </div>
+            :
+            null
+          }
         </div>
       </div>
       <div id='profile_game_card-break'></div>

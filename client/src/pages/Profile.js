@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games';
 import { getCollectionOwner } from '../store/users';
 import { useParams } from 'react-router-dom';
+import { getOffersByOwnerId } from '../store/offers';
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
 import '../css/navbar.css';
@@ -14,15 +15,15 @@ export default function Profile() {
   // const currentUser = useSelector(state => state.auth)
   const collectionOwner = useSelector(state => state.users.owner);
   const userCollection = useSelector(state => state.games.collection);
+  const ownerOffers = useSelector(state => state.offers.getOffers)
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getCollectionOwner(id));
     dispatch(getCollection(id));
+    dispatch(getOffersByOwnerId(id));
     // dispatch(getCollection(profileUser));
   }, [dispatch, id])
-
-
 
   const userCollectionList = [];
   for (let game in userCollection) {
@@ -33,10 +34,25 @@ export default function Profile() {
   let gamesForTrade = 0;
   let gamesForBorrow = 0;
   userCollectionList.map((g) => {
-    if (g.forsale === true) return gamesForSale += 1;
-    if (g.fortrade === true) return gamesForTrade += 1;
-    if (g.forborrow === true) return gamesForBorrow += 1;
+    if (g.forsale === true) return gamesForSale++;
+    if (g.fortrade === true) return gamesForTrade++;
+    if (g.forborrow === true) return gamesForBorrow++;
     else return null;
+  })
+
+  const ownerOffersList = [];
+  for (let offer in ownerOffers) {
+    ownerOffersList.push(ownerOffers[offer]);
+  }
+
+  let pendingSale = 0;
+  let pendingTrade = 0;
+  let pendingBorrow = 0;
+  ownerOffersList.map((offer) => {
+    if (offer.offer_buy === true) return pendingSale++;
+    if (offer.offer_trade === true) return pendingTrade++;
+    if (offer.offer_borrow === true) return pendingBorrow++;
+    else return null
   })
 
   if (!collectionOwner) return null
@@ -72,14 +88,14 @@ export default function Profile() {
             <div className='user_banner-listing-offers'>
               <div>
                 <div id='user_banner-listing-label'>Listings</div>
-                <div id='user_banner-stats-item'>Pending Sales: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
-                <div id='user_banner-stats-item'>Pending Trades: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
-                <div id='user_banner-stats-item'>Pending Borrow: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>0</span></div>
+                <div id='user_banner-stats-item'>Pending Sales: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingSale}</span></div>
+                <div id='user_banner-stats-item'>Pending Trades: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingTrade}</span></div>
+                <div id='user_banner-stats-item'>Pending Borrow: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingBorrow}</span></div>
               </div>
             </div>
           </div>
           <div className='card-container-wrapper-profile'>
-            {userCollectionList.map((game) => <DBGameCardsProfile game={game} key={game.id} />)}
+            {userCollectionList.map((game) => <DBGameCardsProfile ownerOffersList={ownerOffersList} game={game} key={game.id} />)}
           </div>
         </div>
       </>

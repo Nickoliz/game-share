@@ -13,7 +13,7 @@ export const getOffersByOwnerId = id => {
       const res = await fetch(`/api/offers/owner?id=${id}`)
       res.data = await res.json()
       if (res.ok) {
-        return dispatch(getOffers(res.data.offers))
+        return dispatch(getOffers(res.data.offers));
       }
       return res
     } catch (err) {
@@ -40,6 +40,7 @@ export const getOffersByOffereeId = id => {
 export const buildOffer = (ownerId, offereeId, gameId, offerBuy, offerTrade, offerBorrow) => {
   return async dispatch => {
     try {
+      console.log(gameId);
       const res = await fetch(`/api/offers/newoffer`, {
         method: 'post',
         headers: {

@@ -55,7 +55,7 @@ class BoardGame(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  game_id = db.Column(db.String(20), nullable=True)
+  game_id = db.Column(db.String(20), nullable=True, unique=True)
   username = db.Column(db.String(100), nullable=False)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
@@ -122,7 +122,7 @@ class Offer(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   offeree_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  game_id = db.Column(db.Integer, db.ForeignKey("boardgames.id"), nullable=False)
+  game_id = db.Column(db.String(20), db.ForeignKey("boardgames.game_id"), nullable=False)
   new_offer = db.Column(db.Boolean, nullable=False, default=True)
   pending_offer = db.Column(db.Boolean, nullable=False, default=True)
   offer_buy = db.Column(db.Boolean, nullable=False, default=False)
@@ -139,7 +139,7 @@ class Offer(db.Model):
     return {
       "id": self.id,
       "owner_id": self.owner_id,
-      "offeree_id": self.oferee_id,
+      "offeree_id": self.offeree_id,
       "game_id": self.game_id, # From BoardGame model
       "new_offer": self.new_offer,
       "pending_offer": self.pending_offer,

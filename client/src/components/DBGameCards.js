@@ -28,7 +28,7 @@ export default function GameCard({ game }) {
   return (
     <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)}>
       <div className='main-card-game-name'>{game.title}
-        {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>Price: ${game.sale_price} | Condition: {game.condition}</span> : null}
+        {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>Price: ${game.sale_price.toFixed(2)} | Condition: {game.condition}</span> : null}
         {/* <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>Condition: {game.condition}</span> */}
         <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px' }}>Owner:
           <Link className='game-card-instance-owner' to={`/profile/${game.user_id}`}> {game.username}</Link>

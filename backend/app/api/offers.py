@@ -4,11 +4,13 @@ from app.models import User, BoardGame, Offer, db
 offers_routes = Blueprint('offers', __name__)
 
 
-@offers_routes.route('/owner/:id')
+@offers_routes.route('/owner')
 def get_offer_by_id():
   user_id = request.args.get('id')
+  print(user_id)
   offers = Offer.query.filter(Offer.owner_id == user_id).order_by(Offer.created_at)
   data = [offer.to_dict() for offer in offers]
+  print(data)
   return {"offers": data}, 200
 
 @offers_routes.route('/offeree/:id')
@@ -20,12 +22,10 @@ def get_offer_by_offeree():
 
 @offers_routes.route('/newoffer', methods=['POST'])
 def build_offer():
-  print('!!!!HERE!!!!!')
-  print(requset.json.get('game_id'))
   try:
     owner_id = request.json.get('ownerId')
     offeree_id = request.json.get('offereeId')
-    game_id = request.json.get('game_id')
+    game_id = request.json.get('gameId')
     offer_buy = bool(request.json.get('offerBuy'))
     offer_trade = bool(request.json.get('offerTrade'))
     offer_borrow = bool(request.json.get('offerBorrow'))
@@ -33,6 +33,8 @@ def build_offer():
       owner_id=owner_id,
       offeree_id=offeree_id,
       game_id=game_id,
+      new_offer=True,
+      pending_offer=True,
       offer_buy=offer_buy,
       offer_trade=offer_trade,
       offer_borrow=offer_borrow

@@ -9,13 +9,13 @@ import Navbar from '../components/Navbar';
 
 export default function HomePage() {
   const [sticky, setSticky] = useState('');
-  const [categoryDisplay, setCategoryDisplay] = useState('Trending');
+  const [categoryDisplay, setCategoryDisplay] = useState('Top Ranked');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(clearAtlasState());
     setTimeout(() => {
-      dispatch(loadOrderByGames('trending'));
+      dispatch(loadOrderByGames('popular'));
     }, 1500)
     return () => dispatch(clearAtlasState());
   }, [dispatch])

@@ -39,6 +39,35 @@
   padding-bottom: 5px;
 }
 
+.card_offer-new {
+  background-color: #37404A;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  animation-name: new-offer;
+  animation-duration:  1s;
+  animation-iteration-count: 20;
+  /* background: linear-gradient(
+    to right,
+    green,
+    #333A3F,
+    #279BDC,
+    #3881D4,
+    #4D5764,
+    #333A3F); */
+    /* transition: color 300ms linear; */
+    /* color: transparent; */
+    background-clip: text;
+  }
+@keyframes new-offer {
+  0%   {color: coral}
+  40%  {color: #279BDC}
+  60%  {color: #4D5764}
+  80%  {color: #279BDC}
+  90%  {color: #3881D4}
+  100% {color: coral}
+}
+
 .card img {
   border-radius: 4px;;
   height: 150px;
