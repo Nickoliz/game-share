@@ -39,7 +39,7 @@ export default function Login() {
     e.preventDefault();
     dispatch(login('demo2@gameshare.com', 'password'))
   };
-  if (currentUserId) return <Redirect to={history.goBack()} />
+  if (currentUserId) return <Redirect to={history.push('/')} />
   return (
     <>
       <div className='login_logo_container'>

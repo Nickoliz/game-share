@@ -7,10 +7,10 @@ export const getOffers = (offers) => {
   }
 }
 
-export const getOffersById = id => {
+export const getOffersByOwnerId = id => {
   return async dispatch => {
     try {
-      const res = await fetch(`/api/owner?id=${id}`)
+      const res = await fetch(`/api/offers/owner?id=${id}`)
       res.data = await res.json()
       if (res.ok) {
         return dispatch(getOffers(res.data.offers))
@@ -18,6 +18,42 @@ export const getOffersById = id => {
       return res
     } catch (err) {
       return console.warn("Error: ", err)
+    }
+  }
+}
+
+export const getOffersByOffereeId = id => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`/api/offers/offeree?id=${id}`)
+      res.data = await res.json()
+      if (res.ok) {
+        return dispatch(getOffers(res.data.offers))
+      }
+      return res
+    } catch (err) {
+      return console.warn("Error: ", err)
+    }
+  }
+}
+
+export const buildOffer = (ownerId, offereeId, gameId, offerBuy, offerTrade, offerBorrow) => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`/api/offers/newoffer`, {
+        method: 'post',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ownerId, offereeId, gameId, offerBuy, offerTrade, offerBorrow })
+      })
+      res.data = await res.json();
+      if (res.ok) {
+        dispatch(getOffersByOffereeId(offereeId));
+      }
+      return res;
+    } catch (err) {
+      return { "Message": "Coult not generate offer." }
     }
   }
 }

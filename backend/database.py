@@ -43,6 +43,7 @@ with app.app_context():
   windward = BoardGame(user_id=555, username='Demo', game_id='QGRTApF1mi', title="Windward", year_published=2020, thumb_url="https://d2k4q26owzy373.cloudfront.net/150x150/games/uploaded/1572347833267", msrp=40.00, sale_price=40.00, rank=2085, forsale = True, fortrade=False, forborrow=True, condition="Great", condition_description='Used. Good condition.')
   fort = BoardGame(user_id=555, username='Demo', game_id='ezX2Sjg3B0', title="Fort", year_published=2020, thumb_url="https://d2k4q26owzy373.cloudfront.net/150x150/games/uploaded/1595027240762", msrp=35.00, sale_price=0, rank=210, forsale = False, fortrade=True, forborrow=False, condition="Fair", condition_description='Poor. Willing to steep price.')
 
+
   db.session.add(tapestry)
   db.session.add(windward)
   db.session.add(fort)
