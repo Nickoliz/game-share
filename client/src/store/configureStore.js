@@ -7,6 +7,7 @@ import atlas from './atlas';
 import images from './images';
 import reviews from './reviews'
 import users from './users';
+import offers from './offers';
 
 const rootReducer = combineReducers({
   auth,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   atlas,
   images,
   reviews,
-  users
+  users,
+  offers
 });
 
 let storeEnhancer;

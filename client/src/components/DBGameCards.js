@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../css/gamecard.css';
 import OfferPage from '../pages/OfferPage';
@@ -9,6 +9,7 @@ import { getGameReviews } from '../store/reviews';
 
 
 export default function GameCard({ game }) {
+  const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
 
   const toOffer = () => {
@@ -22,6 +23,7 @@ export default function GameCard({ game }) {
   }
 
   if (!game) return null
+  if (currentUserId === game.user_id) return null;
 
   return (
     <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)}>

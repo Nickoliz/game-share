@@ -66,6 +66,11 @@ class BoardGame(db.Model):
   forsale = db.Column(db.Boolean, nullable=False, default=False)
   fortrade = db.Column(db.Boolean, nullable=False, default=False)
   forborrow = db.Column(db.Boolean, nullable=False, default=False)
+  # borrowed = db.Column(db.Boolean, nullable=False, default=False)
+  # borrower_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+  # pending_buy_offer = db.Column(db.Boolean, nullable=False, default=False)
+  # pending_trade_offer = db.Column(db.Boolean, nullable=False, defualt=False)
+  # pending_borrow_offer = db.Column(db.Boolean, nullable=False, default=False)
   condition = db.Column(db.String(10), default="Used")
   condition_description = db.Column(db.String(200))
 
@@ -86,6 +91,10 @@ class BoardGame(db.Model):
       "forsale": self.forsale,
       "fortrade": self.fortrade,
       "forborrow": self.forborrow,
+      # "borrowed": self.borrowed,
+      # "pending_buy_offer": self.pending_buy_offer,
+      # "pending_trade_offer": self.pending_trade_offer,
+      # "pending_borrow_offer": self.pending_borrow_offer,
       "condition": self.condition,
       "condition_description": self.condition_description
     }
@@ -105,3 +114,34 @@ class BoardGame(db.Model):
   @property
   def get_forborrow(self):
     return self.forborrow
+
+
+class Offer(db.Model):
+  __tablename__ = 'offers'
+
+  id = db.Column(db.Integer, primary_key=True)
+  owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+  offeree_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+  game_id = db.Column(db.Integer, db.ForeignKey("boardgames.id"), nullable=False)
+  new_offer = db.Column(db.Boolean, nullable=False, default=True)
+  pending_offer = db.Column(db.Boolean, nullable=False, default=True)
+  offer_buy = db.Column(db.Boolean, nullable=False, default=False)
+  offer_trade = db.Column(db.Boolean, nullable=False, default=False)
+  offer_borrow = db.Column(db.Boolean, nullable=False, default=False)
+
+  owner = db.relationship("User", foreign_keys=[owner_id])
+  offeree = db.relationship("User", foreign_keys=[offeree_id])
+  game = db.relationship("BoardGame", foreign_keys=[game_id])
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "owner_id": self.owner_id,
+      "offeree_id": self.oferee_id,
+      "game_id": self.game_id,
+      "new_offer": self.new_offer,
+      "pending_offer": self.pending_offer,
+      "offer_buy": self.offer_buy,
+      "offer_trade": self.offer_trade,
+      "offer_borrow": self.offer_borrow
+    }

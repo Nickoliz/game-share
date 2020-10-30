@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "canvas": "^2.6.1",
     "confetti-js": "0.0.18",
+    "font-awesome-animation": "^0.2.1",
     "http-proxy-middleware": "^1.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
