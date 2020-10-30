@@ -20,6 +20,8 @@ def get_offer_by_offeree():
 
 @offers_routes.route('/newoffer', methods=['POST'])
 def build_offer():
+  print('!!!!HERE!!!!!')
+  print(requset.json.get('game_id'))
   try:
     owner_id = request.json.get('ownerId')
     offeree_id = request.json.get('offereeId')
