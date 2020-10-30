@@ -15,7 +15,7 @@ export default function SearchCardAtlasNav({ game }) {
     dispatch(getGameById(id));
     dispatch(getGameImages(id));
     dispatch(getGameReviews(id));
-    history.push(`/gamepage/${game.id}`)
+    history.replace(`/gamepage/${game.id}`);
     // history.replace(`/gamepage/${game.id}`, [state])
   }
 

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { clearAtlasState } from '../store/atlas';
 import { logout } from '../store/auth'
 import '../css/navbar.css'
 import NavbarSearchModal from './NavbarSearchModal';
-import { clearGamesState } from '../store/games';
 
 
 export default function NavbarNotHome() {
@@ -19,8 +17,6 @@ export default function NavbarNotHome() {
     history.push('/')
   }
   const handleClick = () => {
-    dispatch(clearAtlasState());
-    dispatch(clearGamesState());
   }
 
   return (
@@ -53,6 +49,7 @@ export default function NavbarNotHome() {
           }
           {(currentUserId) ?
             <div className='auth_profile_container'>
+              <i className='fas fa-2x fa-bell' style={{backgroundColor: '#3881D4', color: '#333A3F'}} />
               <NavLink exact to={`/profile/${currentUserId}`} className='auth_profile_button' style={{ textDecoration: 'none' }}>Profile</NavLink>
               <i className='fas fa-sign-out-alt fa-2x' onClick={e => signOut()} style={{ color: '#333A3F', backgroundColor: '#3881D4', cursor: 'pointer' }} />
             </div>
