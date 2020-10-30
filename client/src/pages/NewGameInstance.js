@@ -6,8 +6,10 @@ import SearchModal from '../components/SearchModal';
 import { addGameToCollection } from '../store/games';
 import SearchCreateGameModal from '../components/SearchCreateGameModal'
 import '../css/newgameinstance.css';
+import { clearAtlasState } from '../store/atlas';
 
 
+clearAtlasState();
 
 export default function NewGameInstance() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,6 +54,7 @@ export default function NewGameInstance() {
 
   const submitGame = e => {
     if (conditionDescription.length <= 200) {
+      setGameTitle('Title')
       dispatch(addGameToCollection(
         currentUser.id,
         gameId,

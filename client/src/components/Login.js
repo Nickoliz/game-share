@@ -39,7 +39,7 @@ export default function Login() {
     e.preventDefault();
     dispatch(login('demo2@gameshare.com', 'password'))
   };
-  if (currentUserId) return <Redirect to={history.goBack()} />
+  if (currentUserId) return <Redirect to={history.push('/')} />
   return (
     <>
       <div className='login_logo_container'>
@@ -63,7 +63,7 @@ export default function Login() {
               <button type='submit' className='loginContainer__loginButton'>Log in</button>
             </div>
             <button className='loginContainer__loginButton' onClick={demo}>Demo Log in</button>
-            <button className='loginContainer__loginButton' onClick={demo2}>Demo-2 Log in</button>
+            {/* <button className='loginContainer__loginButton' onClick={demo2}>Demo-2 Log in</button> */}
           </form>
           <div id='redirect'>
             Wanna roll some dice? <Link to="/signup" style={{ textDecoration: 'none', color: '#0287EE', fontWeight: 'bold', backgroundColor: '#37404A' }} > Sign up </Link>

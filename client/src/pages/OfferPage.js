@@ -4,6 +4,7 @@ import { Link, Redirect, useParams } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome';
 import { getOffer } from '../store/games';
 import { clearGamesState } from '../store/games';
+import { buildOffer } from '../store/offers';
 import '../css/offerpage.css';
 
 
@@ -47,11 +48,14 @@ export default function OfferPage() {
   }
 
   const submitOffer = e => {
-    if (offerBuy && offerTrade && offerBorrow === true) {
+    dispatch(buildOffer(game.user_id, currentUser.id, game.game_id, offerBuy, offerTrade, offerBorrow));
+    setOfferModal(true);
 
-    } else {
-      setOfferModal(true);
-    }
+    // if (offerBuy && offerTrade && offerBorrow === true) {
+
+    // } else {
+    //   setOfferModal(true);
+    // }
   }
 
   if (!currentUser.id) return <Redirect to='/login' />;

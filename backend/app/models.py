@@ -66,11 +66,11 @@ class BoardGame(db.Model):
   forsale = db.Column(db.Boolean, nullable=False, default=False)
   fortrade = db.Column(db.Boolean, nullable=False, default=False)
   forborrow = db.Column(db.Boolean, nullable=False, default=False)
-  # borrowed = db.Column(db.Boolean, nullable=False, default=False)
-  # borrower_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-  # pending_buy_offer = db.Column(db.Boolean, nullable=False, default=False)
-  # pending_trade_offer = db.Column(db.Boolean, nullable=False, defualt=False)
-  # pending_borrow_offer = db.Column(db.Boolean, nullable=False, default=False)
+  borrowed = db.Column(db.Boolean, nullable=False, default=False)
+  borrower_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+  pending_buy_offer = db.Column(db.Boolean, nullable=False, default=False)
+  pending_trade_offer = db.Column(db.Boolean, nullable=False, default=False)
+  pending_borrow_offer = db.Column(db.Boolean, nullable=False, default=False)
   condition = db.Column(db.String(10), default="Used")
   condition_description = db.Column(db.String(200))
 
@@ -91,10 +91,10 @@ class BoardGame(db.Model):
       "forsale": self.forsale,
       "fortrade": self.fortrade,
       "forborrow": self.forborrow,
-      # "borrowed": self.borrowed,
-      # "pending_buy_offer": self.pending_buy_offer,
-      # "pending_trade_offer": self.pending_trade_offer,
-      # "pending_borrow_offer": self.pending_borrow_offer,
+      "borrowed": self.borrowed,
+      "pending_buy_offer": self.pending_buy_offer,
+      "pending_trade_offer": self.pending_trade_offer,
+      "pending_borrow_offer": self.pending_borrow_offer,
       "condition": self.condition,
       "condition_description": self.condition_description
     }
@@ -128,6 +128,8 @@ class Offer(db.Model):
   offer_buy = db.Column(db.Boolean, nullable=False, default=False)
   offer_trade = db.Column(db.Boolean, nullable=False, default=False)
   offer_borrow = db.Column(db.Boolean, nullable=False, default=False)
+  created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+  updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
   owner = db.relationship("User", foreign_keys=[owner_id])
   offeree = db.relationship("User", foreign_keys=[offeree_id])
@@ -138,7 +140,7 @@ class Offer(db.Model):
       "id": self.id,
       "owner_id": self.owner_id,
       "offeree_id": self.oferee_id,
-      "game_id": self.game_id,
+      "game_id": self.game_id, # From BoardGame model
       "new_offer": self.new_offer,
       "pending_offer": self.pending_offer,
       "offer_buy": self.offer_buy,
