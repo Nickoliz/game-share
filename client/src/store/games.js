@@ -181,6 +181,44 @@ export const addGameToSell = (user_id, game_id) => {
   }
 }
 
+export const deleteGame = (user_id, game_id) => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`/api/games/remove?game_id=${game_id}`, {
+        method: 'DELETE',
+      })
+      res.data = await res.json();
+      if (res.ok) {
+        dispatch(getCollection(user_id))
+      }
+      return res;
+    } catch (err) {
+      return { "Message": "Count not remove game." }
+    }
+  }
+}
+
+export const updateGame = (user_id, game_id, listingPrice, gameCondition, conditionDescription, forsale, fortrade, forborrow) => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`/api/games/update?game_id=${game_id}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ game_id, listingPrice, gameCondition, conditionDescription, forsale, fortrade, forborrow })
+      })
+      res.data = await res.json();
+      if (res.ok) {
+        dispatch(getCollection(user_id));
+      }
+      return res;
+    } catch (err) {
+      return { "Message": "Could not update game." }
+    }
+  }
+}
+
 // export const getCollection = id => {
 //   return async dispatch => {
 //     const res = await fetch(`/api/games/collection?id=${id}`, {

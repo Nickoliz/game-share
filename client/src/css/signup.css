@@ -92,10 +92,10 @@
     #333A3F,
     #3881D4,
     #333A3F);
-    transform: all ease-in;
-    color: white;
-    letter-spacing: 1px;
-    background-clip: border-box;
+  transform: all ease-in;
+  color: white;
+  letter-spacing: 1px;
+  background-clip: border-box;
 }
 
 .signup-button:focus {

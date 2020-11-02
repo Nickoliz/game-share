@@ -59,7 +59,6 @@
   font-size: 15px;
   border: none;
   transition: all 3s cubic-bezier(0.175, 0.885, 0.335, 1);
-
 }
 
 
@@ -72,10 +71,10 @@
     #333A3F,
     #3881D4,
     #333A3F);
-    transform: all ease-in;
-    color: white;
-    letter-spacing: 1px;
-    background-clip: border-box;
+  transform: all ease-in;
+  color: white;
+  letter-spacing: 1px;
+  background-clip: border-box;
 }
 
 .loginContainer__loginButton:focus {

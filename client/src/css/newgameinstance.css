@@ -173,7 +173,6 @@
 .add_game_form-input-condition:hover {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  /* padding-bottom: 100px; */
 }
 
 .add_game_form-input-condition:hover .condition_select {

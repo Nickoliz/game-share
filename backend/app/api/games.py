@@ -6,6 +6,40 @@ import datetime
 games_routes = Blueprint('games', __name__)
 
 
+@games_routes.route('/remove', methods=['DELETE'])
+def remove_game():
+  try:
+    game_id = request.args.get('game_id')
+    remove = BoardGame.query.filter(BoardGame.id == game_id).delete()
+    db.session.commit()
+    return {'Message': "Successfully removed."}
+  except:
+    return {"Message": "Could not delete game."}
+
+@games_routes.route('/update', methods=['PATCH'])
+def update_game():
+  try:
+    game_id = request.args.get('game_id')
+    list_price = float(request.json.get('listingPrice'))
+    game_condition = request.json.get('gameCondition')
+    game_description = request.json.get('conditionDescription')
+    checked_sale = bool(request.json.get('forsale'))
+    checked_trade = bool(request.json.get('fortrade'))
+    checked_borrow = bool(request.json.get('forborrow'))
+
+    update = BoardGame.query.filter(BoardGame.id == game_id).update().values(
+      sale_price = list_price,
+      condition = game_condition,
+      condition_description = game_description,
+      forsale = checked_sale,
+      fortrade = checked_trade,
+      forborrow = checked_borrow,
+    )
+    db.session.commit()
+    return {'Message': 'Successfully updated game'}
+  except:
+    return {'Message': 'Unable to update game.'}
+
 @games_routes.route('/collection')
 def get_user_collection():
   user_id = request.args.get('id')
@@ -67,7 +101,7 @@ def get_games_by_title():
   # try:
   user_id = request.args.get('id')
   search_term = request.args.get('searchTerm')
-  games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title.ilike(search_term)).limit(5)
+  games = BoardGame.query.filter(BoardGame.user_id == user_id, BoardGame.title.startswith(search_term)).limit(4)
   data = [game.to_dict() for game in games]
   return {"games": data}, 200
   # except:

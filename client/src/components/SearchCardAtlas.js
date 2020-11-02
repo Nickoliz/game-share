@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { getGameById} from '../store/atlas';
 import '../css/searchcardatlas.css';
 
-export default function GameSearch({ game, searchTermCreateGame }) {
+export default function GameSearch({ game, setSearchTermCreateGame }) {
   // const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = async (id) => {
     dispatch(getGameById(id));
-    searchTermCreateGame = ''
+    setSearchTermCreateGame('')
   }
 
 

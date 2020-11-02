@@ -13,9 +13,6 @@ export default function SearchCreateGameModal({ searchTermCreateGame, setSearchT
     dispatch(loadGamesForSearch(searchTermCreateGame))
   }, [searchTermCreateGame, dispatch]);
 
-  const handleClick = e => {
-    setSearchTermCreateGame('');
-  }
   const notLoaded = games && searchTermCreateGame.length > 0;
 
   if (!notLoaded) return null;
@@ -25,9 +22,9 @@ export default function SearchCreateGameModal({ searchTermCreateGame, setSearchT
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCardAtlas onClick={e => handleClick()} game={game} key={game.id} />)
+            <SearchCardAtlas setSearchTermCreateGame={setSearchTermCreateGame} game={game} key={game.id} />)
           :
-          <div id='atlas_no-search-results'>No games matching result.</div>
+          <div id='atlas_no-search-results'>No games matching search.</div>
       }
     </div>
   );

@@ -87,7 +87,7 @@ export default function OfferPage() {
         null
       }
       <NavbarNotHome />
-      <Link style={{textDecoration: 'none'}} to={'/gamepage/${game.game_id}'}>
+      <Link style={{textDecoration: 'none'}} to={`/gamepage/${game.game_id}`}>
         <h1 className='offerpage_game-title'>{game.title}</h1>
       </Link>
       <div className='offerpage_main_container'>

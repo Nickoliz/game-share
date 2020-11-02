@@ -25,7 +25,7 @@ function SearchModal({ searchTerm }) {
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCard game={game} key={game.id} />)
+          <SearchCard game={game} key={game.id} />)
           :
           <div id='no-search-results'>No games matching result. Please add game below.</div>
       }
