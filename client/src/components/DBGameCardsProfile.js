@@ -84,6 +84,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         <div className='edit-listing-overlay'>
           <div className='edit-listing-container'>
             <div className='edit-container-title'>{game.title}</div>
+            <br />
             <form className='edit-listing-form'>
               <div className='edit-listing-info-1'>
                 <label for='lsitingPrice'>Listing Price: </label>
