@@ -88,7 +88,9 @@ export default function GameCardProfile({ game, ownerOffersList }) {
               <div className='edit-listing-info-1'>
                 <label for='lsitingPrice'>Listing Price: </label>
                 <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + game.sale_price} />
-                <div className='edit_listing_form-input-condition'>Game Condition: {game.condition}
+                <label>Game Condition:</label>
+                <div className='edit_listing_form-input-condition'>{game.condition}
+                  <i className='fa fa-caret-down' style={{ marginLeft: '10px' }} />
                   <div className='edit-listing-condition_select'>
                     <div id='listing-condition_option' onClick={e => handleCondition('New')}>New</div>
                     <div id='listing-condition_option' onClick={e => handleCondition('Used')}>Used</div>
@@ -96,8 +98,11 @@ export default function GameCardProfile({ game, ownerOffersList }) {
                   </div>
                 </div>
               </div>
-              <label for='conditionDescription'>Condition Description: </label>
-              <textarea type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={game.condition_description} />
+              <div className='edit-listing-info-2'>
+                <div id='listing-condition-description'>Condition Description:</div>
+                <br />
+                <textarea id='edit-condition-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={game.condition_description} />
+              </div>
               <div className='listing_option-box'>
                 <div>
                   <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />
@@ -112,8 +117,10 @@ export default function GameCardProfile({ game, ownerOffersList }) {
                   <label id='list-label'>For Borrow</label>
                 </div>
               </div>
-              <input className='edit_listing_form__submit' type='submit' text='submit' onClick={e => submitEdit()} />
-              <button className='edit_listing_form__submit' type='cancel' onClick={e => setListingModal(false)}>Cancel</button>
+              <div className='edit-listing-buttons'>
+                <input className='edit_listing_form__submit' type='submit' text='submit' onClick={e => submitEdit()} />
+                <button className='edit_listing_form__submit' type='cancel' onClick={e => setListingModal(false)}>Cancel</button>
+              </div>
             </form>
           </div>
         </div>
