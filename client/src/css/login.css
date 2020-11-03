@@ -11,6 +11,7 @@
   margin-top: 20px;
   background-image: url('https://i.imgur.com/mDczIJm.png');
   cursor: pointer;
+  background-color: #333A3F;
 }
 
 .loginWrapper {
