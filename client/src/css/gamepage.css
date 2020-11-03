@@ -104,6 +104,10 @@
   margin-top: 5px;
 }
 
+#more-designers > li {
+  background-color: #4D5764;
+}
+
 #show-more-designers:hover {
   color: #3881D4;
 }
