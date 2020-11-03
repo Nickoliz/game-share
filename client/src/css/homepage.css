@@ -93,10 +93,11 @@
 
 .home_card-container-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   position: absolute;
-  top: 315px;
+
+  top: 325px;
   height: auto;
   margin-left: 50px;
   margin-right: 50px;
@@ -147,8 +148,9 @@
 #grid-label {
   box-sizing: border-box;
   position: relative;
-  width: 1460px;
+  width: 1175px;
   height: 40px;
+  margin-top: 10px;
   padding-bottom: 10px;
   font-size: 30px;
   font-weight: bolder;

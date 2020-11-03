@@ -156,7 +156,6 @@ a {
 
 .card-link{
   display:flex;
-  justify-content: space-around;
   background-color: #37404A;
 }
 

@@ -98,9 +98,7 @@ export default function HomePage() {
         {(orderByGames) ?
           <div id='grid-label'>{categoryDisplay}</div>
           :
-          <div id='grid-label'>Loading
-            <i className='fas fa-spinner fa-spin' style={{ marginLeft: '12px', color: '#3881D4' }} />
-          </div>
+          <div id='grid-label'>Loading...</div>
         }
         <div className='home_card-container-wrapper'>
           {(orderByGames) ?
