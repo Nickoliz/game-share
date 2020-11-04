@@ -8,7 +8,7 @@ import '../css/unauthnavsearch.css';
 
 
 export default function Navbar() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(null);
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ export default function Navbar() {
           {(searchTerm) ?
             <div className='unauth_search_modal'>
               <i className='fa fa-times fa-2x' onClick={() => setSearchTerm('')} />
-              <NavbarSearchModal searchTerm={searchTerm} />
+              <NavbarSearchModal searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
             :
             null

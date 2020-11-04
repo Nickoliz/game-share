@@ -55,6 +55,7 @@
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
+  background-color: #333A3F;
 }
 
 #homepage_nav-button-box {
@@ -96,8 +97,8 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   position: absolute;
-
-  top: 325px;
+  margin-bottom: 200px;
+  top: 390px;
   height: auto;
   margin-left: 50px;
   margin-right: 50px;
@@ -150,12 +151,13 @@
   position: relative;
   /* width: 1175px; */
   height: 40px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 50px;
   padding-bottom: 10px;
   font-size: 30px;
   font-weight: bolder;
   text-align: center;
+  border-bottom: 3px solid #3881D4;
+  width: 700px;
 }
 
 .fa-dice-20 {

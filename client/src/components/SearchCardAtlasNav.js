@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { getGameImages } from '../store/images';
 import { getGameReviews } from '../store/reviews';
 
-export default function SearchCardAtlasNav({ game }) {
+export default function SearchCardAtlasNav({ game, setSearchTerm }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -15,12 +15,12 @@ export default function SearchCardAtlasNav({ game }) {
     dispatch(getGameById(id));
     dispatch(getGameImages(id));
     dispatch(getGameReviews(id));
-    history.replace(`/gamepage/${game.id}`);
-    // history.replace(`/gamepage/${game.id}`, [state])
+    setSearchTerm(null);
+    history.push(`/gamepage/${game.id}`);
   }
 
   return (
-    <div onClick={e => handleSubmit(game.id)} className='unauth_search_results_container'>
+    <div onClick={() => handleSubmit(game.id)} className='unauth_search_results_container'>
       <div className="unauth-listing">
         <h3 id='unauth_search-card-title'>{game.name}</h3>
         <div className="unauth-listing-information">

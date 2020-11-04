@@ -28,7 +28,7 @@ export default function NavbarNotHome() {
           {(searchTerm) ?
             <div className='unauth_search_modal'>
               <i className='fa fa-times fa-2x' onClick={() => setSearchTerm('')} />
-              <NavbarSearchModal searchTerm={searchTerm} />
+              <NavbarSearchModal searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
             :
             null
@@ -47,9 +47,9 @@ export default function NavbarNotHome() {
           }
           {(currentUserId) ?
             <div className='auth_profile_container'>
-              <i className='fas fa-2x fa-bell' style={{backgroundColor: '#3881D4', color: '#333A3F', cursor: 'pointer'}} />
+              <i className='fas fa-2x fa-bell' style={{ backgroundColor: '#3881D4', color: '#333A3F', cursor: 'pointer' }} />
               <NavLink exact to={`/profile/${currentUserId}`} className='auth_profile_button' style={{ textDecoration: 'none' }}>Profile</NavLink>
-              <i className='fas fa-sign-out-alt fa-2x'le={{ color: '#333A3F', backgroundColor: '#3881D4', cursor: 'pointer' }} />
+              <i className='fas fa-sign-out-alt fa-2x' onClick={e => signOut()} style={{ color: '#333A3F', backgroundColor: '#3881D4', cursor: 'pointer' }} />
             </div>
             :
             <NavLink exact to='/login' className='homepage_auth-button homepage_login-button' id='auth-id' style={{ textDecoration: "none" }}>Log in</NavLink>

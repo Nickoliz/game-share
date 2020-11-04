@@ -57,7 +57,7 @@ export default function HomePage() {
           <div className='homepage_nav-button'>
             <div className='discover_modal-div' style={{ cursor: "pointer" }}>
               Discovery
-              <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px' }} />
+              <div className='fa fa-caret-down' style={{ backgroundColor: '#3881D4', paddingLeft: '5px', paddingTop: '2px', color: 'white'}} />
               <div className='discovery_modal-container'>
                 <div className='discovery_modal-selection'>
                   <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Top Ranked')}>Top Ranked</PageLink>
