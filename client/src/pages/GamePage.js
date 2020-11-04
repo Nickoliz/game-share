@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import NavbarNotHome from '../components/NavbarNotHome';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import '../css/gamepage.css';
 import GameImages from '../components/GameImages';
 import GameReview from '../components/GameReview';
+import { getGameById } from '../store/atlas';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 
 export default function GamePage() {
@@ -11,6 +15,15 @@ export default function GamePage() {
   const gameOnState = useSelector(state => state.atlas.game);
   const gameImages = useSelector(state => state.images.gameImages);
   const gameReviews = useSelector(state => state.reviews.gameReviews);
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useState(() => {
+    dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
+  })
 
   const game = [];
   for (let g in gameOnState) {
@@ -34,6 +47,8 @@ export default function GamePage() {
       setShowMoreDesigners(false);
     }
   }
+
+
 
   return (
     <>

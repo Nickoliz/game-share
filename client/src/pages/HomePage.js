@@ -29,7 +29,7 @@ export default function HomePage() {
 
   const handleGameGrid = e => {
     setCategoryDisplay(e);
-    if (e === 'Reddit Weekly') {
+    if (e === 'Reddit Daily') {
       dispatch(loadOrderByGames('reddit_day_count'))
     } else if (e === 'Top Ranked') {
       dispatch(loadOrderByGames('popular'))
@@ -69,7 +69,7 @@ export default function HomePage() {
                   <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Popularity')}>Popularity</PageLink>
                 </div>
                 <div className='discovery_modal-selection'>
-                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Weekly')}>Reddit Daily</PageLink>
+                  <PageLink to='navbar_container' smooth={true} duration={700} className='discovery_modal-selection' onClick={e => handleGameGrid('Reddit Daily')}>Reddit Daily</PageLink>
                 </div>
               </div>
             </div>

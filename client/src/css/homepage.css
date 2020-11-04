@@ -148,13 +148,14 @@
 #grid-label {
   box-sizing: border-box;
   position: relative;
-  width: 1175px;
+  /* width: 1175px; */
   height: 40px;
   margin-top: 10px;
+  margin-bottom: 20px;
   padding-bottom: 10px;
   font-size: 30px;
   font-weight: bolder;
-  text-align: left;
+  text-align: center;
 }
 
 .fa-dice-20 {
