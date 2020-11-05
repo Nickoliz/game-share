@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../css/gamecard.css';
 import OfferPage from '../pages/OfferPage';
 import { getGameById } from '../store/atlas';
@@ -11,6 +11,7 @@ import { getGameReviews } from '../store/reviews';
 export default function GameCard({ game }) {
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
+  const history = useHistory();
 
   const toOffer = () => {
     return <OfferPage game={game} />
@@ -39,10 +40,11 @@ export default function GameCard({ game }) {
         <Link id={game.id}
           className="card-link"
           style={{ textDecoration: "none", color: "black" }}
-          to={`gamepage/${game.id}`}>
+          to={`gamepage/${game.game_id}`}>
           <img id={game.id}
             src={game.thumb_url}
             alt={game.msrp}
+            style={{width: '150px', height: '150px'}}
           />
         </Link>
         <Link exact="true" to={`/offer/${game.username}/${game.id}`}>

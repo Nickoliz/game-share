@@ -70,6 +70,7 @@ input {
 }
 
 .unauth-listing-information-header > img {
+  width: 200px;
   border-radius: 4px;
   height: 175px;
   object-fit: contain;

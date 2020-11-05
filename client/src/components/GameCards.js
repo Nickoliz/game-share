@@ -31,6 +31,7 @@ export default function GameCard({ game }) {
           to={`gamepage/${game.id}`}>
           <img src={game.thumb_url}
             alt={game.images.small}
+            style={{width: '150px', height: '150px'}}
           />
           <div className='card-game-description' id='card-game-description'>
             <div className="card-information">

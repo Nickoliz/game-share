@@ -11,6 +11,7 @@ import { deleteGame } from '../store/games';
 export default function GameCardProfile({ game, ownerOffersList }) {
   const [offer, setOffer] = useState(null);
   const [listingModal, setListingModal] = useState(false);
+  const [offerModal, setOfferModal] = useState(false);
 
   const [gameCondition, setGameCondition] = useState('Condition');
   const [listingPrice, setListingPrice] = useState('Listing Price');
@@ -39,6 +40,11 @@ export default function GameCardProfile({ game, ownerOffersList }) {
       }
     })
   }, [ownerOffersList, game.game_id])
+
+
+  const goToOffers = () => {
+    history.push(`/offers/${currentUserId}`)
+  }
 
   const submitEdit = () => {
 
@@ -128,20 +134,68 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         :
         null
       }
-      {/* <div id={game.id} onClick={e => handleClick(game.game_id)} className="card-wrapper"> */}
+      {(offerModal) ?
+        <div className='edit-listing-overlay'>
+          <div className='edit-listing-container'>
+            <div className='edit-container-title'>{game.title}</div>
+            <br />
+            <form className='edit-listing-form'>
+              <div className='edit-listing-info-1'>
+                <label for='lsitingPrice'>Listing Price: </label>
+                <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + game.sale_price} />
+                <label>Game Condition:</label>
+                <div className='edit_listing_form-input-condition'>{game.condition}
+                  <i className='fa fa-caret-down' style={{ marginLeft: '10px' }} />
+                  <div className='edit-listing-condition_select'>
+                    <div id='listing-condition_option' onClick={e => handleCondition('New')}>New</div>
+                    <div id='listing-condition_option' onClick={e => handleCondition('Used')}>Used</div>
+                    <div id='listing-condition_option' onClick={e => handleCondition('Poor')}>Poor</div>
+                  </div>
+                </div>
+              </div>
+              <div className='edit-listing-info-2'>
+                <div id='listing-condition-description'>Condition Description:</div>
+                <br />
+                <textarea id='edit-condition-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={game.condition_description} />
+              </div>
+              <div className='listing_option-box'>
+                <div>
+                  <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />
+                  <label id='list-label'>For Sale</label>
+                </div>
+                <div>
+                  <input className='listing-option' type='checkbox' name='fortrade' value='true' onChange={e => handleCheckTrade()} id='fortrade' />
+                  <label id='list-label'>For Trade</label>
+                </div>
+                <div>
+                  <input className='listing-option' type='checkbox' name='forborrow' value='true' onChange={e => handleCheckBorrow()} id='forborrow' />
+                  <label id='list-label'>For Borrow</label>
+                </div>
+              </div>
+              <div className='edit-listing-buttons'>
+                <input className='edit_listing_form__submit' type='submit' text='submit' onClick={e => submitEdit()} />
+                <button className='edit_listing_form__submit' type='cancel' onClick={e => setListingModal(false)}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        :
+        null
+      }
+      {/* END MODAL */}
       <div id={game.id} className="card-wrapper" >
         <div className='main-card-game-name' style={{ cursor: 'pointer' }} onClick={e => handleClick(game.game_id)}>
           <div id={game.id} className='top_card-name' style={{ cursor: 'pointer' }}>{game.title.substring(0, 30)}
             <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
-            {(offer) ?
-              <div className='card_offer-new'>
-                New Offer
-          </div>
-              :
-              null
-            }
           </div>
         </div>
+        {(offer) ?
+          <div onClick={e => setOfferModal(true)} style={{cursor: 'pointer'}} className='card_offer-new'>
+            New Offer
+            </div>
+          :
+          null
+        }
         <div id='profile_game_card-break'></div>
         <div id={game.id} className="card">
           <div className="card-link">
@@ -181,7 +235,11 @@ export default function GameCardProfile({ game, ownerOffersList }) {
               :
               null
             }
-            <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
+            {(offer) ?
+              null
+              :
+              <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
+            }
           </div>
         </div>
       </div >
