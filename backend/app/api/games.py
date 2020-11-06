@@ -19,6 +19,7 @@ def remove_game():
 @games_routes.route('/update', methods=['PATCH'])
 def update_game():
   try:
+    print("!!!!!!!WE HERE!!!!!!!!!!!!!!")
     game_id = request.args.get('game_id')
     list_price = float(request.json.get('listingPrice'))
     game_condition = request.json.get('gameCondition')
@@ -27,14 +28,16 @@ def update_game():
     checked_trade = bool(request.json.get('fortrade'))
     checked_borrow = bool(request.json.get('forborrow'))
 
-    update = BoardGame.query.filter(BoardGame.id == game_id).update().values(
-      sale_price = list_price,
-      condition = game_condition,
-      condition_description = game_description,
-      forsale = checked_sale,
-      fortrade = checked_trade,
-      forborrow = checked_borrow,
-    )
+    # update = BoardGame.query.filter(BoardGame.id == game_id).update().values(
+    # db.update(boardgames).where(boardgame.id == game_id).values(
+    update = BoardGame.query.filter(BoardGame.id == game_id).first()
+    update.sale_price = list_price,
+    update.condition = game_condition,
+    update.condition_description = game_description,
+    update.forsale = checked_sale,
+    update.fortrade = checked_trade,
+    update.forborrow = checked_borrow
+    # )
     db.session.commit()
     return {'Message': 'Successfully updated game'}
   except:

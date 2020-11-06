@@ -202,7 +202,7 @@ export const updateGame = (user_id, game_id, listingPrice, gameCondition, condit
   return async dispatch => {
     try {
       const res = await fetch(`/api/games/update?game_id=${game_id}`, {
-        method: "POST",
+        method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
         },

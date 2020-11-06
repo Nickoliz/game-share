@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGameById } from '../store/atlas'
 import '../css/dbgamecardsprofile.css';
@@ -13,6 +13,7 @@ import OfferModal from './OfferModal';
 
 export default function GameCardProfile({ game, ownerOffersList }) {
   const [newOffer, setNewOffer] = useState(null);
+  const [offerInfo, setOfferInfo] = useState(null);
   const [offer, setOffer] = useState(null);
   const [offerId, setOfferId] = useState(null);
   const [listingModal, setListingModal] = useState(false);
@@ -32,6 +33,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   useEffect(() => {
     ownerOffersList.map((g) => {
       if (game.game_id === g.game_id) {
+        setOfferInfo(g)
         setOfferId(g.id);
         if (g.new_offer === true) {
           return setNewOffer(true);
@@ -71,7 +73,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         null
       }
       {(offerModal) ?
-        <OfferModal game={game} key={game.id} offerId={offerId} hideModal={hideModal} />
+        <OfferModal game={game} key={game.id} offerId={offerId} offerInfo={offerInfo} hideModal={hideModal} />
         :
         null
       }
@@ -92,14 +94,9 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         <div id='profile_game_card-break'></div>
         <div id={game.id} className="card">
           <div className="card-link">
-            <Link id={game.id}
-              style={{ textDecoration: "none", color: "black" }}
-              onClick={e => handleClick(game.game_id)}>
-              <img id={game.id}
-                src={game.thumb_url}
-                alt={game.msrp}
-              />
-            </Link>
+            <div id={game.id} style={{ backgroundColor: '#37404A', textDecoration: "none", color: "black", curosr: 'pointer' }} onClick={e => handleClick(game.game_id)}>
+              <img style={{cursor: 'pointer'}} id={game.id} src={game.thumb_url} alt={game.msrp} />
+            </div>
             {(game.forsale || game.fortrade || game.forborrow) ?
               <div id={game.id} className='main-card-game-info'>Listed:
               {(game.forsale) ?

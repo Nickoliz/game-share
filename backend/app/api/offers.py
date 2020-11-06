@@ -13,10 +13,9 @@ def get_offer_by_owner_id():
 
 @offers_routes.route('/offer')
 def get_offer_by_id():
-  offer_id = request.args.get('userId')
+  offer_id = request.args.get('id')
   offer = Offer.query.filter(Offer.id == offer_id).first()
-  data = [offer.to_dict() for offer in offers]
-  return {"offer": data}
+  return {"offer": offer.to_dict()}
 
 # Get offer by User Offering ID (aka Outstanding Offers)
 @offers_routes.route('/offeree/:id')

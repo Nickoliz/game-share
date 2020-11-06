@@ -35,6 +35,7 @@ a {
 
 .edit_listing_form-input-price {
   font-size: 18px;
+  width: 100px;
 }
 
 .edit-listing-info-1 {
@@ -52,6 +53,8 @@ a {
   flex-direction: column wrap;
   justify-content: center;
   margin-bottom: 20px;
+  margin: auto;
+  width: 433px;
 }
 
 .edit-container-title {

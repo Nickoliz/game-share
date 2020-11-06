@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateGame } from '../store/games';
 
@@ -17,6 +17,11 @@ export default function ListingModal({ game, hideModal }) {
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    setGameCondition(game.condition);
+  }, [game])
+
   const submitEdit = () => {
     dispatch(updateGame(
       currentUserId,
@@ -29,7 +34,6 @@ export default function ListingModal({ game, hideModal }) {
       forborrow
     ))
   }
-
 
   const handleCondition = e => {
     setGameCondition(e);
@@ -68,10 +72,10 @@ export default function ListingModal({ game, hideModal }) {
           <br />
           <form className='edit-listing-form'>
             <div className='edit-listing-info-1'>
-              <label for='lsitingPrice'>Listing Price: </label>
+              <label style={{ marginRight: '15px' }}>Listing Price: </label>
               <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + game.sale_price} />
-              <label>Game Condition:</label>
-              <div className='edit_listing_form-input-condition' onChange={e => conditionDescription(e.target.value)}>{game.condition}
+              <label style={{ marginRight: '15px' }}>Game Condition:</label>
+              <div className='edit_listing_form-input-condition' onChange={e => conditionDescription(e.target.value)}>{gameCondition}
                 <i className='fa fa-caret-down' style={{ marginLeft: '10px' }} />
                 <div className='edit-listing-condition_select'>
                   <div id='listing-condition_option' onClick={e => handleCondition('New')}>New</div>
