@@ -8,7 +8,6 @@ import Profile from './Profile';
 import NewGameInstance from './NewGameInstance';
 import GamePage from './GamePage';
 import OfferPage from './OfferPage';
-import OffersPage from './OffersPage';
 
 
 export default function Pages() {
@@ -20,8 +19,6 @@ export default function Pages() {
       <Route exact path="/borrow" component={BorrowPage} />
       {/* /offer/:username/:gameInstanceId */}
       <Route exact path="/offer/:username/:id" component={OfferPage} />
-      {/* /offers/:offerId */}
-      <Route exact path="/offers/:id" component={OffersPage} />
       {/* /profile/UserID */}
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/sell" component={NewGameInstance} />

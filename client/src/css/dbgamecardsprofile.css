@@ -286,7 +286,8 @@ border-radius: 24px;
 }
 
 .edit-listing,
-.delete-game {
+.delete-game,
+.view-offer {
   width: 100px;
   height: 30px;
   padding: 7px;
@@ -299,7 +300,8 @@ border-radius: 24px;
 }
 
 .edit-listing:hover,
-.delete-game:hover {
+.delete-game:hover,
+.view-offer:hover {
   background-color: #279ADC;
   background: linear-gradient(
     to right,

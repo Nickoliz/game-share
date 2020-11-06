@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/gamecard.css';
 import OfferPage from '../pages/OfferPage';
 import { getGameById } from '../store/atlas';
@@ -11,7 +11,6 @@ import { getGameReviews } from '../store/reviews';
 export default function GameCard({ game }) {
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
-  const history = useHistory();
 
   const toOffer = () => {
     return <OfferPage game={game} />

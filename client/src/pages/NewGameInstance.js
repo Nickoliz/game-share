@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import NavbarNotHome from '../components/NavbarNotHome'
-import SearchModal from '../components/SearchModal';
 import { addGameToCollection } from '../store/games';
 import SearchCreateGameModal from '../components/SearchCreateGameModal'
 import '../css/newgameinstance.css';
@@ -12,7 +11,6 @@ import { clearAtlasState } from '../store/atlas';
 clearAtlasState();
 
 export default function NewGameInstance() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [searchTermCreateGame, setSearchTermCreateGame] = useState('');
   const [gameTitle, setGameTitle] = useState('Title');
   const [gameId, setGameId] = useState(null);
@@ -49,8 +47,6 @@ export default function NewGameInstance() {
   }, [game])
 
   var conditionDescriptionClass = 'add_game_form-input-description';
-  var searchBarMorph = 'game_instance-search-input-inactive-collection';
-  var searchBarMorphCreate = 'game_instance-search-input-inactive';
 
   const submitGame = e => {
     if (conditionDescription.length <= 200) {
@@ -108,32 +104,16 @@ export default function NewGameInstance() {
   }
 
   if (!currentUser.id) return <Redirect to='/login' />;
-  if (searchTerm) {
-    searchBarMorph = 'game_instance-search-input-active-collection'
-  }
-  if (searchTermCreateGame) {
-    searchBarMorphCreate = 'game_instance-search-input-active'
-  }
 
   return (
     <>
       <NavbarNotHome />
       <div className='game_instance_container'>
         <div className='game_instance-add-from-collection'>
-          {/* <div className='game_instance-add-from-collection__label'>sell a game from your collection</div>
-          <div className='game_instance-search-bar'>
-            <input id={searchBarMorph} autoComplete='off' type='text' onChange={e => setSearchTerm(e.target.value)} placeholder='Search games from your collection...' />
-            {(searchTerm) ?
-              <SearchModal searchTerm={searchTerm} />
-              :
-              null
-            }
-          </div>
-          <div className='or_div'>not in your collection yet?</div> */}
           <div className='game_instance-add-from-atlas__label'>search for a game you own to add or list</div>
           <div className='add_game_form_container'>
             <div className='add_game_form-box'>
-              <input className='add_game_form__search' id={searchBarMorphCreate} type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
+              <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
                 <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} setSearchTermCreateGame={setSearchTermCreateGame} />
                 :

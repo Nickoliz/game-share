@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, BoardGame, db
+from app.models import User, BoardGame, Offer, db
 import datetime
 
 
