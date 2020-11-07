@@ -65,8 +65,6 @@ export default function ListingModal({ game, hideModal }) {
     }
   }
 
-  console.log(forsale, fortrade, forborrow)
-
   return (
     <>
       <div className='edit-listing-overlay'>
