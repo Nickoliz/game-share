@@ -55,6 +55,7 @@
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
+  background-color: #333A3F;
 }
 
 #homepage_nav-button-box {
@@ -93,10 +94,11 @@
 
 .home_card-container-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   position: absolute;
-  top: 315px;
+  margin-bottom: 200px;
+  top: 390px;
   height: auto;
   margin-left: 50px;
   margin-right: 50px;
@@ -147,12 +149,15 @@
 #grid-label {
   box-sizing: border-box;
   position: relative;
-  width: 1460px;
+  /* width: 1175px; */
   height: 40px;
+  margin-top: 50px;
   padding-bottom: 10px;
   font-size: 30px;
   font-weight: bolder;
-  text-align: left;
+  text-align: center;
+  border-bottom: 3px solid #3881D4;
+  width: 700px;
 }
 
 .fa-dice-20 {

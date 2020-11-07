@@ -8,13 +8,14 @@ import '../css/unauthnavsearch.css';
 
 
 export default function Navbar() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(null);
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch()
 
   const signOut = () => {
     dispatch(logout());
   }
+
 
   return (
     <>
@@ -26,8 +27,8 @@ export default function Navbar() {
           <input className='navbar_search-bar' onChange={e => setSearchTerm(e.target.value)} style={{ color: '#AAB8C5' }} placeholder='Search for board games...' />
           {(searchTerm) ?
             <div className='unauth_search_modal'>
-              <i className='fa fa-times fa-2x' onClick={e => setSearchTerm('')} />
-              <NavbarSearchModal searchTerm={searchTerm} />
+              <i className='fa fa-times fa-2x' onClick={() => setSearchTerm('')} />
+              <NavbarSearchModal searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
             :
             null

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import User, BoardGame, db
+from app.models import User, BoardGame, Offer, db
 import datetime
 
 
@@ -27,14 +27,15 @@ def update_game():
     checked_trade = bool(request.json.get('fortrade'))
     checked_borrow = bool(request.json.get('forborrow'))
 
-    update = BoardGame.query.filter(BoardGame.id == game_id).update().values(
-      sale_price = list_price,
-      condition = game_condition,
-      condition_description = game_description,
-      forsale = checked_sale,
-      fortrade = checked_trade,
-      forborrow = checked_borrow,
-    )
+    update = BoardGame.query.filter(BoardGame.id == game_id).first()
+
+    update.sale_price=list_price
+    update.condition=game_condition
+    update.condition_description=game_description
+    update.forsale=checked_sale
+    update.fortrade=checked_trade
+    update.forborrow=checked_borrow
+
     db.session.commit()
     return {'Message': 'Successfully updated game'}
   except:

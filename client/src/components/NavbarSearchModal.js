@@ -5,7 +5,7 @@ import SearchCardAtlasNav from '../components/SearchCardAtlasNav';
 import '../css/unauthnavsearch.css';
 
 
-function NavbarSearchModal({ searchTerm }) {
+function NavbarSearchModal({ searchTerm, setSearchTerm }) {
   const games = useSelector(state => state.atlas.loadNavSearch);
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function NavbarSearchModal({ searchTerm }) {
     <>
       {(games.length > 0) ?
         games.map((game) =>
-          <SearchCardAtlasNav searchTerm={searchTerm} game={game} key={game.id} />
+          <SearchCardAtlasNav searchTerm={searchTerm} game={game} key={game.id} setSearchTerm={setSearchTerm} />
         )
         :
         <div id='unauth_no-search-results'>Doesn't seem like that's a game. Create it?</div>

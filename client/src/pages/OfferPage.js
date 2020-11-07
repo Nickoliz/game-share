@@ -13,6 +13,8 @@ export default function OfferPage() {
   const [offerBuy, setOfferBuy] = useState(false)
   const [offerTrade, setOfferTrade] = useState(false)
   const [offerBorrow, setOfferBorrow] = useState(false)
+  const [choose, setChoose] = useState(null);
+  const [onlyOne, setOnlyOne] = useState(null);
   const currentUser = useSelector(state => state.auth);
   const game = useSelector(state => state.games.game);
   const params = useParams('id');
@@ -22,6 +24,12 @@ export default function OfferPage() {
     dispatch(clearGamesState());
     dispatch(getOffer(params.id));
   }, [dispatch, params])
+
+  const hideModal = () => {
+    setOfferModal(null);
+    setChoose(null);
+    setOnlyOne(null);
+  }
 
   const handleOfferBuy = () => {
     if (offerBuy === false) {
@@ -48,20 +56,25 @@ export default function OfferPage() {
   }
 
   const submitOffer = e => {
-    dispatch(buildOffer(game.user_id, currentUser.id, game.game_id, offerBuy, offerTrade, offerBorrow));
-    setOfferModal(true);
-
-    // if (offerBuy && offerTrade && offerBorrow === true) {
-
-    // } else {
-    //   setOfferModal(true);
-    // }
+    if (!offerBuy && !offerTrade && !offerBorrow) {
+      setChoose(true);
+    } else if (offerBuy && offerTrade && offerBorrow) {
+      setOnlyOne(true);
+    } else if (offerBuy && offerTrade && !offerBorrow) {
+      setOnlyOne(true);
+    } else if (!offerBuy && offerTrade && offerBorrow) {
+      setOnlyOne(true);
+    } else if (offerBuy && !offerTrade && offerBorrow) {
+      setOnlyOne(true);
+    } else {
+      dispatch(buildOffer(game.user_id, currentUser.id, game.game_id, offerBuy, offerTrade, offerBorrow));
+      setOfferModal(true);
+    }
   }
 
   if (!currentUser.id) return <Redirect to='/login' />;
 
   if (!game) return null;
-
 
   return (
     <>
@@ -69,6 +82,7 @@ export default function OfferPage() {
         <div className='offer-overlay'>
           <div className='offer_modal-container'>
             <div id='offer_modal-message' style={{ backgroundColor: '#37404A' }}>
+
               You made <span style={{ fontWeight: 'bold', backgroundColor: '#37404A' }}>
                 {game.username}<span> </span>
               </span>
@@ -86,8 +100,34 @@ export default function OfferPage() {
         :
         null
       }
+      {(choose) ?
+        <div className='offer-overlay'>
+          <div className='offer_modal-container'>
+            <div id='offer_modal-message' style={{ backgroundColor: '#37404A', color: 'white', letterSpacing: '1.5px' }}>
+              You need to select a transaction type.
+              <br />
+              <button onClick={hideModal} id='offer-modal-button'>Okay</button>
+            </div>
+          </div>
+        </div>
+        :
+        null
+      }
+      {(onlyOne) ?
+        <div className='offer-overlay'>
+          <div className='offer_modal-container'>
+            <div id='offer_modal-message' style={{ backgroundColor: '#37404A', color: 'white', letterSpacing: '1.5px' }}>
+              You can only select one type of transaction.
+              <br />
+              <button onClick={hideModal} id='offer-modal-button'>Okay</button>
+            </div>
+          </div>
+        </div>
+        :
+        null
+      }
       <NavbarNotHome />
-      <Link style={{textDecoration: 'none'}} to={`/gamepage/${game.game_id}`}>
+      <Link style={{ textDecoration: 'none' }} to={`/gamepage/${game.game_id}`}>
         <h1 className='offerpage_game-title'>{game.title}</h1>
       </Link>
       <div className='offerpage_main_container'>
