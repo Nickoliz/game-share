@@ -57,7 +57,7 @@ export const clear = () => {
 export const loadOrderByGames = category => {
   return async dispatch => {
     try {
-      const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=${category}&limit=30&client_id=${client_id}`)
+      const res = await fetch(`https://api.boardgameatlas.com/api/search?order_by=${category}&limit=32&client_id=${client_id}`)
       res.data = await res.json();
       if (res.ok) {
         return dispatch(getOrderByGames(res.data.games));

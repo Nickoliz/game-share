@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import NavbarNotHome from '../components/NavbarNotHome';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import '../css/gamepage.css';
 import GameImages from '../components/GameImages';
 import GameReview from '../components/GameReview';
+import { getGameById } from '../store/atlas';
+import { getGameImages } from '../store/images';
+import { getGameReviews } from '../store/reviews';
 
 
 export default function GamePage() {
@@ -11,6 +15,15 @@ export default function GamePage() {
   const gameOnState = useSelector(state => state.atlas.game);
   const gameImages = useSelector(state => state.images.gameImages);
   const gameReviews = useSelector(state => state.reviews.gameReviews);
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useState(() => {
+    dispatch(getGameById(id));
+    dispatch(getGameImages(id));
+    dispatch(getGameReviews(id));
+  })
 
   const game = [];
   for (let g in gameOnState) {
@@ -27,13 +40,15 @@ export default function GamePage() {
     reviews.push(gameReviews[review]);
   }
 
-  const handleDesigners = e => {
+  const handleDesigners = () => {
     if (showMoreDesigners === false) {
       setShowMoreDesigners(true);
     } else {
       setShowMoreDesigners(false);
     }
   }
+
+
 
   return (
     <>
@@ -63,18 +78,23 @@ export default function GamePage() {
               <div id='gamepage_specs'>Age: {g.min_age}+</div>
               <div id='gamepage_specs'>Publisher: {g.primary_publisher}</div>
               <div id='gamepage_specs'>Designer(s): {g.designers[0]}
-                <span id='show-more-designers' style={{ cursor: 'pointer' }} onClick={e => handleDesigners()}> [+]</span>
-                {(showMoreDesigners) ?
-                  <li id='more-designers' style={{ marginLeft: '10px' }}>{g.designers.map((d, i) => {
-                    if (i === 0) {
-                      return null;
-                    } else {
-                      return d;
-                    }
-                  })}</li>
+                {(g.designers.length > 1) ?
+                  <span id='show-more-designers' style={{ cursor: 'pointer' }} onClick={() => handleDesigners()}> [+]</span>
                   :
                   null
                 }
+                {(showMoreDesigners) ?
+                  <ul id='more-designers' style={{ marginLeft: '10px' }}>{g.designers.map((d, i) => {
+                    if (i === 0) {
+                      return null;
+                    } else {
+                      return <li>{d}</li>;
+                    }
+                  })}</ul>
+                  :
+                  null
+                }
+
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollection } from '../store/games';
 import { getCollectionOwner } from '../store/users';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getOffersByOwnerId } from '../store/offers';
 import DBGameCardsProfile from '../components/DBGameCardsProfile';
 import NavbarNotHome from '../components/NavbarNotHome';
@@ -12,10 +12,11 @@ import '../css/profile.css';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  // const currentUser = useSelector(state => state.auth)
   const collectionOwner = useSelector(state => state.users.owner);
   const userCollection = useSelector(state => state.games.collection);
   const ownerOffers = useSelector(state => state.offers.getOffers)
+  const currentUserId = useSelector(state => state.auth.id);
+  const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -87,7 +88,7 @@ export default function Profile() {
             </div>
             <div className='user_banner-listing-offers'>
               <div>
-                <div id='user_banner-listing-label'>Listings</div>
+                <div onClick={() => history.push(`/offers/${currentUserId}`)} style={{textDecoration: 'none', cursor: 'pointer'}} id='user_banner-listing-label'>Listings</div>
                 <div id='user_banner-stats-item'>Pending Sales: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingSale}</span></div>
                 <div id='user_banner-stats-item'>Pending Trades: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingTrade}</span></div>
                 <div id='user_banner-stats-item'>Pending Borrow: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingBorrow}</span></div>

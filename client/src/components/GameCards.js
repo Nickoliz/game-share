@@ -31,17 +31,18 @@ export default function GameCard({ game }) {
           to={`gamepage/${game.id}`}>
           <img src={game.thumb_url}
             alt={game.images.small}
+            style={{width: '150px', height: '150px'}}
           />
           <div className='card-game-description' id='card-game-description'>
             <div className="card-information">
               <div className="card-header">
               </div>
             </div>
-            <div id='main-card-publisher'>Publisher: {game.primary_publisher}</div>
-            <div id='main-card-designer'>Designer: {game.designers.map((designer, index) =>
+            {/* <div id='main-card-publisher'>Publisher: {game.primary_publisher}</div> */}
+            {/* <div id='main-card-designer'>Designer: {game.designers.map((designer, index) =>
               <div id='main-card-designer' key={index}>{designer}</div>
             )}
-            </div>
+            </div> */}
           </div>
           <div className='main-card-game-info'>
             <div id='main-card-info-box'>Player: {game.min_players} - {game.max_players}</div>

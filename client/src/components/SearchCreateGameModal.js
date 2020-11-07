@@ -4,7 +4,7 @@ import { loadGamesForSearch } from '../store/atlas';
 import '../css/sellsearchmodal.css';
 import SearchCardAtlas from './SearchCardAtlas';
 
-export default function SearchCreateGameModal({ searchTermCreateGame, setSearchTermCreateGame}) {
+export default function SearchCreateGameModal({ searchTermCreateGame}) {
   const games = useSelector(state => state.atlas.orderByGames);
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function SearchCreateGameModal({ searchTermCreateGame, setSearchT
       {
         (games.length > 0) ?
           games.map((game) =>
-            <SearchCardAtlas setSearchTermCreateGame={setSearchTermCreateGame} game={game} key={game.id} />)
+            <SearchCardAtlas game={game} key={game.id} />)
           :
           <div id='atlas_no-search-results'>No games matching search.</div>
       }

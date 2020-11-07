@@ -21,7 +21,7 @@ def signup_user():
   except:
     return jsonify({"msg": "Bad data for signup."}), 400
 
-@users_routes.route('/update', methods=["PUT"])
+@users_routes.route('/update', methods=["PATCH"])
 def update_user():
   try:
     if 'user' in session:
@@ -46,6 +46,13 @@ def get_collection_owner():
     return {"user": user.to_dict()}
   except:
     return {"Message": "Unable to get collection owner."}
+
+@users_routes.route('/userinfo', methods=["GET"])
+def get_user():
+  user_id = request.args.get('id')
+  user = User.query.filter(User.id == user_id).first()
+  return {"user": user.to_dict()}
+
 
 # @users_routes.route('/profile')
 # def profile_user_id():
