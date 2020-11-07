@@ -17,7 +17,7 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.73);
-  z-index: 10000;
+  z-index: 3000;
 }
 
 .edit-listing-container {
@@ -27,6 +27,7 @@ a {
   width: auto;
   height: auto;
   padding: 20px;
+  z-index: 4000;
 }
 
 .edit-listing-form {

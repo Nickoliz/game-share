@@ -7,12 +7,12 @@ import { updateGame } from '../store/games';
 
 export default function ListingModal({ game, hideModal }) {
 
-  const [gameCondition, setGameCondition] = useState('Condition');
-  const [listingPrice, setListingPrice] = useState('Listing Price');
-  const [conditionDescription, setConditionDescription] = useState('Condition Description (200 characters)');
-  const [forsale, setForSale] = useState(false);
-  const [fortrade, setForTrade] = useState(false);
-  const [forborrow, setForBorrow] = useState(false);
+  const [gameCondition, setGameCondition] = useState(null);
+  const [listingPrice, setListingPrice] = useState(null);
+  const [conditionDescription, setConditionDescription] = useState(null);
+  const [forsale, setForSale] = useState(null);
+  const [fortrade, setForTrade] = useState(null);
+  const [forborrow, setForBorrow] = useState(null);
 
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
@@ -20,7 +20,12 @@ export default function ListingModal({ game, hideModal }) {
 
   useEffect(() => {
     setGameCondition(game.condition);
-  }, [game])
+    setListingPrice(game.sale_price);
+    setConditionDescription(game.condition_description);
+    setForSale(game.forsale);
+    setForTrade(game.fortrade);
+    setForBorrow(game.forborrow);
+  }, [game]);
 
   const submitEdit = () => {
     dispatch(updateGame(
@@ -32,8 +37,8 @@ export default function ListingModal({ game, hideModal }) {
       forsale,
       fortrade,
       forborrow
-    ))
-  }
+    ));
+  };
 
   const handleCondition = e => {
     setGameCondition(e);
@@ -63,7 +68,6 @@ export default function ListingModal({ game, hideModal }) {
     }
   }
 
-
   return (
     <>
       <div className='edit-listing-overlay'>
@@ -73,9 +77,9 @@ export default function ListingModal({ game, hideModal }) {
           <form className='edit-listing-form'>
             <div className='edit-listing-info-1'>
               <label style={{ marginRight: '15px' }}>Listing Price: </label>
-              <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + game.sale_price} />
+              <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + listingPrice} />
               <label style={{ marginRight: '15px' }}>Game Condition:</label>
-              <div className='edit_listing_form-input-condition' onChange={e => conditionDescription(e.target.value)}>{gameCondition}
+              <div className='edit_listing_form-input-condition' onChange={e => setGameCondition(e.target.value)}>{gameCondition}
                 <i className='fa fa-caret-down' style={{ marginLeft: '10px' }} />
                 <div className='edit-listing-condition_select'>
                   <div id='listing-condition_option' onClick={e => handleCondition('New')}>New</div>
@@ -87,24 +91,36 @@ export default function ListingModal({ game, hideModal }) {
             <div className='edit-listing-info-2'>
               <div id='listing-condition-description'>Condition Description:</div>
               <br />
-              <textarea id='edit-condition-description' type='text' name='conditionDescription' onChange={e => setConditionDescription(e.target.value)} placeholder={game.condition_description} />
+              <textarea id='edit-condition-description' type='text' onChange={e => setConditionDescription(e.target.value)} defaultValue={conditionDescription} />
             </div>
             <div className='listing_option-box'>
               <div>
-                <input className='listing-option' type='checkbox' name='forsale' value='true' onChange={e => handleCheckSale()} id='forsale' />
+                {(forsale) ?
+                  <input defaultChecked={forsale} className='listing-option' type='checkbox' name='forsale' onChange={e => handleCheckSale()} id='forsale' />
+                  :
+                  <input className='listing-option' type='checkbox' name='forsale' onChange={e => handleCheckSale()} id='forsale' />
+                }
                 <label id='list-label'>For Sale</label>
               </div>
               <div>
-                <input className='listing-option' type='checkbox' name='fortrade' value='true' onChange={e => handleCheckTrade()} id='fortrade' />
+                {(fortrade) ?
+                  <input defaultChecked className='listing-option' type='checkbox' name='fortrade' onChange={e => handleCheckTrade()} id='fortrade' />
+                  :
+                  <input className='listing-option' type='checkbox' name='fortrade' onChange={e => handleCheckTrade()} id='fortrade' />
+                }
                 <label id='list-label'>For Trade</label>
               </div>
               <div>
-                <input className='listing-option' type='checkbox' name='forborrow' value='true' onChange={e => handleCheckBorrow()} id='forborrow' />
+                {(forborrow) ?
+                  <input defaultChecked className='listing-option' type='checkbox' name='forborrow' onChange={e => handleCheckBorrow()} id='forborrow' />
+                  :
+                  <input className='listing-option' type='checkbox' name='forborrow' onChange={e => handleCheckBorrow()} id='forborrow' />
+                }
                 <label id='list-label'>For Borrow</label>
               </div>
             </div>
             <div className='edit-listing-buttons'>
-              <input className='edit_listing_form__submit' type='submit' text='submit' onClick={e => submitEdit()} />
+              <input className='edit_listing_form__submit' type='submit' text='submit' onClick={() => submitEdit()} />
               <button className='edit_listing_form__submit' type='cancel' onClick={hideModal}>Cancel</button>
             </div>
           </form>
