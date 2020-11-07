@@ -8,11 +8,11 @@ import { updateGame } from '../store/games';
 export default function ListingModal({ game, hideModal }) {
 
   const [gameCondition, setGameCondition] = useState(null);
-  const [listingPrice, setListingPrice] = useState(null);
-  const [conditionDescription, setConditionDescription] = useState(null);
-  const [forsale, setForSale] = useState(null);
-  const [fortrade, setForTrade] = useState(null);
-  const [forborrow, setForBorrow] = useState(null);
+  const [listingPrice, setListingPrice] = useState();
+  const [conditionDescription, setConditionDescription] = useState(game.condition_description);
+  const [forsale, setForSale] = useState(game.forsale);
+  const [fortrade, setForTrade] = useState(game.fortrade);
+  const [forborrow, setForBorrow] = useState(game.forborrow);
 
   const currentUserId = useSelector(state => state.auth.id);
   const dispatch = useDispatch();
@@ -21,10 +21,7 @@ export default function ListingModal({ game, hideModal }) {
   useEffect(() => {
     setGameCondition(game.condition);
     setListingPrice(game.sale_price);
-    setConditionDescription(game.condition_description);
-    setForSale(game.forsale);
-    setForTrade(game.fortrade);
-    setForBorrow(game.forborrow);
+    // setConditionDescription(game.condition_description);
   }, [game]);
 
   const submitEdit = () => {
@@ -68,6 +65,8 @@ export default function ListingModal({ game, hideModal }) {
     }
   }
 
+  console.log(forsale, fortrade, forborrow)
+
   return (
     <>
       <div className='edit-listing-overlay'>
@@ -77,7 +76,7 @@ export default function ListingModal({ game, hideModal }) {
           <form className='edit-listing-form'>
             <div className='edit-listing-info-1'>
               <label style={{ marginRight: '15px' }}>Listing Price: </label>
-              <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + listingPrice} />
+              <input className='edit_listing_form-input-price' type='text' autoComplete='off' name='listingPrice' onChange={e => setListingPrice(e.target.value)} placeholder={'$' + game.sale_price.toFixed(2)} />
               <label style={{ marginRight: '15px' }}>Game Condition:</label>
               <div className='edit_listing_form-input-condition' onChange={e => setGameCondition(e.target.value)}>{gameCondition}
                 <i className='fa fa-caret-down' style={{ marginLeft: '10px' }} />
