@@ -162,9 +162,16 @@ def change_owner():
   try:
     new_owner_id = request.json.get('offeree_id')
     game_id = request.json.get('game_id')
+    username = request.json.get('username')
     game = BoardGame.query.filter(BoardGame.id == game_id).first()
 
     game.user_id = new_owner_id
+    game.username = username
+    game.forsale = False
+    game.fortrade = False
+    game.forborrow = False
+    game.condition_description = None
+    game.sale_price = 0
     db.session.commit()
     return {"Message": "Transaction compelted."}
   except:

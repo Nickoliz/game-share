@@ -120,6 +120,11 @@ export default function GameCardProfile({ game, ownerOffersList }) {
             }
           </div>
           <div className='revision-buttons'>
+            {(!game.forsale && !game.fortrade && !game.forborrow) ?
+              <div className="edit-listing" onClick={e => setListingModal(true)}>List Game</div>
+              :
+              null
+            }
             {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
               <div className="edit-listing" onClick={e => setListingModal(true)}>Edit Listing</div>
               :

@@ -219,20 +219,17 @@ export const updateGame = (user_id, game_id, listingPrice, gameCondition, condit
   }
 }
 
-export const changeOwner = (user_id, offeree_id, game_id) => {
+export const changeOwner = (user_id, offeree_id, username, game_id) => {
   return async dispatch => {
-    debugger;
     try {
       const res = await fetch(`/api/games/changeowner`, {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ offeree_id, game_id })
+        body: JSON.stringify({ offeree_id, username, game_id })
       });
       res.data = await res.json();
-      debugger;
-      console.log(res.data);
       if (res.ok) {
         dispatch(getCollection(user_id))
       }

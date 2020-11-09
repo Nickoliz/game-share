@@ -35,7 +35,7 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
   }
 
   const accept = () => {
-    dispatch(changeOwner(currentUserId, offereeId, game.id));
+    dispatch(changeOwner(currentUserId, offereeId, username, game.id));
     dispatch(deleteOffer(currentUserId, offerId));
     // dispatch PATCH to game instance updating owner_id to offeree_id
     // dispatch DELETE offer
@@ -45,8 +45,6 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
     dispatch(deleteOffer(currentUserId, offerId));
     window.location.reload();
   }
-
-  console.log(offereeId, game.id)
 
   if (!offeree) return null;
 
