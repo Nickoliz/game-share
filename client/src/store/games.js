@@ -219,6 +219,30 @@ export const updateGame = (user_id, game_id, listingPrice, gameCondition, condit
   }
 }
 
+export const changeOwner = (user_id, offeree_id, game_id) => {
+  return async dispatch => {
+    debugger;
+    try {
+      const res = await fetch(`/api/games/changeowner`, {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ offeree_id, game_id })
+      });
+      res.data = await res.json();
+      debugger;
+      console.log(res.data);
+      if (res.ok) {
+        dispatch(getCollection(user_id))
+      }
+      return res;
+    } catch (err) {
+      return { "Message": "Could not complete transaction." }
+    }
+  }
+}
+
 // export const getCollection = id => {
 //   return async dispatch => {
 //     const res = await fetch(`/api/games/collection?id=${id}`, {

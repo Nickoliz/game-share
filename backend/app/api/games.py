@@ -16,31 +16,6 @@ def remove_game():
   except:
     return {"Message": "Could not delete game."}
 
-@games_routes.route('/update', methods=['PATCH'])
-def update_game():
-  try:
-    game_id = request.args.get('game_id')
-    list_price = float(request.json.get('listingPrice'))
-    game_condition = request.json.get('gameCondition')
-    game_description = request.json.get('conditionDescription')
-    checked_sale = bool(request.json.get('forsale'))
-    checked_trade = bool(request.json.get('fortrade'))
-    checked_borrow = bool(request.json.get('forborrow'))
-
-    update = BoardGame.query.filter(BoardGame.id == game_id).first()
-
-    update.sale_price=list_price
-    update.condition=game_condition
-    update.condition_description=game_description
-    update.forsale=checked_sale
-    update.fortrade=checked_trade
-    update.forborrow=checked_borrow
-
-    db.session.commit()
-    return {'Message': 'Successfully updated game'}
-  except:
-    return {'Message': 'Unable to update game.'}
-
 @games_routes.route('/collection')
 def get_user_collection():
   user_id = request.args.get('id')
@@ -147,6 +122,31 @@ def add_game_to_collection():
   except:
     return {"Message": sqlalchemy.exc.DataError}, 500
 
+@games_routes.route('/update', methods=['PATCH'])
+def update_game():
+  try:
+    game_id = request.args.get('game_id')
+    list_price = float(request.json.get('listingPrice'))
+    game_condition = request.json.get('gameCondition')
+    game_description = request.json.get('conditionDescription')
+    checked_sale = bool(request.json.get('forsale'))
+    checked_trade = bool(request.json.get('fortrade'))
+    checked_borrow = bool(request.json.get('forborrow'))
+
+    update = BoardGame.query.filter(BoardGame.id == game_id).first()
+
+    update.sale_price=list_price
+    update.condition=game_condition
+    update.condition_description=game_description
+    update.forsale=checked_sale
+    update.fortrade=checked_trade
+    update.forborrow=checked_borrow
+
+    db.session.commit()
+    return {'Message': 'Successfully updated game'}
+  except:
+    return {'Message': 'Unable to update game.'}
+
 @games_routes.route('/toggleforsale', methods=['PATCH'])
 def toggle_for_sale():
   user_id = request.json.get('user_id')
@@ -156,3 +156,16 @@ def toggle_for_sale():
     game.forsale = True
   db.session.commit()
   return {"Message": "Games successfully listed for sale."}
+
+@games_routes.route('/changeowner', methods=["PATCH"])
+def change_owner():
+  try:
+    new_owner_id = request.json.get('offeree_id')
+    game_id = request.json.get('game_id')
+    game = BoardGame.query.filter(BoardGame.id == game_id).first()
+
+    game.user_id = new_owner_id
+    db.session.commit()
+    return {"Message": "Transaction compelted."}
+  except:
+    return {"Message": "Transaction could not complete."}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { changeOwner } from '../store/games';
 import { deleteOffer } from '../store/offers';
 import { getUser } from '../store/users';
 
@@ -13,16 +14,6 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
   const [borrow, setBorrow] = useState(null);
   const dispatch = useDispatch();
 
-  const decline = () => {
-    dispatch(deleteOffer(currentUserId, offerId));
-    window.location.reload();
-  }
-
-  let username;
-
-  for (let key in offeree) {
-    username = offeree.username;
-  }
 
   useEffect(() => {
     dispatch(getUser(offerInfo.offeree_id))
@@ -33,7 +24,29 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
     } else if (offerInfo.offer_borrow === true) {
       setBorrow(true);
     }
-  }, [dispatch, offerInfo])
+  }, [dispatch, offerInfo]);
+
+  let username;
+  let offereeId;
+
+  for (let key in offeree) {
+    username = offeree.username;
+    offereeId = offeree.id;
+  }
+
+  const accept = () => {
+    dispatch(changeOwner(currentUserId, offereeId, game.id));
+    dispatch(deleteOffer(currentUserId, offerId));
+    // dispatch PATCH to game instance updating owner_id to offeree_id
+    // dispatch DELETE offer
+  }
+
+  const decline = () => {
+    dispatch(deleteOffer(currentUserId, offerId));
+    window.location.reload();
+  }
+
+  console.log(offereeId, game.id)
 
   if (!offeree) return null;
 
@@ -67,7 +80,7 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
             }
           </div>
           <div className='edit-listing-buttons'>
-            <button className='edit_listing_form__submit'>Accept</button>
+            <button className='edit_listing_form__submit' onClick={() => accept()}>Accept</button>
             <button className='edit_listing_form__submit' type='cancel' onClick={() => decline()}>Decline</button>
           </div>
         </div>
