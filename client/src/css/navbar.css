@@ -64,13 +64,13 @@
 }
 
 .homepage_login-button:hover {
-  background: linear-gradient(
-    to right,
-    #3881D4,
-    #333A3F);
-    transform: all 2s ease-in;
-    color: white;
-    background-clip: border-box;
+  background-color: #3881D4;
+  transform: all ease-in;
+  color: #333A3F;
+  font-size: 20px;
+  padding: 7px;
+  letter-spacing: 1px;
+  background-clip: border-box;
 }
 
 .homepage_auth-button {
@@ -88,14 +88,13 @@
 }
 
 .homepage_auth-button:hover {
-  background: linear-gradient(
-    to right,
-    #3881D4,
-    #333A3F);
-    transform: all ease-in;
-    color: white;
-    letter-spacing: 1px;
-    background-clip: border-box;
+  background-color: #3881D4;
+  transform: all ease-in;
+  color: #333A3F;
+  font-size: 20px;
+  padding: 7px;
+  letter-spacing: 1px;
+  background-clip: border-box;
 }
 
 .auth_profile_button {
@@ -113,14 +112,13 @@
 }
 
 .auth_profile_button:hover {
-  background: linear-gradient(
-    to right,
-    #3881D4,
-    #333A3F);
-    transform: all ease-in;
-    color: white;
-    letter-spacing: 1px;
-    background-clip: border-box;
+  background-color: #3881D4;
+  transform: all ease-in;
+  color: #333A3F;
+  font-size: 22px;
+  padding: 7px;
+  letter-spacing: 1px;
+  background-clip: border-box;
 }
 
 .auth_profile_container {

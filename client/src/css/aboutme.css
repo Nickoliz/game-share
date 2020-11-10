@@ -1,0 +1,41 @@
+.about-me-icons {
+  display: flex;
+  flex: column center;
+  gap: 20px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.about-me-button {
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  /* background-color: #3881D4; */
+  background: linear-gradient(
+    to right,
+    #333A3F,
+    #3881D4,
+    #333A3F);
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+  transition: all 3s cubic-bezier(0.175, 0.885, 0.335, 1);
+}
+
+.about-me-button:hover {
+  background-color: #279BDC;
+  font-size: 24px;
+  transform: all ease-in;
+  color: #333A3F;
+  letter-spacing: 2px;
+  background-clip: border-box;
+  padding: 7px;
+}
+
+.about-me-button:focus {
+  outline: none;
+}

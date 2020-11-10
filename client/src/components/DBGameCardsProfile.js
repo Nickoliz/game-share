@@ -24,7 +24,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  let body = document.getElementById('body-id');
+  const body = document.getElementById('body-id');
 
   const handleClick = id => {
     dispatch(getGameById(id));
