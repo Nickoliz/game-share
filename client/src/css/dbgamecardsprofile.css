@@ -6,7 +6,11 @@ a {
   background-color: #37404A;
 }
 
-.edit-listing-overlay {
+.lock-scroll {
+  overflow: hidden;
+}
+
+.edit-listing-overlay{
   display: flex;
   align-items: center;
   justify-content: center;

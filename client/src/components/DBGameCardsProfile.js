@@ -24,6 +24,8 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  let body = document.getElementById('body-id');
+
   const handleClick = id => {
     dispatch(getGameById(id));
     dispatch(getGameImages(id));
@@ -55,6 +57,12 @@ export default function GameCardProfile({ game, ownerOffersList }) {
     setOfferModal(true);
     dispatch(getOfferById(offerId));
     dispatch(viewOffer(currentUserId, offerId));
+    body.classList.add('lock-scroll')
+  }
+
+  const handleListingModal = () => {
+    setListingModal(true);
+    body.classList.add('lock-scroll')
   }
 
   const removeGame = (game_id) => {
@@ -64,6 +72,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const hideModal = e => {
     setOfferModal(null);
     setListingModal(null);
+    body.classList.remove('lock-scroll')
     window.location.reload();
   }
 
@@ -128,12 +137,12 @@ export default function GameCardProfile({ game, ownerOffersList }) {
             :
             <div className='revision-buttons'>
               {(!game.forsale && !game.fortrade && !game.forborrow) ?
-                <div className="edit-listing" onClick={e => setListingModal(true)} style={{ marginRight: '10px' }}>List Game</div>
+                <div className="edit-listing" onClick={e => handleListingModal()} style={{ marginRight: '10px' }}>List Game</div>
                 :
                 null
               }
               {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
-                <div className="edit-listing" onClick={e => setListingModal(true)}>Edit Listing</div>
+                <div className="edit-listing" onClick={e => handleListingModal()}>Edit Listing</div>
                 :
                 null
               }
