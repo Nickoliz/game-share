@@ -62,6 +62,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
 
   const handleListingModal = () => {
     setListingModal(true);
+    window.scrollTo(0,0);
     body.classList.add('lock-scroll')
   }
 
