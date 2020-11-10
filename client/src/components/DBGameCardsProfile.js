@@ -55,6 +55,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
 
   const handleViewOffer = () => {
     setOfferModal(true);
+    window.scrollTo(0,0);
     dispatch(getOfferById(offerId));
     dispatch(viewOffer(currentUserId, offerId));
     body.classList.add('lock-scroll')
