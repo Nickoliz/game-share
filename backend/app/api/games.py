@@ -24,6 +24,13 @@ def get_user_collection():
   data = [game.to_dict() for game in games]
   return {"games": data, "gameOwner": user_info.to_dict()}, 200
 
+@games_routes.route('/borrowedgames')
+def get_borrowed_games():
+  user_id = request.args.get('id')
+  games = BoardGame.query.filter(BoardGame.borrower_id == user_id).order_by(BoardGame.title)
+  data = [game.to_dict() for game in games]
+  return {"games": data}
+
 @games_routes.route('/offer')
 def get_offer_game():
   game_id = request.args.get('id')
@@ -162,10 +169,47 @@ def change_owner():
   try:
     new_owner_id = request.json.get('offeree_id')
     game_id = request.json.get('game_id')
+    username = request.json.get('username')
     game = BoardGame.query.filter(BoardGame.id == game_id).first()
 
     game.user_id = new_owner_id
+    game.username = username
+    game.forsale = False
+    game.fortrade = False
+    game.forborrow = False
+    game.condition_description = None
+    game.sale_price = 0
     db.session.commit()
     return {"Message": "Transaction compelted."}
   except:
     return {"Message": "Transaction could not complete."}
+
+@games_routes.route('/borrow', methods=["PATCH"])
+def borrow_game():
+  game_id = request.args.get('id')
+  borrower_id = request.json.get('offeree_id')
+
+  game = BoardGame.query.filter(BoardGame.id == game_id).first()
+
+  # SET BORROW
+  game.borrowed = True
+  game.borrower_id = borrower_id
+
+  #RESET LISTING
+  game.forsale = False
+  game.fortrade = False
+  game.forborrow = False
+
+  db.session.commit()
+  return {"Message": "Game borrowed successfully."}
+
+@games_routes.route('/returned', methods=["PATCH"])
+def return_game():
+  game_id = request.args.get('id')
+
+  game = BoardGame.query.filter(BoardGame.id == game_id).first()
+
+  game.borrowed = False
+  game.borrower_id = None
+  db.session.commit()
+  return {"Message": "Game returned successfully."}

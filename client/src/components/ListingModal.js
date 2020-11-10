@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateGame } from '../store/games';
 
 
-
-
 export default function ListingModal({ game, hideModal }) {
 
   const [gameCondition, setGameCondition] = useState(null);
@@ -65,7 +63,7 @@ export default function ListingModal({ game, hideModal }) {
     }
   }
 
-  return (
+    return (
     <>
       <div className='edit-listing-overlay'>
         <div className='edit-listing-container'>

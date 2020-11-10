@@ -92,6 +92,7 @@ class BoardGame(db.Model):
       "fortrade": self.fortrade,
       "forborrow": self.forborrow,
       "borrowed": self.borrowed,
+      "borrower_id": self.borrower_id,
       "pending_buy_offer": self.pending_buy_offer,
       "pending_trade_offer": self.pending_trade_offer,
       "pending_borrow_offer": self.pending_borrow_offer,
