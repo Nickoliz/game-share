@@ -18,10 +18,13 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const [offerId, setOfferId] = useState(null);
   const [listingModal, setListingModal] = useState(false);
   const [offerModal, setOfferModal] = useState(false);
+  const [borrowed, setBorrowed] = useState(null);
 
   const currentUserId = useSelector(state => state.auth.id);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  let body = document.getElementById('body-id');
 
   const handleClick = id => {
     dispatch(getGameById(id));
@@ -44,6 +47,9 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         return null;
       }
     })
+    if (game.borrowed === true) {
+      setBorrowed(true);
+    }
   }, [ownerOffersList, game.game_id])
 
 
@@ -51,6 +57,13 @@ export default function GameCardProfile({ game, ownerOffersList }) {
     setOfferModal(true);
     dispatch(getOfferById(offerId));
     dispatch(viewOffer(currentUserId, offerId));
+    body.classList.add('lock-scroll')
+  }
+
+  const handleListingModal = () => {
+    setListingModal(true);
+    window.scrollTo(0,0);
+    body.classList.add('lock-scroll')
   }
 
   const removeGame = (game_id) => {
@@ -60,6 +73,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const hideModal = e => {
     setOfferModal(null);
     setListingModal(null);
+    body.classList.remove('lock-scroll')
     window.location.reload();
   }
 
@@ -95,7 +109,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         <div id={game.id} className="card">
           <div className="card-link">
             <div id={game.id} style={{ backgroundColor: '#37404A', textDecoration: "none", color: "black", curosr: 'pointer' }} onClick={e => handleClick(game.game_id)}>
-              <img style={{cursor: 'pointer'}} id={game.id} src={game.thumb_url} alt={game.msrp} />
+              <img style={{ cursor: 'pointer' }} id={game.id} src={game.thumb_url} alt={game.msrp} />
             </div>
             {(game.forsale || game.fortrade || game.forborrow) ?
               <div id={game.id} className='main-card-game-info'>Listed:
@@ -119,18 +133,27 @@ export default function GameCardProfile({ game, ownerOffersList }) {
               null
             }
           </div>
-          <div className='revision-buttons'>
-            {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
-              <div className="edit-listing" onClick={e => setListingModal(true)}>Edit Listing</div>
-              :
-              null
-            }
-            {(offer || newOffer) ?
-              <div className='view-offer' onClick={() => handleViewOffer()}>View Offer</div>
-              :
-              <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
-            }
-          </div>
+          {(borrowed) ?
+            null
+            :
+            <div className='revision-buttons'>
+              {(!game.forsale && !game.fortrade && !game.forborrow) ?
+                <div className="edit-listing" onClick={e => handleListingModal()} style={{ marginRight: '10px' }}>List Game</div>
+                :
+                null
+              }
+              {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
+                <div className="edit-listing" onClick={e => handleListingModal()}>Edit Listing</div>
+                :
+                null
+              }
+              {(offer || newOffer) ?
+                <div className='view-offer' onClick={() => handleViewOffer()}>View Offer</div>
+                :
+                <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
+              }
+            </div>
+          }
         </div>
       </div >
     </>

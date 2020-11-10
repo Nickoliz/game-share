@@ -6,7 +6,11 @@ a {
   background-color: #37404A;
 }
 
-.edit-listing-overlay {
+.lock-scroll {
+  overflow: hidden;
+}
+
+.edit-listing-overlay{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,6 +251,7 @@ a {
   justify-content: space-between;
   flex-direction: column;
   padding-bottom: 10px;
+  font-size: 18px;
 }
 
 .main-card-game-info {
