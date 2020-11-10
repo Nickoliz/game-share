@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCollection } from '../store/games';
+import { getBorrowedGames, getCollection } from '../store/games';
 import { getCollectionOwner } from '../store/users';
 import { useParams, useHistory } from 'react-router-dom';
 import { getOffersByOwnerId } from '../store/offers';
@@ -15,6 +15,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const collectionOwner = useSelector(state => state.users.owner);
   const userCollection = useSelector(state => state.games.collection);
+  const userBorrowedGames = useSelector(state => state.games.borrowedGames);
   const ownerOffers = useSelector(state => state.offers.getOffers)
   const currentUserId = useSelector(state => state.auth.id);
   const history = useHistory();
@@ -23,15 +24,18 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getCollectionOwner(id));
     dispatch(getCollection(id));
+    dispatch(getBorrowedGames(id))
     dispatch(getOffersByOwnerId(id));
-    // dispatch(getCollection(profileUser));
   }, [dispatch, id])
+
 
   const userCollectionList = [];
   for (let game in userCollection) {
     userCollectionList.push(userCollection[game]);
   }
 
+  let borrowedGames = [];
+  let borrowed;
   let gamesForSale = 0;
   let gamesForTrade = 0;
   let gamesForBorrow = 0;
@@ -39,8 +43,25 @@ export default function Profile() {
     if (g.forsale === true) return gamesForSale++;
     if (g.fortrade === true) return gamesForTrade++;
     if (g.forborrow === true) return gamesForBorrow++;
+    if (g.borrowed === true) {
+      borrowedGames.push(g);
+      return borrowed = true;
+    }
     else return null;
   })
+
+  const userBorrowedGamesList = [];
+  for (let game in userBorrowedGames) {
+    userBorrowedGamesList.push(userBorrowedGames[game]);
+  }
+
+  let borrowing = false;
+  userBorrowedGamesList.map((g) => {
+    if (g.borrower_id === currentUserId) {
+      borrowing = true;
+    }
+  })
+
 
   const ownerOffersList = [];
   for (let offer in ownerOffers) {
@@ -56,6 +77,7 @@ export default function Profile() {
     if (offer.offer_borrow === true) return pendingBorrow++;
     else return null
   })
+
 
   if (!collectionOwner) return null
 
@@ -122,6 +144,25 @@ export default function Profile() {
             <div className='card-container-wrapper-profile'>
               {userCollectionList.map((game) => <DBGameCardsProfile ownerOffersList={ownerOffersList} game={game} key={game.id} />)}
             </div>
+            {(borrowed) ?
+              <>
+                <div className='profile-category-title'>Games Being Borrowed</div>
+                <div className='card-container-wrapper-profile'>
+                  {borrowedGames.map((game) => <DBGameCards game={game} key={game.id} borrowed={borrowed} />)}
+                </div>
+              </>
+              :
+              null
+            }
+            {(borrowing) ?
+              <>
+                <div className='profile-category-title'>Games I'm Borrowing</div>
+                <div className='card-container-wrapper-profile'>
+                  {userBorrowedGames.map((game) => <DBGameCards game={game} key={game.id} borrowing={borrowing} />)}
+                </div>
+              </>
+              :
+              null}
           </div>
         </>
       }

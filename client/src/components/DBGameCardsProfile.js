@@ -18,6 +18,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
   const [offerId, setOfferId] = useState(null);
   const [listingModal, setListingModal] = useState(false);
   const [offerModal, setOfferModal] = useState(false);
+  const [borrowed, setBorrowed] = useState(null);
 
   const currentUserId = useSelector(state => state.auth.id);
   const history = useHistory();
@@ -44,6 +45,9 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         return null;
       }
     })
+    if (game.borrowed === true) {
+      setBorrowed(true);
+    }
   }, [ownerOffersList, game.game_id])
 
 
@@ -95,7 +99,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
         <div id={game.id} className="card">
           <div className="card-link">
             <div id={game.id} style={{ backgroundColor: '#37404A', textDecoration: "none", color: "black", curosr: 'pointer' }} onClick={e => handleClick(game.game_id)}>
-              <img style={{cursor: 'pointer'}} id={game.id} src={game.thumb_url} alt={game.msrp} />
+              <img style={{ cursor: 'pointer' }} id={game.id} src={game.thumb_url} alt={game.msrp} />
             </div>
             {(game.forsale || game.fortrade || game.forborrow) ?
               <div id={game.id} className='main-card-game-info'>Listed:
@@ -119,23 +123,27 @@ export default function GameCardProfile({ game, ownerOffersList }) {
               null
             }
           </div>
-          <div className='revision-buttons'>
-            {(!game.forsale && !game.fortrade && !game.forborrow) ?
-              <div className="edit-listing" onClick={e => setListingModal(true)}>List Game</div>
-              :
-              null
-            }
-            {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
-              <div className="edit-listing" onClick={e => setListingModal(true)}>Edit Listing</div>
-              :
-              null
-            }
-            {(offer || newOffer) ?
-              <div className='view-offer' onClick={() => handleViewOffer()}>View Offer</div>
-              :
-              <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
-            }
-          </div>
+          {(borrowed) ?
+            null
+            :
+            <div className='revision-buttons'>
+              {(!game.forsale && !game.fortrade && !game.forborrow) ?
+                <div className="edit-listing" onClick={e => setListingModal(true)} style={{ marginRight: '10px' }}>List Game</div>
+                :
+                null
+              }
+              {((game.forsale || game.fortrade || game.forborrow) && !offer && !newOffer) ?
+                <div className="edit-listing" onClick={e => setListingModal(true)}>Edit Listing</div>
+                :
+                null
+              }
+              {(offer || newOffer) ?
+                <div className='view-offer' onClick={() => handleViewOffer()}>View Offer</div>
+                :
+                <div className='delete-game' onClick={() => removeGame(game.id)}>Remove</div>
+              }
+            </div>
+          }
         </div>
       </div >
     </>

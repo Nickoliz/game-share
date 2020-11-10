@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeOwner } from '../store/games';
+import { borrowed, changeOwner } from '../store/games';
 import { deleteOffer } from '../store/offers';
 import { getUser } from '../store/users';
 
@@ -35,10 +35,14 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
   }
 
   const accept = () => {
-    dispatch(changeOwner(currentUserId, offereeId, username, game.id));
-    dispatch(deleteOffer(currentUserId, offerId));
-    // dispatch PATCH to game instance updating owner_id to offeree_id
-    // dispatch DELETE offer
+    if (game.forborrow === true) {
+      console.log("IN THE IF STATEMENT")
+      dispatch(borrowed(currentUserId, offereeId, game.id));
+      dispatch(deleteOffer(currentUserId, offerId));
+    } else {
+      dispatch(changeOwner(currentUserId, offereeId, username, game.id));
+      dispatch(deleteOffer(currentUserId, offerId));
+    }
   }
 
   const decline = () => {
@@ -56,21 +60,21 @@ export default function OfferModal({ game, offerId, offerInfo, hideModal }) {
           <br />
           <div className='offer-type'>
             {(buy) ?
-              <div style={{marginBottom: '20px', fontSize: '20px'}}>
+              <div style={{ marginBottom: '20px', fontSize: '20px' }}>
                 {username} wants to buy {game.title} for {game.sale_price}.
               </div>
               :
               null
             }
             {(trade) ?
-              <div style={{marginBottom: '20px', fontSize: '20px'}}>
+              <div style={{ marginBottom: '20px', fontSize: '20px' }}>
                 {username} wants to trade: {game.title} for another game.
               </div>
               :
               null
             }
             {(borrow) ?
-              <div style={{marginBottom: '20px', fontSize: '20px'}}>
+              <div style={{ marginBottom: '20px', fontSize: '20px' }}>
                 {username} wants to borrow {game.title}.
               </div>
               :

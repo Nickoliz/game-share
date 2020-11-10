@@ -4,6 +4,7 @@ const GET_GAMES_FOR_TRADE = 'games/get_games_for_trade';
 const GET_GAMES_FOR_BORROW = 'games/get_games_for_borrow';
 const GET_GAMES_BY_TITLE = 'games/get_games_by_title';
 const GET_GAME_FOR_OFFER = 'games/get_game_for_offer';
+const GET_BORROWED_GAMES = 'games/get_borrowed_games';
 const CLEAR_GAMES = 'games/clear_games';
 
 
@@ -49,6 +50,13 @@ export const getGamesByTitle = (games) => {
   }
 }
 
+export const getBorrowed = (games) => {
+  return {
+    type: GET_BORROWED_GAMES,
+    games: games
+  }
+}
+
 export const clear = () => {
   return {
     type: CLEAR_GAMES,
@@ -82,6 +90,17 @@ export const getCollection = id => {
     res.data = await res.json()
     if (res.ok) {
       dispatch(getUserCollection(res.data.games));
+    }
+    return res;
+  }
+}
+
+export const getBorrowedGames = id => {
+  return async dispatch => {
+    const res = await fetch(`/api/games/borrowedgames?id=${id}`)
+    res.data = await res.json()
+    if (res.ok) {
+      dispatch(getBorrowed(res.data.games));
     }
     return res;
   }
@@ -240,6 +259,39 @@ export const changeOwner = (user_id, offeree_id, username, game_id) => {
   }
 }
 
+export const borrowed = (user_id, offeree_id, game_id) => {
+  return async dispatch => {
+    const res = await fetch(`/api/games/borrow?id=${game_id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ offeree_id })
+    });
+    res.data = await res.json();
+    if (res.ok) {
+      dispatch(getCollection(user_id));
+    }
+    return res;
+  }
+}
+
+export const returned = (user_id, game_id) => {
+  return async dispatch => {
+    const res = await fetch(`/api/games/returned?id=${game_id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    res.data = await res.json()
+    if (res.ok) {
+      dispatch(getCollection(user_id))
+    }
+  }
+}
+
+
 // export const getCollection = id => {
 //   return async dispatch => {
 //     const res = await fetch(`/api/games/collection?id=${id}`, {
@@ -257,6 +309,8 @@ export default function gamesReducer(state = {}, action) {
   switch (action.type) {
     case GET_COLLECTION:
       return { ...state, collection: action.games };
+    case GET_BORROWED_GAMES:
+      return { ...state, borrowedGames: action.games };
     case GET_GAME_FOR_OFFER:
       return { ...state, game: action.game };
     case GET_GAMES_FOR_BUY:
