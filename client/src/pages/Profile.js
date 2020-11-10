@@ -141,12 +141,17 @@ export default function Profile() {
                 </div>
               </div>
             </div>
+            <div className='profile-title-wrap'>
+              <div className='profile-category-title'>My Collection</div>
+            </div>
             <div className='card-container-wrapper-profile'>
               {userCollectionList.map((game) => <DBGameCardsProfile ownerOffersList={ownerOffersList} game={game} key={game.id} />)}
             </div>
             {(borrowed) ?
               <>
-                <div className='profile-category-title'>Games Being Borrowed</div>
+                <div className='profile-title-wrap'>
+                  <div className='profile-category-title'>Games Being Borrowed</div>
+                </div>
                 <div className='card-container-wrapper-profile'>
                   {borrowedGames.map((game) => <DBGameCards game={game} key={game.id} borrowed={borrowed} />)}
                 </div>
@@ -156,7 +161,9 @@ export default function Profile() {
             }
             {(borrowing) ?
               <>
-                <div className='profile-category-title'>Games I'm Borrowing</div>
+                <div className='profile-title-wrap'>
+                  <div className='profile-category-title'>Games I'm Borrowing</div>
+                </div>
                 <div className='card-container-wrapper-profile'>
                   {userBorrowedGames.map((game) => <DBGameCards game={game} key={game.id} borrowing={borrowing} />)}
                 </div>

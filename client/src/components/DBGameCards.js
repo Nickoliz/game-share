@@ -34,7 +34,7 @@ export default function GameCard({ game, borrowed, borrowing }) {
   return (
     <>
       <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)} >
-        <div className='main-card-game-name'>{game.title}
+        <div className='main-card-game-name'>{game.title.substr(0,34)}
           {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>Price: ${game.sale_price.toFixed(2)} | Condition: {game.condition}</span> : null}
           {(!borrowed) ?
             <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px' }}>Owner:

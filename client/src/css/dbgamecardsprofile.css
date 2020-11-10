@@ -247,6 +247,7 @@ a {
   justify-content: space-between;
   flex-direction: column;
   padding-bottom: 10px;
+  font-size: 18px;
 }
 
 .main-card-game-info {

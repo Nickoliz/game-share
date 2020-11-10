@@ -5,11 +5,13 @@
 }
 
 .card-container-wrapper-profile {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: space-evenly;
+  /* align-items: center; */
   grid-template-rows: auto;
-  /* margin-left: 50px; */
-  /* margin-right: 50px; */
   margin: auto;
   height: auto;
 }
@@ -34,6 +36,18 @@
   background-color: #37404A;
   font-size: 30px;
   border-bottom: 2px solid #3881D4;
+}
+
+.profile-title-wrap {
+  display: flex;
+  width: 1200px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: 2px solid #3881D4;
+}
+
+.profile-category-title {
+  font-size: 30px;
 }
 
 #user_banner-stats-label {
