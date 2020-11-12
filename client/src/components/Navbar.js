@@ -53,7 +53,7 @@ export default function Navbar() {
           }
         </div>
         <div className='homepage_auth'>
-          <div className='homepage_auth-button' style={{ padding: '12px' }} onClick={() => handleAboutMe()}>About Me</div>
+          <div id='about-me-button' className='homepage_auth-button' style={{ padding: '12px' }} onClick={() => handleAboutMe()}>About Me</div>
           {(currentUserId) ?
             null
             :
