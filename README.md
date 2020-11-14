@@ -1,11 +1,14 @@
-[<img src='./client/public/game-share-logo.png' alt='game-share-logo' />][game-share]
+<p align='center'>
+  <img align='center' src='./client/public/game-share-logo.png' alt='game-share-logo' />
+  <br />
+</p>
 
 <br />
 
-*Pssst.... click the logo!*
-
-<br />
 <hr />
+
+## Visit the [demo.][game-share]
+
 <br />
 
 ## Schema
