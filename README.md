@@ -4,10 +4,9 @@
 </p>
 
 <br />
-
+<h3 align='center>Visit the [demo.][game-share]</h3>
 <hr />
 
-## Visit the [demo.][game-share]
 
 <br />
 
