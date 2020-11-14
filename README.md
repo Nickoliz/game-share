@@ -5,7 +5,7 @@
 
 <br />
 
-<h1 align='center'>Visit the <a href=[game-share]>demo.</a></h1>
+<h1 align='center'>Visit the <a href='https://game-share-ltz.herokuapp.com'>demo.</a></h1>
 
 <hr />
 
@@ -17,4 +17,3 @@
 <img src='./client/public/game-share-schema.png' alt='game-share-schema' />
 
 
-[game-share]: https://game-share-ltz.herokuapp.com/
