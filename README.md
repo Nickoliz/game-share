@@ -5,7 +5,7 @@
 
 <br />
 
-<h1 align='center'>Visit the <a href='https://game-share-ltz.herokuapp.com'>demo.</a></h1>
+<h3 align='center'>Visit the <a href='https://game-share-ltz.herokuapp.com'>demo.</a></h3>
 
 <hr />
 
