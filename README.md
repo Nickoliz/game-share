@@ -1,4 +1,7 @@
 [<img src='./client/public/game-share-logo.png' alt='game-share-logo' />][game-share]
+
+<br />
+
 *Pssst.... click the logo!*
 
 <br />
