@@ -1,5 +1,6 @@
-[<img align='center' src='./client/public/game-share-logo.png' alt='game-share-logo' />][game-share]
-
+[<p align='center'>
+  <img src='./client/public/game-share-logo.png' alt='game-share-logo' />
+</p>][game-share]
 *Pssst.... click the logo!*
 
 <br />
