@@ -4,8 +4,11 @@
 </p>
 
 <br />
-<h3 align='center>Visit the [demo.][game-share]</h3>
+
+<h1 align='center'>Visit the <a href=[game-share]>demo.</a></h1>
+
 <hr />
+
 
 
 <br />
