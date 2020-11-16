@@ -19,7 +19,7 @@
 - [Game Share Overview](#game-share-overview)
 - [Technologies Overview](#technologies-overview)
 - [Front End](./client/)
-- [Back End])(./backend/)
+- [Back End](./backend/)
 
 Game Share Overview
 ====
