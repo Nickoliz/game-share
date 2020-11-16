@@ -17,7 +17,9 @@
 
 ### Table of Contents
 - [Game Share Overview](#game-share-overview)
-- [Front End]()
+- [Technologies Overview](#technologies-overview)
+- [Front End](./client/)
+- [Back End](./backend/)
 
 Game Share Overview
 ====
@@ -46,7 +48,6 @@ Game Share uses [Board Game Atlas's API] to retrieve information for board games
 <img align="left"  style='margin-right: 20px' alt="python" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" />
 <img align="left"  style='margin-right: 20px' alt="flask" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flask/flask.png" />
 <img align="left"  style='margin-right: 20px' alt="postgreSQL" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png" />
-<img align="left"  style='margin-right: 5px' alt="Docker" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />
 
 <br />
 <br />
@@ -59,5 +60,8 @@ Game Share uses [Board Game Atlas's API] to retrieve information for board games
 
 Users can expolore board games, sign up, then buy, sell, trade, or borrow board games. The transaction experience is simple in order to maintain an elegant experience through the demo.
 
+## Technologies Overview
+### React
+- The front-end is maintained by the React library for it's simplicity and modularity with components.
 
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
