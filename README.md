@@ -17,7 +17,7 @@
 
 ### Table of Contents
 - [Game Share Overview](#game-share-overview)
-- [Front End](https://github.com/Nickoliz/game-share/tree/master/client)
+- [Front End](./client/)
 
 Game Share Overview
 ====
@@ -46,7 +46,6 @@ Game Share uses [Board Game Atlas's API] to retrieve information for board games
 <img align="left"  style='margin-right: 20px' alt="python" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" />
 <img align="left"  style='margin-right: 20px' alt="flask" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flask/flask.png" />
 <img align="left"  style='margin-right: 20px' alt="postgreSQL" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png" />
-<img align="left"  style='margin-right: 5px' alt="Docker" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" />
 
 <br />
 <br />
