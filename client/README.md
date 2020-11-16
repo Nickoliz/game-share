@@ -1,11 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src='./public/game-share-splash.png' alt='game-share-splash' />
 
-# Running The Frontend in Development
-1. Run `npm install`.
-2. Install other dependencies
-3. Run this application using `npm start`.
-
-This app will be automatically built when you deploy the container to heroku. Please see the README in the root of your project skeleton for information about deployment.
 
 ### Navigation
+<<<<<<< HEAD
 * [Back to root README](../README.md)
+=======
+* [Main](../README.md)
+>>>>>>> 512dd53eaa826c0a4786f3a447d1394618074de5
