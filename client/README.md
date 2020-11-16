@@ -1,7 +1,5 @@
-<img width: '250px' src=[splash] />
+<img src='./public/game-share-splash.png' alt='game-share-splash' />
 
 
 ### Navigation
 * [Main](../README.md)
-
-[splash]: './public/splash-page.png'
