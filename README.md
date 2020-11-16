@@ -17,7 +17,9 @@
 
 ### Table of Contents
 - [Game Share Overview](#game-share-overview)
+- [Technologies Overview](#technologies-overview)
 - [Front End](./client/)
+- [Back End])(./backend/)
 
 Game Share Overview
 ====
@@ -58,5 +60,8 @@ Game Share uses [Board Game Atlas's API] to retrieve information for board games
 
 Users can expolore board games, sign up, then buy, sell, trade, or borrow board games. The transaction experience is simple in order to maintain an elegant experience through the demo.
 
+## Technologies Overview
+### React
+- The front-end is maintained by the React library for it's simplicity and modularity with components.
 
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
