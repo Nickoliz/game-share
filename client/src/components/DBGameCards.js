@@ -34,8 +34,13 @@ export default function GameCard({ game, borrowed, borrowing }) {
   return (
     <>
       <div className="card-wrapper" id={game.id} onClick={e => handleClick(game.game_id)} >
-        <div className='main-card-game-name'>{game.title.substr(0,34)}
-          {(game.forsale === true) ? <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>Price: ${game.sale_price.toFixed(2)} | Condition: {game.condition}</span> : null}
+        <div className='main-card-game-name'>{game.title.substr(0, 34)}
+          {(game.forsale === true) ?
+            <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px', paddingBottom: '5px' }}>
+              Price: ${game.sale_price.toFixed(2)} | Condition: {game.condition}</span>
+            :
+            null
+          }
           {(!borrowed) ?
             <span style={{ fontSize: '14px', backgroundColor: '#37404A', paddingTop: '5px' }}>Owner:
           <Link className='game-card-instance-owner' to={`/profile/${game.user_id}`}> {game.username}</Link>
@@ -45,16 +50,11 @@ export default function GameCard({ game, borrowed, borrowing }) {
           }
         </div>
         <div id={game.id} className="card">
-          <div className='card_game-description' style={{ paddingBottom: '10px', fontSize: '14px', backgroundColor: '#37404A', maxWidth: '300px' }}>Description: {game.condition_description}</div>
-          <Link id={game.id}
-            className="card-link"
-            style={{ textDecoration: "none", color: "black" }}
-            to={`gamepage/${game.game_id}`}>
-            <img id={game.id}
-              src={game.thumb_url}
-              alt={game.msrp}
-              style={{ width: '150px', height: '150px' }}
-            />
+          <div className='card_game-description' style={{ paddingBottom: '10px', fontSize: '14px', backgroundColor: '#37404A', maxWidth: '300px' }}>
+            Description: {game.condition_description}
+          </div>
+          <Link id={game.id} className="card-link" style={{ textDecoration: "none", color: "black" }} to={`gamepage/${game.game_id}`}>
+            <img id={game.id} src={game.thumb_url} alt={game.msrp} style={{ width: '150px', height: '150px' }} D/>
           </Link>
           {(!borrowed && !borrowing) ?
             <Link exact="true" to={`/offer/${game.username}/${game.id}`}>
