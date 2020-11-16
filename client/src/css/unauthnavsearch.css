@@ -70,9 +70,9 @@ input {
 }
 
 .unauth-listing-information-header > img {
-  width: 200px;
+  width: 400px;
   border-radius: 4px;
-  height: 175px;
+  height: 350px;
   object-fit: contain;
   background-color: #4D5764;
 }
