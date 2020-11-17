@@ -62,6 +62,36 @@ Users can expolore board games, sign up, then buy, sell, trade, or borrow board 
 
 ## Technologies Overview
 ### React
-- The front-end is maintained by the React library for it's simplicity and modularity with components.
+The front-end is maintained by the React library for it's simplicity and modularity with components. Another major benefit from React is the HTML architecture with JSX. Using JSX interpolation allows for dynamic code and reusability within the app. Here is an example of the game information cards I use on multiple pages.
+#### Game Card:
+  ```javascript
+  return (
+    <div className="card-wrapper" onClick={e => handleClick(game.id)}>
+      <div className='main-card-game-name'>{game.name.substr(0, 34)}
+        <div className='rank-and-more'>Rank: {(game.rank > 500) ? "Not Ranked" : game.rank}</div>
+      </div>
+      <div className="card">
+        <Link className="card-link" style={{ textDecoration: "none", color: "black" }} to={`gamepage/${game.id}`}>
+          <img src={game.thumb_url} alt={game.images.small} style={{ width: '150px', height: '150px' }} />
+          <div className='card-game-description' id='card-game-description'>
+            <div className="card-information">
+              <div className="card-header">
+              </div>
+            </div>
+          </div>
+          <div className='main-card-game-info'>
+            <div id='main-card-info-box'>Player: {game.min_players} - {game.max_players}</div>
+            <div id='main-card-info-box'>Playtime: {game.max_playtime}</div>
+            <div style={{ backgroundColor: '#37404A', marginTop: '5px' }}>Rating
+            <div>
+              {Math.trunc(game.average_user_rating * 2 * 10)} {/*Takes 1-5 scale to 1-100*/}
+            </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div >
+  )
+  ```
 
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
