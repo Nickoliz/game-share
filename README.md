@@ -64,6 +64,7 @@ Users can expolore board games, sign up, then buy, sell, trade, or borrow board 
 ### React
 The front-end is maintained by the React library for it's simplicity and modularity with components. Another major benefit from React is the HTML architecture with JSX. Using JSX interpolation allows for dynamic code and reusability within the app. Here is an example of the game information cards I use on multiple pages.
 #### Game Card:
+
   ```javascript
   return (
     <div className="card-wrapper" onClick={e => handleClick(game.id)}>
