@@ -101,4 +101,11 @@ Using Redux, React-Redux, and Redux-Thunk allows for predictable application sta
 
 When each component or page loads the specific information to the component will be stored in the Redux store. This makes sharing data across components more fluid and reliable. We can better isolate component specific data to the components and share data by using the Redux store.
 
+<br />
+
+###Flask
+Python and Flask were used to engineer the backend server for the seamless and easy use. PostgreSQL relational database was used with Alembic for simple management. With Flask we can easily create a user session which we can call on each page load to confirm a user is logged in and provide any authorization required, for example revising their listing for board games for sale, trade, or borrow.
+
+A benefit of Python with PostgreSQL is the use of Alchemy to create and maintain database relations. Integrating all of these technologies on the backend made the database predictable, reliable, and manageable.
+
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
