@@ -73,7 +73,7 @@ The front-end is maintained by the React library for it's simplicity and modular
       </div>
       <div className="card">
         <Link className="card-link" style={{ textDecoration: "none", color: "black" }} to={`gamepage/${game.id}`}>
-          <img src={game.thumb_url} alt={game.images.small} style={{ width: '150px', height: '150px' }} />
+          <img src={game.thumb_url} alt='game-image' style={{ width: '150px', height: '150px' }} />
           <div className='card-game-description' id='card-game-description'>
             <div className="card-information">
               <div className="card-header">
@@ -94,5 +94,11 @@ The front-end is maintained by the React library for it's simplicity and modular
     </div >
   )
   ```
+<br />
+
+### Redux
+Using Redux, React-Redux, and Redux-Thunk allows for predictable application state management. With Redux-Thunk as a middleware we can easily send and receive responses through the use of dispatching our reducers which are purely functions with fetch calls to the Flask API. The payloads are then sent through the actions onto the Redux store.
+
+When each component or page loads the specific information to the component will be stored in the Redux store. This makes sharing data across components more fluid and reliable. We can better isolate component specific data to the components and share data by using the Redux store.
 
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
