@@ -61,6 +61,8 @@ Game Share uses [Board Game Atlas's API] to retrieve information for board games
 Users can expolore board games, sign up, then buy, sell, trade, or borrow board games. The transaction experience is simple in order to maintain an elegant experience through the demo.
 
 ## Technologies Overview
+### Front-End Technologies
+<br />
 ### React
 The front-end is maintained by the React library for it's simplicity and modularity with components. Another major benefit from React is the HTML architecture with JSX. Using JSX interpolation allows for dynamic code and reusability within the app. Here is an example of the game information cards I use on multiple pages.
 #### Game Card:
@@ -103,9 +105,12 @@ When each component or page loads the specific information to the component will
 
 <br />
 
-###Flask
-Python and Flask were used to engineer the backend server for the seamless and easy use. PostgreSQL relational database was used with Alembic for simple management. With Flask we can easily create a user session which we can call on each page load to confirm a user is logged in and provide any authorization required, for example revising their listing for board games for sale, trade, or borrow.
+### Back-End Technologies
+<br />
+### Flask
+Python and Flask were used to engineer the backend server for the seamless and easy use. With Flask we can easily create a user session which we can call on each page load to confirm a user is logged in and provide any authorization required, for example revising their listing for board games for sale, trade, or borrow.
 
-A benefit of Python with PostgreSQL is the use of Alchemy to create and maintain database relations. Integrating all of these technologies on the backend made the database predictable, reliable, and manageable.
+### PostgreSQL, Alembic, and Alchemy
+PostgreSQL relational database was used with Alembic for simple management and migration efforts. Alchemy was used to create and query the database for information. Integrating all of these technologies on the backend made the database predictable, reliable, and manageable.
 
 [Board Game Atlas's API]: https://www.boardgameatlas.com/api/docs/
