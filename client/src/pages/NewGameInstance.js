@@ -11,7 +11,7 @@ import { clearAtlasState } from '../store/atlas';
 clearAtlasState();
 
 export default function NewGameInstance() {
-  const [searchTermCreateGame, setSearchTermCreateGame] = useState('');
+  const [searchTermCreateGame, setSearchTermCreateGame] = useState(null);
   const [gameTitle, setGameTitle] = useState('Title');
   const [gameId, setGameId] = useState(null);
   const [gameCondition, setGameCondition] = useState('Condition');
@@ -30,6 +30,7 @@ export default function NewGameInstance() {
   const currentUser = useSelector(state => state.auth);
   const game = useSelector(state => state.atlas.game);
 
+  let inputDiv = 'add_game_form__search';
 
   useEffect(() => {
     if (game) {
@@ -74,6 +75,11 @@ export default function NewGameInstance() {
     return history.push(`/profile/${currentUser.id}`);
   };
 
+  if (searchTermCreateGame !== null) {
+    inputDiv = 'add_game_form__search__active'
+  } else {
+    inputDiv = 'add_game_form__search'
+  }
 
   const handleCondition = e => {
     setGameCondition(e);
@@ -103,17 +109,21 @@ export default function NewGameInstance() {
     }
   }
 
+  const clearSearch = () => {
+    setSearchTermCreateGame(null);
+  }
+
   if (!currentUser.id) return <Redirect to='/login' />;
 
   return (
     <>
       <NavbarNotHome />
-      <div className='game_instance_container'>
+      <div className='game_instance_container' onClick={e => clearSearch()}>
         <div className='game_instance-add-from-collection'>
           <div className='game_instance-add-from-atlas__label'>search for a game you own to add or list</div>
           <div className='add_game_form_container'>
             <div className='add_game_form-box'>
-              <input className='add_game_form__search' type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
+              <input className={inputDiv} type='text' name='title' autoComplete='off' onChange={e => setSearchTermCreateGame(e.target.value)} placeholder='Search games from database...' />
               {(searchTermCreateGame) ?
                 <SearchCreateGameModal searchTermCreateGame={searchTermCreateGame} setSearchTermCreateGame={setSearchTermCreateGame} />
                 :

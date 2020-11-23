@@ -47,7 +47,7 @@ export default function GameCard({ game }) {
                 backgroundColor: '#3881D4', marginTop: '5px', color: 'white',
                 width: '35px', height: '30px', textAlign: 'center', padding: '4px', borderRadius: '4px'
               }}>
-                {Math.trunc(game.average_user_rating * 2 * 10)} {/*Takes 1-5 scale to 1-100*/}
+                {Math.trunc(game.average_user_rating * 20)} {/*Takes 1-5 scale to 1-100*/}
               </div>
             </div>
           </div>

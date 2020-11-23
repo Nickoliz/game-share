@@ -76,9 +76,10 @@ export default function GamePage() {
               <div id='gamepage_specs'>Players: {g.min_players} - {g.max_players}</div>
               <div id='gamepage_specs'>Age: {g.min_playtime} - {g.max_playtime} mins.</div>
               <div id='gamepage_specs'>Age: {g.min_age}+</div>
-              <div id='gamepage_specs'>Publisher: {g.primary_publisher}</div>
-              <div id='gamepage_specs'>Designer(s): {g.designers[0]}
-                {(g.designers.length > 1) ?
+              <div id='gamepage_specs'>Publisher: {g.primary_publisher.name}</div>
+              <div id='gamepage_specs'>Designer: {g.primary_designer.name}</div>
+              {/* BOARD GAME API REVISED THIER GAME OBJECTS - THIS IS OBSOLETE */}
+                {/* {(g.primary_designer.length > 1) ?
                   <span id='show-more-designers' style={{ cursor: 'pointer' }} onClick={() => handleDesigners()}> [+]</span>
                   :
                   null
@@ -94,8 +95,7 @@ export default function GamePage() {
                   :
                   null
                 }
-
-              </div>
+              </div> */}
             </div>
           </div>
           <div className='gamepage_game_information'>
