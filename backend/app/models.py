@@ -55,7 +55,8 @@ class BoardGame(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  game_id = db.Column(db.String(20), nullable=True, unique=True)
+  # game_id = db.Column(db.String(20), nullable=True, unique=True)
+  game_id = db.Column(db.String(20), nullable=True)
   username = db.Column(db.String(100), nullable=False)
   title = db.Column(db.String(100), nullable=False)
   year_published = db.Column(db.Integer)
@@ -123,7 +124,8 @@ class Offer(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   offeree_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  game_id = db.Column(db.String(20), db.ForeignKey("boardgames.game_id"), nullable=False)
+  # game_id = db.Column(db.String(20), db.ForeignKey("boardgames.game_id"), nullable=False)
+  game_id = db.Column(db.String(20), nullable=False)
   new_offer = db.Column(db.Boolean, nullable=False, default=True)
   pending_offer = db.Column(db.Boolean, nullable=False, default=True)
   offer_buy = db.Column(db.Boolean, nullable=False, default=False)
@@ -134,7 +136,7 @@ class Offer(db.Model):
 
   owner = db.relationship("User", foreign_keys=[owner_id])
   offeree = db.relationship("User", foreign_keys=[offeree_id])
-  game = db.relationship("BoardGame", foreign_keys=[game_id])
+  # game = db.relationship("BoardGame", foreign_keys=[game_id])
 
   def to_dict(self):
     return {

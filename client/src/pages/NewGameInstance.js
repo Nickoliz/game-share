@@ -8,8 +8,6 @@ import '../css/newgameinstance.css';
 import { clearAtlasState } from '../store/atlas';
 
 
-clearAtlasState();
-
 export default function NewGameInstance() {
   const [searchTermCreateGame, setSearchTermCreateGame] = useState(null);
   const [gameTitle, setGameTitle] = useState('Title');
@@ -32,7 +30,9 @@ export default function NewGameInstance() {
 
   let inputDiv = 'add_game_form__search';
 
+
   useEffect(() => {
+    dispatch(clearAtlasState());
     if (game) {
       game.map((g) => {
         return (
@@ -45,7 +45,7 @@ export default function NewGameInstance() {
         )
       })
     }
-  }, [game])
+  }, [dispatch, game])
 
   var conditionDescriptionClass = 'add_game_form-input-description';
 

@@ -134,7 +134,7 @@ export default function Profile() {
               </div>
               <div className='user_banner-listing-offers'>
                 <div>
-                  <div onClick={() => history.push(`/offers/${currentUserId}`)} style={{ textDecoration: 'none', cursor: 'pointer' }} id='user_banner-listing-label'>Listings</div>
+                  <div style={{ textDecoration: 'none', cursor: 'pointer' }} id='user_banner-listing-label'>Listings</div>
                   <div id='user_banner-stats-item'>Pending Sales: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingSale}</span></div>
                   <div id='user_banner-stats-item'>Pending Trades: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingTrade}</span></div>
                   <div id='user_banner-stats-item'>Pending Borrow: <span style={{ color: 'white', fontWeight: 'bold', backgroundColor: '#37404A' }}>{pendingBorrow}</span></div>
