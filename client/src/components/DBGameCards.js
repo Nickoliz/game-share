@@ -54,7 +54,7 @@ export default function GameCard({ game, borrowed, borrowing }) {
             Description: {game.condition_description}
           </div>
           <Link id={game.id} className="card-link" style={{ textDecoration: "none", color: "black" }} to={`gamepage/${game.game_id}`}>
-            <img id={game.id} src={game.thumb_url} alt={game.msrp} style={{ width: '150px', height: '150px' }} D/>
+            <img id={game.id} src={game.thumb_url} alt={game.msrp} style={{ width: '150px', height: '150px' }} />
           </Link>
           {(!borrowed && !borrowing) ?
             <Link exact="true" to={`/offer/${game.username}/${game.id}`}>

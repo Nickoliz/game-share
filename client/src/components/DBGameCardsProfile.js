@@ -50,7 +50,7 @@ export default function GameCardProfile({ game, ownerOffersList }) {
     if (game.borrowed === true) {
       setBorrowed(true);
     }
-  }, [ownerOffersList, game.game_id])
+  }, [ownerOffersList, game.game_id, game.borrowed])
 
 
   const handleViewOffer = () => {

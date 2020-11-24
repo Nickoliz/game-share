@@ -5,12 +5,9 @@
 }
 
 .card-container-wrapper-profile {
-  /* display: grid; */
-  /* grid-template-columns: repeat(4, 1fr); */
-  display: flex;
-  flex-direction: column wrap;
-  justify-content: space-evenly;
-  /* align-items: center; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
   grid-template-rows: auto;
   margin: auto;
   height: auto;

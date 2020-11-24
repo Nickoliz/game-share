@@ -11,7 +11,6 @@ import { getGameReviews } from '../store/reviews';
 
 
 export default function GamePage() {
-  const [showMoreDesigners, setShowMoreDesigners] = useState(false);
   const gameOnState = useSelector(state => state.atlas.game);
   const gameImages = useSelector(state => state.images.gameImages);
   const gameReviews = useSelector(state => state.reviews.gameReviews);
@@ -40,13 +39,15 @@ export default function GamePage() {
     reviews.push(gameReviews[review]);
   }
 
-  const handleDesigners = () => {
-    if (showMoreDesigners === false) {
-      setShowMoreDesigners(true);
-    } else {
-      setShowMoreDesigners(false);
-    }
-  }
+  // handleDesigners rendered obsolete due to API object revisions
+
+  // const handleDesigners = () => {
+  //   if (showMoreDesigners === false) {
+  //     setShowMoreDesigners(true);
+  //   } else {
+  //     setShowMoreDesigners(false);
+  //   }
+  // }
 
 
 
