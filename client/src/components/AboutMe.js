@@ -6,7 +6,7 @@ export default function AboutMe({ hideModal }) {
   return (
     <>
       <div onClick={hideModal} className='edit-listing-overlay'>
-        <div className='edit-listing-container' style={{ borderRadius: '20px', width: '500px' }}>
+        <div className='edit-listing-container about-me-container' style={{ borderRadius: '20px', width: '500px' }}>
           <div className='edit-container-title'>Nicholas Litz</div>
           <br />
           <a className='about-me-button' href='https://www.nicholaslitz.com' target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>Profile</a>

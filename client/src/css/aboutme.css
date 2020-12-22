@@ -1,3 +1,31 @@
+.about-me-container {
+  animation: zoomin 500ms linear;
+  -webkit-animation: zoomin 500ms linear;
+  -moz-animation: zoomin 500ms linear;
+}
+
+/* .about-me-overlay {
+  animation: zoomin 1500ms;
+} */
+
+@keyframes zoomin {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+@-webkit-keyframes zoomin {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+@-moz-keyframes zoomin {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+
+@keyframes zoomout {
+  from {transform: scale(1);}
+  to {transform: scale(0);}
+}
+
 .about-me-icons {
   display: flex;
   flex: column center;
