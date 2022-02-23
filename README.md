@@ -1,3 +1,6 @@
+<p align='center' style='font-weight: 20px'>
+  Unfortunately, the API I used for this project is no longer free and the site is not functional due to this.
+</p>
 <p align='center'>
   <img align='center' src='./client/public/game-share-logo.png' alt='game-share-logo' />
   <br />
