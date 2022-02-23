@@ -98,7 +98,9 @@ export default function HomePage() {
         {(orderByGames) ?
           <div id='grid-label'>{categoryDisplay}</div>
           :
-          <div id='grid-label'>Loading...</div>
+          <div>
+            <div id='grid-label'>The API I Used Is No Longer Free</div>
+            <div id='grid-label'>But Here's a cool spinning D20!</div>
         }
         <div className='home_card-container-wrapper'>
           {(orderByGames) ?
