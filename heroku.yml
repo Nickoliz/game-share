@@ -1,0 +1,12 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: backend/Dockerfile
+  config:
+    FLASK_ENV: production
+    FLASK_APP: app
+run:
+  web: bundle exec puma -C config/puma.rb
