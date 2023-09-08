@@ -1,5 +1,6 @@
 <p align='center' style='font-weight: 20px'>
-  Unfortunately, the API I used for this project is no longer free and the site is not functional due to this.
+  Unfortunately, the API I used for this project is no longer free and the site is not functional due to this.<br>
+  I've since decided to stop hosting the site.
 </p>
 <p align='center'>
   <img align='center' src='./client/public/game-share-logo.png' alt='game-share-logo' />
@@ -8,12 +9,7 @@
 
 <br />
 
-<h3 align='center'>Welcome! Please feel free to visit the live <a style='font-weight: bold' href='https://game-share-ltz.herokuapp.com'>demo.</a></h3>
 <p align='center'>Learn more about the developer <a style='font-weight: bold' href='https://www.nicholaslitz.com'>here</a>.</p>
-
-<p align='center' style='font-size: 12px'>
-  <em>Please Note: this website does not have true transactions as it is under development.</em>
-</p>
 
 <hr />
 <br />
